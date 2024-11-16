@@ -9,7 +9,6 @@ Pawmeet is an application that allows users to connect with each other to organi
 ## Screenshots
 
 ![Screenshot 1](screenshots/screenshot1.png)
-![Screenshot 2](screenshots/screenshot2.png)
 
 ## Technologies Used
 
