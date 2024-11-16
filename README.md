@@ -20,6 +20,7 @@ Pawmeet is an application that allows users to connect with each other to organi
 
 1. Clone the repository: `git clone https://github.com/yourusername/pawmeet.git`
 2. Install dependencies: `npm install`
+3. Install pip, and django in the Windows Powershell with admin privileges!! 
 
 ## Contributions for main developers ( Uri, Ferr, Jon)
 
