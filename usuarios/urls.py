@@ -8,6 +8,7 @@ urlpatterns = [
     # Aquí irían otras URLs de tu proyecto
     # ejemplo de cómo incluir URLs de una app
     path('', listar_usuarios, name='listar_usuarios'),
+    path('crear-usuario/', crear_usuario, name='crear_usuario'),
 
     # Puedes agregar aquí más rutas que necesites para tu proyecto
 ]

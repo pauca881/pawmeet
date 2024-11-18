@@ -3,7 +3,6 @@ from .models import Usuario
 from .forms import UsuarioForm
 
 # Create your views here.
-# s
 
 def listar_usuarios(request):
     usuarios = Usuario.objects.all()
