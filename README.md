@@ -25,7 +25,10 @@ Pawmeet is an application that allows users to connect with each other to organi
 ## Contributions for main developers ( Uri, Ferr, Jon)
 
 1. After Git installed in your pc, open cmd in Desktop and type. git clone https://github.com/tusuari/pawmeet.git
-2. After making code changes:
+2. Before making changes:
+    - git fetch
+    - git pull
+4. After making code changes:
     - git add .
     - git commit -m "Message of the commit"
     - git push origin main
