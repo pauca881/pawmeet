@@ -29,6 +29,14 @@ Pawmeet is an application that allows users to connect with each other to organi
     - git add .
     - git commit -m "Message of the commit"
     - git push origin main
+  
+## Git branch
+1. Fetch del main ( per veure si algu ha fet canvis )
+2. Si hi ha canvis, faig el pull
+3. Faig merge de main a la meva rama personal
+4. Faig canvis a la meva rama. Després faig push a la meva rama.
+5. Merge de la meva rama, al main.
+6. Pull a la main
 
 ## Contributions
 
