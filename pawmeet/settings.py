@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home',  # primera pagina creada ,
+    'home',  # primera pagina creada
     'usuarios'
 ]
 
