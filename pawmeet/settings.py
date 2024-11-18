@@ -25,8 +25,7 @@ SECRET_KEY = 'django-insecure-4zzkpd(qk&p2jg#tbs=k5z7)q(h*m&xg0@9i+mh*hgu4(c$)i+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -37,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home', #primera pagina creada 
+    'home',  # primera pagina creada ,
+    'usuarios'
 ]
 
 MIDDLEWARE = [
@@ -67,6 +67,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'pawmeet.wsgi.application'
 

@@ -22,8 +22,7 @@ from home import views  # Importamos la vista home desde la app home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', include('home.urls')),
-    path('', views.home, name='home'),  # Ruta raíz, ahora apuntando a la vista home
-
-
+    # Ruta raíz, ahora apuntando a la vista home
+    path('', views.home, name='home'),
+    path('usuarios/', include('usuarios.urls')),
 ]
-
