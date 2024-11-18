@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',  # primera pagina creada
-    'usuarios'
+    'usuarios',
+    'mascotas',
 ]
 
 MIDDLEWARE = [
