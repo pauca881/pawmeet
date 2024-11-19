@@ -25,7 +25,7 @@ class TipoProfesional(models.Model):
 
 class ProfesionalUser(models.Model):
     id = models.AutoField(primary_key=True)
-    usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE, related_name='profesional_profile')
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profesional_profile')
     nombre_establecimiento = models.CharField(max_length=150)
     tipo_de_profesional = models.OneToOneField(TipoProfesional, on_delete=models.CASCADE)
     direccion = models.TextField(max_length=100, blank=True, null=True)
