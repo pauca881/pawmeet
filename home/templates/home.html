@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pawmeet</title>
+        <link rel="stylesheet" href="{% static 'home/style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    </head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="logo-img"></i>
+                    <span>Pawmeet</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="nav-item">Productos</a>
+                    <a href="#" class="nav-item">Aprende</a>
+                    <a href="#" class="nav-item">Seguridad</a>
+                    <a href="#" class="nav-item">Soporte</a>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn-login">Iniciar Sesión</button>
+                </div>
+                <button class="menu-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Desliza a la Derecha®</h1>
+                <p>Crea conexiones significativas con personas reales.</p>
+                <button class="btn-create">Crear Cuenta</button>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <i class="fa-solid fa-shield-heart"></i>
+                <h3>Seguro y Protegido</h3>
+                <p>Tu seguridad es nuestra prioridad</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-user-group"></i>
+                <h3>Millones de Usuarios</h3>
+                <p>Conéctate con personas de todo el mundo</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-messages"></i>
+                <h3>Conexiones Reales</h3>
+                <p>Encuentra relaciones significativas</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="#">Privacidad</a>
+                <a href="#">Términos</a>
+                <a href="#">Política de Cookies</a>
+            </div>
+            <div class="footer-section">
+                <h4>Carreras</h4>
+                <a href="#">Empleos</a>
+                <a href="#">Equipo</a>
+            </div>
+            <div class="footer-section">
+                <h4>Social</h4>
+                <a href="#">Instagram</a>
+                <a href="#">TikTok</a>
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Match Group, LLC</p>
+        </div>
+    </footer>
+</body>
+</html>
