@@ -21,28 +21,30 @@ class PetEntity(m.Model):
     def __str__(self):
         return f"{self.name} ({self.get_entity_type_display()})"
 
+    def average_rating(self):
+        reviews = self.reviews.all()
+        if reviews.exists():
+            return sum(review.rating for review in reviews) / reviews.count()
+        return 0
+
 
 class Reviews(m.Model):
     # Cada classe representa una resenya d'usuaria sobre qualsevol tipus de PetEntity
-    user = m.ForeignKey(mu.Usuario, on_delete=m.Case)
-
-
-class Review(models.Model):
-    """
-    Representa una reseña de un usuario sobre un PetEntity.
-    """
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    pet_entity = models.ForeignKey(
-        PetEntity, related_name='reviews', on_delete=models.CASCADE)
-    # Calificación, por ejemplo, de 1 a 5
-    rating = models.PositiveSmallIntegerField()
-    comment = models.TextField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    user = m.ForeignKey(mu.UserProfile, on_delete=m.Case)
+    pet_entity = m.ForeignKey(
+        PetEntity, related_name='reviews', on_delete=m.CASCADE)
+    rating = m.PositiveSmallIntegerField(null=False)
+    comment = m.TextField(blank=True, null=True)
+    created_at = m.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f"Review by {self.user.username} on {self.pet_entity.name}"
+        return f"Review by {self.user.usuario} on {self.pet_entity.name}"
 
     class Meta:
-        # Un usuario solo puede reseñar una entidad una vez.
+        # Fem que un usuari tingui la capacitat nomes de crear una review per cada entity_type.
         unique_together = ('user', 'pet_entity')
         ordering = ['-created_at']
+
+
+# python manage.py makemigrations
+# python manage.py migrate
