@@ -1,7 +1,9 @@
 from django.contrib import admin
 from .models import Usuario, UserProfile, TipoProfesional, ProfesionalUser, Reseña
+# Register your models here.
 
 #Admin.py usuarios
+
 @admin.register(Usuario)
 class UsuarioAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'apellidos', 'correo', 'fecha_registro')
@@ -11,7 +13,11 @@ class UsuarioAdmin(admin.ModelAdmin):
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('usuario', 'telefono', 'direccion', 'fecha_nacimiento_dueño')
+
+    search_fields = ('usuario__nombre', 'usuario__apellidos', 'telefono')
+
     search_fields = ('usuarionombre', 'usuarioapellidos', 'telefono')
+
 
 
 @admin.register(TipoProfesional)
@@ -23,7 +29,11 @@ class TipoProfesionalAdmin(admin.ModelAdmin):
 @admin.register(ProfesionalUser)
 class ProfesionalUserAdmin(admin.ModelAdmin):
     list_display = ('id', 'usuario', 'nombre_establecimiento', 'tipo_de_profesional', 'telefono')
+
+    search_fields = ('usuario__nombre', 'usuario__apellidos', 'nombre_establecimiento', 'telefono')
+
     search_fields = ('usuarionombre', 'usuarioapellidos', 'nombre_establecimiento', 'telefono')
+
 
 @admin.register(Reseña)
 class ReseñaAdmin(admin.ModelAdmin):
