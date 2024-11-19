@@ -1,14 +1,5 @@
 from django.db import models
-
-class TipoMascota(models.Model):
-    """
-    Representa el tipo de mascota (ejemplo: perro, gato, ave).
-    Este modelo solo puede ser modificado desde el admin.
-    """
-    nombre = models.CharField(max_length=50, unique=True)
-
-    def __str__(self):
-        return self.nombre
+from mascotas.models import Mascota, TipoMascota
 
 class UserProfile(models.Model):
     profile_id = models.AutoField(primary_key=True)
@@ -42,6 +33,7 @@ class ProfesionalUser(models.Model):
 
     def __str__(self):
         return f"{self.usuario.nombre} - {self.nombre_establecimiento}"
+
 class Reseña(models.Model):
     id = models.AutoField(primary_key=True)
     profesional = models.ForeignKey(ProfesionalUser, on_delete=models.CASCADE, related_name='reseñas')
@@ -51,22 +43,6 @@ class Reseña(models.Model):
 
     def __str__(self):
         return f"Reseña: {self.titulo} ({self.numero_estrellas} estrellas)"
-
-
-class Mascota(models.Model):
-    """
-    Representa una mascota vinculada a un perfil de usuario.
-    """
-    nombre = models.CharField(max_length=100)
-    edad = models.PositiveIntegerField()  # Edad en años
-    tipo_mascota = models.ForeignKey(TipoMascota, on_delete=models.PROTECT)
-    dueño = models.ForeignKey(
-        'usuarios.UserProfile', on_delete=models.CASCADE, related_name='mascotas'
-    )
-
-    def __str__(self):
-        return f"{self.nombre} ({self.tipo_mascota.nombre})"
-
 
 class Evento(models.Model):
     """
