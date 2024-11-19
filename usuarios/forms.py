@@ -2,13 +2,17 @@ from django import forms
 from django.core.exceptions import ValidationError
 from datetime import date
 from usuarios.models import UserProfile
+from django.contrib.auth.models import User
 
-# Aquesta classe serveix per que l'usuari tingui almenys 18 anys, en cas contrari, salta un error
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'password']
 
-class UsuarioForm(forms.ModelForm):
+class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['username', 'first_name', 'last_name', 'password']
+        fields = ['mascota', 'telefono', 'direccion', 'fecha_nacimiento_dueño', 'fecha_nacimiento_mascota', 'foto_persona']
 
     def clean_fecha_nacimiento(self):
         fecha_nacimiento = self.cleaned_data.get('fecha_nacimiento')

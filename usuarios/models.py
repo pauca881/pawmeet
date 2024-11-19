@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
     profile_id = models.AutoField(primary_key=True)
-    usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     mascota = models.ForeignKey(Mascota, on_delete=models.SET_NULL, null=True, blank=True)
     telefono = models.CharField(max_length=15, blank=True, null=True)
     direccion = models.TextField(max_length=100, blank=True, null=True)

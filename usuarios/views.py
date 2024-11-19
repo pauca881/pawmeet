@@ -1,24 +1,35 @@
 from django.shortcuts import render, redirect
-from usuarios.forms import UsuarioForm
+from usuarios.forms import UserForm, UserProfileForm
 
 def listar_usuarios(request):
-    usuarios = UsuarioForm.objects.all()
+    usuarios = UserForm.objects.all()
     return render(request, 'listar_usuarios.html', {'usuarios': usuarios})
-
 
 def crear_usuario(request):
     if request.method == 'POST':
-        form = UsuarioForm(request.POST)
-        if form.is_valid():  # Si el formulario es válido, guarda los datos
-            form.save()
-            # Redirige a una página de éxito o listado
-            return redirect('usuario_exitoso')
-        else:
-            # Si el formulario no es válido (por ejemplo, por la validación de edad), se vuelve a mostrar con los errores
-            return render(request, 'crear_usuario.html', {'form': form})
+        user_form = UserForm(request.POST)
+        profile_form = UserProfileForm(request.POST)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            # Guardar el usuario
+            usuario = user_form.save()
+            usuario.set_password(user_form.cleaned_data['password'])
+            usuario.save()
+
+            # Guardar el perfil asociado al usuario
+            perfil = profile_form.save(commit=False)
+            perfil.usuario = usuario
+            perfil.save()
+
+            return redirect('listar_usuarios')
     else:
-        form = UsuarioForm()  # Si es un GET, muestra el formulario vacío
-    return render(request, 'crear_usuario.html', {'form': form})
+        user_form = UserForm()
+        profile_form = UserProfileForm()
+
+    return render(request, 'crear_usuario.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })
 
 
 def usuario_exitoso(request):
