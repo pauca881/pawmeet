@@ -5,10 +5,10 @@ from usuarios.models import UserProfile
 class PetEntity(m.Model):
 
     # Classe de python on apereixen tot els tipus de llocs possibles per a gossos.
-    entity_type = [('veterinary, Veterinary'),
-                   ('pet store', 'Pet Store'),
-                   ('dog park', 'Dog Park')
-                   ]
+    entity_type = [('veterinary', 'Veterinary'),
+                ('pet store', 'Pet Store'),
+                ('dog park', 'Dog Park')
+                ]
 
     name = m.CharField(max_length=255)
     entity_type = m.CharField(max_length=50, choices=entity_type)
@@ -45,7 +45,3 @@ class Reviews(m.Model):
                 fields=['user', 'pet_entity'], name='unique_review_per_user_and_entity')
         ]
         ordering = ['-created_at']
-
-
-# python manage.py makemigrations
-# python manage.py migrate
