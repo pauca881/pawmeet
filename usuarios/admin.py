@@ -1,12 +1,5 @@
 from django.contrib import admin
 from usuarios.models import UserProfile, TipoProfesional, ProfesionalUser, Reseña
-from django.contrib.auth.models import User
-
-@admin.register(User)
-class UsuarioAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'apellidos', 'correo', 'fecha_registro')
-    search_fields = ('nombre', 'apellidos', 'correo')
-
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
