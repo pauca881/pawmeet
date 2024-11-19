@@ -1,16 +1,17 @@
 from django.db import models as m
-from usuarios import models as mu
+from usuarios.models import UserProfile
+
 
 class PetEntity(m.Model):
+
     # Classe de python on apereixen tot els tipus de llocs possibles per a gossos.
-    ENTITY_TYPE_CHOICES = [
-        ('veterinary', 'Veterinary'),
-        ('pet store', 'Pet Store'),
-        ('dog park', 'Dog Park')
-    ]
+    entity_type = [('veterinary, Veterinary'),
+                   ('pet store', 'Pet Store'),
+                   ('dog park', 'Dog Park')
+                   ]
 
     name = m.CharField(max_length=255)
-    entity_type = m.CharField(max_length=50, choices=ENTITY_TYPE_CHOICES)
+    entity_type = m.CharField(max_length=50, choices=entity_type)
     adress = m.TextField()
     description = m.TextField(null=True, blank=True)
     created_at = m.DateField(auto_now_add=True)
@@ -27,7 +28,7 @@ class PetEntity(m.Model):
 
 class Reviews(m.Model):
     # Cada classe representa una resenya d'usuaria sobre qualsevol tipus de PetEntity
-    user = m.ForeignKey(mu.UserProfile, on_delete=m.CASCADE)
+    user = m.ForeignKey(UserProfile, on_delete=m.Case)
     pet_entity = m.ForeignKey(
         PetEntity, related_name='reviews', on_delete=m.CASCADE)
     rating = m.PositiveSmallIntegerField(null=False)
@@ -39,6 +40,12 @@ class Reviews(m.Model):
 
     class Meta:
         # Fem que un usuari tingui la capacitat nomes de crear una review per cada entity_type.
-        unique_together = ('user', 'pet_entity')
+        constraints = [
+            m.UniqueConstraint(
+                fields=['user', 'pet_entity'], name='unique_review_per_user_and_entity')
+        ]
         ordering = ['-created_at']
 
+
+# python manage.py makemigrations
+# python manage.py migrate

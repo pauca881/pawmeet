@@ -1,0 +1,14 @@
+<h1>{{ entity.name }}</h1>
+<p>Type: {{ entity.get_entity_type_display }}</p>
+<p>Address: {{ entity.address }}</p>
+<p>Average Rating: {{ entity.average_rating }}</p>
+
+<h2>Reviews:</h2>
+<ul>
+    {% for review in reviews %}
+    <li>
+        <strong>{{ review.user.username }}</strong>: {{ review.rating }}/5<br>
+        {{ review.comment }}
+    </li>
+    {% endfor %}
+</ul>
