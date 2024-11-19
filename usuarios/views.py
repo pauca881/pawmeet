@@ -10,7 +10,7 @@ def crear_usuario(request):
     if request.method == 'POST':
         form = UsuarioForm(request.POST)
         if form.is_valid():  # Si el formulario es válido, guarda los datos
-            form.save()  # polla
+            form.save()
             # Redirige a una página de éxito o listado
             return redirect('usuario_exitoso')
         else:
