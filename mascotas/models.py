@@ -1,7 +1,5 @@
 from django.db import models
 
-from django.db import models
-
 class TipoMascota(models.Model):
     """
     Representa el tipo de mascota (ejemplo: perro, gato, ave).

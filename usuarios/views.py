@@ -1,13 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import Usuario
-from .forms import UsuarioForm
-
-# Create your views here.
-# a
-
+from usuarios.forms import UsuarioForm
 
 def listar_usuarios(request):
-    usuarios = Usuario.objects.all()
+    usuarios = UsuarioForm.objects.all()
     return render(request, 'listar_usuarios.html', {'usuarios': usuarios})
 
 

@@ -8,6 +8,10 @@ class UserProfile(models.Model):
     mascota = models.ForeignKey(Mascota, on_delete=models.SET_NULL, null=True, blank=True)
     telefono = models.CharField(max_length=15, blank=True, null=True)
     direccion = models.TextField(max_length=100, blank=True, null=True)
+    last_name = models.CharField(max_length=100, blank=True, null=True)
+    username = models.CharField(max_length=100, blank=True, null=True)
+    first_name = models.CharField(max_length=100, blank=True, null=True)
+    password = models.CharField(max_length=255, blank=True, null=True)
     fecha_nacimiento_dueño = models.DateField(blank=True, null=True)
     fecha_nacimiento_mascota = models.DateField(blank=True, null=True)
     foto_persona = models.ImageField(upload_to='fotos/', blank=True, null=True)
@@ -44,37 +48,3 @@ class Reseña(models.Model):
 
     def __str__(self):
         return f"Reseña: {self.titulo} ({self.numero_estrellas} estrellas)"
-
-class Evento(models.Model):
-    """
-    Representa eventos relacionados con mascotas, creados por usuarios.
-    """
-    titulo = models.CharField(max_length=200)
-    descripcion = models.TextField()
-    fecha_hora = models.DateTimeField()
-    ubicacion = models.CharField(max_length=255)
-    organizador = models.ForeignKey(
-        'usuarios.UserProfile', on_delete=models.CASCADE, related_name='eventos'
-    )
-
-    def __str__(self):
-        return self.titulo
-
-
-class Amigos(models.Model):
-    """
-    Representa una relación de amistad entre perfiles de usuarios.
-    """
-    perfil1 = models.ForeignKey(
-        'usuarios.UserProfile', on_delete=models.CASCADE, related_name='amigos_de'
-    )
-    perfil2 = models.ForeignKey(
-        'usuarios.UserProfile', on_delete=models.CASCADE, related_name='amigos_con'
-    )
-    fecha_conexion = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        unique_together = ('perfil1', 'perfil2')  # Evita duplicados
-
-    def __str__(self):
-        return f"Amistad entre {self.perfil1} y {self.perfil2}"
