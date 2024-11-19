@@ -1,8 +1,5 @@
 from django.contrib import admin
 from .models import Usuario, UserProfile, TipoProfesional, ProfesionalUser, Reseña
-# Register your models here.
-
-#Admin.py usuarios
 
 @admin.register(Usuario)
 class UsuarioAdmin(admin.ModelAdmin):
