@@ -8,11 +8,17 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'password']
+        labels = {
+            'username': 'Nombre de Usuario',
+            'first_name': 'Nombre',
+            'last_name': 'Apellido',
+            'password': 'Contraseña',
+        }
 
-class UserProfileForm(forms.ModelForm):
+class UserProfileCreationForm(forms.ModelForm):  # Cambié el nombre aquí
     class Meta:
         model = UserProfile
-        fields = ['mascota', 'telefono', 'direccion', 'fecha_nacimiento_dueño', 'fecha_nacimiento_mascota', 'foto_persona']
+        fields = ['fecha_nacimiento_dueño', 'telefono', 'foto_mascota', 'mascota', 'direccion', 'fecha_nacimiento_mascota']
 
     # Validación personalizada para fecha_nacimiento_dueño
     def clean_fecha_nacimiento_dueño(self):

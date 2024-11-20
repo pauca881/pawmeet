@@ -25,7 +25,7 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=100, blank=True, null=True)
     fecha_nacimiento_dueño = models.DateField(blank=True, null=True)
     fecha_nacimiento_mascota = models.DateField(blank=True, null=True)
-    foto_persona = models.ImageField(upload_to='fotos/', blank=True, null=True)
+    foto_mascota = models.ImageField(upload_to='fotos/', blank=True, null=True)
 
     def __str__(self):
         return self.usuario.username

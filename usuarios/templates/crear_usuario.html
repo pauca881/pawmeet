@@ -3,7 +3,26 @@
     {% csrf_token %}
     <h2>Datos personales</h2>
     {{ user_form.as_p }}
+    <div class="form-field">
+        {{ profile_form.fecha_nacimiento_dueño.label_tag }} {{ profile_form.fecha_nacimiento_dueño }}
+    </div>
+    <div class="form-field">
+        {{ profile_form.telefono.label_tag }} {{ profile_form.telefono }}
+    </div>
+    <div class="form-field">
+        {{ profile_form.direccion.label_tag }} {{ profile_form.direccion }}
+    </div>
+
     <h2>Datos de tu mascota</h2> <!-- No pongo peludo por los gatos calvos -->
-    {{ profile_form.as_p }}
+    <div class="form-field">
+        {{ profile_form.mascota.label_tag }} {{ profile_form.mascota }}
+    </div>
+    <div class="form-field">
+        {{ profile_form.fecha_nacimiento_mascota.label_tag }} {{ profile_form.fecha_nacimiento_mascota }}
+    </div>
+    <div class="form-field">
+        {{ profile_form.foto_mascota.label_tag }} {{ profile_form.foto_mascota }} <!-- Cambié 'foto_persona' a 'foto_mascota' -->
+    </div>
+
     <button type="submit">Guardar</button>
 </form>
