@@ -2,6 +2,18 @@
 <a href="{% url 'crear_usuario' %}">Crear Nuevo Usuario</a>
 <ul>
     {% for usuario in usuarios %}
-    <li>{{ usuario.nombre }} - {{ usuario.correo }}</li>
+    <li>
+        {{ usuario.username }} - {{ usuario.email }} - 
+        {{ usuario.first_name }} {{ usuario.last_name }}
+    </li>
+    {% endfor %}
+</ul>
+
+<h2>Perfiles de Usuario</h2>
+<ul>
+    {% for perfil in perfiles %}
+    <li>
+        Mascota: {{ perfil.mascota }} - Teléfono: {{ perfil.telefono }} - Dirección: {{ perfil.direccion }}
+    </li>
     {% endfor %}
 </ul>

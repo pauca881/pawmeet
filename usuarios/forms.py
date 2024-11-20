@@ -14,16 +14,16 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ['mascota', 'telefono', 'direccion', 'fecha_nacimiento_dueño', 'fecha_nacimiento_mascota', 'foto_persona']
 
-    def clean_fecha_nacimiento(self):
-        fecha_nacimiento = self.cleaned_data.get('fecha_nacimiento')
+    # Validación personalizada para fecha_nacimiento_dueño
+    def clean_fecha_nacimiento_dueño(self):
+        fecha_nacimiento_dueño = self.cleaned_data.get('fecha_nacimiento_dueño')
 
         today = date.today()
-        edad = today.year - fecha_nacimiento.year
-        if today.month < fecha_nacimiento.month or (today.month == fecha_nacimiento.month and today.day < fecha_nacimiento.day):
-            edad = -1
+        edad = today.year - fecha_nacimiento_dueño.year
+        if today.month < fecha_nacimiento_dueño.month or (today.month == fecha_nacimiento_dueño.month and today.day < fecha_nacimiento_dueño.day):
+            edad -= 1
 
         if edad < 18:
-            raise ValidationError(
-                'Debes ser mayor de 18 años para registrarte.')
+            raise ValidationError('Debes ser mayor de 18 años para registrarte.')
 
-        return fecha_nacimiento
+        return fecha_nacimiento_dueño

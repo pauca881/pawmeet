@@ -15,6 +15,6 @@ urlpatterns = [
 # En desarrollo, servir archivos estáticos y de medios
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,
-                          document_root=settings.STATIC_ROOT)
+                        document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+                        document_root=settings.MEDIA_ROOT)
