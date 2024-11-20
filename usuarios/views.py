@@ -5,8 +5,12 @@ from usuarios.forms import UserProfileCreationForm, UserForm
 from mascotas.forms import MascotaForm
 
 def listar_usuarios(request):
-    usuarios = UserProfile.objects.all()
-    return render(request, 'listar_usuarios.html', {'usuarios': usuarios})
+    usuarios = User.objects.all()  # Usuarios registrados
+    perfiles = UserProfile.objects.all()  # Perfiles de usuario
+    return render(request, 'listar_usuarios.html', {
+        'usuarios': usuarios,
+        'perfiles': perfiles
+    })
 
 def crear_usuario(request):
     if request.method == 'POST':
