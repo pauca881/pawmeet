@@ -1,5 +1,5 @@
 <h1>Crear Usuario</h1>
-<form method="post" enctype="multipart/form-data"> <!-- Agregar enctype para manejar archivos -->
+<form method="post" action="{% url 'crear_usuario' %}" enctype="multipart/form-data">
     {% csrf_token %}
     <h2>Datos personales</h2>
     {{ user_form.as_p }}
@@ -12,7 +12,5 @@
     <div class="form-field">
         {{ profile_form.direccion.label_tag }} {{ profile_form.direccion }}
     </div>
-
-    <!-- Botón para enviar el formulario -->
     <button type="submit">Crear Usuario</button>
 </form>

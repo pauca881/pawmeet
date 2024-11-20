@@ -1,17 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from usuarios.models import UserProfile
-from usuarios.forms import UserProfileCreationForm
-from usuarios.forms import UserForm
+from usuarios.forms import UserProfileCreationForm, UserForm
+from mascotas.forms import MascotaForm
 
 def listar_usuarios(request):
-    # Cambiado para usar el modelo de usuarios
-    usuarios = User.objects.all()
-    perfiles = UserProfile.objects.all()  # Si quieres mostrar los perfiles asociados
-    return render(request, 'listar_usuarios.html', {'usuarios': usuarios, 'perfiles': perfiles})
+    usuarios = UserProfile.objects.all()
+    return render(request, 'listar_usuarios.html', {'usuarios': usuarios})
 
 def crear_usuario(request):
     if request.method == 'POST':
+        print("Formulario enviado")
         user_form = UserForm(request.POST)
         profile_form = UserProfileCreationForm(request.POST, request.FILES)
 
@@ -26,11 +25,16 @@ def crear_usuario(request):
             perfil.usuario = usuario
             perfil.save()
 
-            # Redirigir a la vista para elegir crear mascota o ir al éxito
-            return redirect('crear_mascota_opcion', usuario_id=usuario.id)
+            # Redirigir a 'crear_mascota_opcion'
+            return redirect('crear_mascota_opcion', usuario_id=perfil.profile_id)
     else:
         user_form = UserForm()
         profile_form = UserProfileCreationForm()
+
+    if not user_form.is_valid() or not profile_form.is_valid():
+        print("Errores en los formularios:")
+        print(user_form.errors)
+        print(profile_form.errors)
 
     return render(request, 'crear_usuario.html', {
         'user_form': user_form,
@@ -40,23 +44,20 @@ def crear_usuario(request):
 def crear_mascota_opcion(request, usuario_id):
     return render(request, 'crear_mascota_opcion.html', {'usuario_id': usuario_id})
 
-
-
 def crear_mascota(request, usuario_id):
-    usuario = get_object_or_404(User, id=usuario_id)
+    perfil = get_object_or_404(UserProfile, profile_id=usuario_id)
 
     if request.method == 'POST':
         mascota_form = MascotaForm(request.POST, request.FILES)
         if mascota_form.is_valid():
             mascota = mascota_form.save(commit=False)
-            mascota.usuario = usuario  # Relacionar con el usuario
+            mascota.dueño = perfil  # Relacionar con el perfil del usuario
             mascota.save()
             return redirect('usuario_exitoso')
     else:
         mascota_form = MascotaForm()
 
     return render(request, 'crear_mascota.html', {'mascota_form': mascota_form})
-
 
 def usuario_exitoso(request):
     return render(request, 'usuario_exitoso.html')

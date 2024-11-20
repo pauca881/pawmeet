@@ -1,10 +1,6 @@
 from django.db import models
 
 class TipoMascota(models.Model):
-    """
-    Representa el tipo de mascota (ejemplo: perro, gato, ave).
-    Este modelo solo puede ser modificado desde el admin.
-    """
     nombre = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
@@ -12,18 +8,13 @@ class TipoMascota(models.Model):
 
 
 class Mascota(models.Model):
-    """
-    Representa una mascota vinculada a un perfil de usuario.
-    """
     nombre = models.CharField(max_length=100)
-    edad = models.PositiveIntegerField()  # Edad en años
-    tipo_mascota = models.ForeignKey(TipoMascota, on_delete=models.PROTECT)
-    dueño = models.ForeignKey(
-        'usuarios.UserProfile', on_delete=models.CASCADE, related_name='mascotas'
-    )
+    fecha_nacimiento = models.DateField(blank=True, null=True)
+    foto = models.ImageField(upload_to='mascotas/', blank=True, null=True)
+    dueño = models.ForeignKey('usuarios.UserProfile', on_delete=models.CASCADE, related_name="mascotas_datos")
 
     def __str__(self):
-        return f"{self.nombre} ({self.tipo_mascota.nombre})"
+        return self.nombre
 
 
 class Evento(models.Model):
