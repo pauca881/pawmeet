@@ -2,15 +2,15 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
-from .views import listar_usuarios, crear_usuario, usuario_exitoso
+from usuarios.views import listar_usuarios, crear_usuario, usuario_exitoso, crear_mascota_opcion, crear_mascota
 
 urlpatterns = [
-    # Aquí irían otras URLs de tu proyecto
-    # ejemplo de cómo incluir URLs de una app
-    path('', listar_usuarios, name='listar_usuarios'),
-    path('crear-usuario/', crear_usuario, name='crear_usuario'),
-    path('usuario_exitoso/', usuario_exitoso, name='usuario_exitoso')
+    path('usuarios/crear/', crear_usuario, name='crear_usuario'),
+    path('usuarios/crear/mascota_opcion/<int:usuario_id>/', crear_mascota_opcion, name='crear_mascota_opcion'),
+    path('usuarios/crear/mascota/<int:usuario_id>/', crear_mascota, name='crear_mascota'),
+    path('usuarios/exitoso/', usuario_exitoso, name='usuario_exitoso'),
 ]
+
 
 # En desarrollo, servir archivos estáticos y de medios
 if settings.DEBUG:

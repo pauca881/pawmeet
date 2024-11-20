@@ -1,0 +1,8 @@
+<h1>Usuario creado con éxito</h1>
+<p>¿Quieres añadir información sobre una mascota?</p>
+<form method="get" action="{% url 'crear_mascota' usuario_id=usuario_id %}">
+    <button type="submit">Crear Mascota</button>
+</form>
+<form method="get" action="{% url 'usuario_exitoso' %}">
+    <button type="submit">Finalizar</button>
+</form>
