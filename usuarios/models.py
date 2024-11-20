@@ -1,11 +1,22 @@
 from django.db import models
 from mascotas.models import Mascota
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User  # no s'utilitza
+
+"""
+Redundancia con atributos del modelo User: Los campos como username, password, first_name y last_name ya están definidos en el modelo User de Django, por lo que no necesitas redefinirlos en UserProfile. Están disponibles a través de la relación OneToOne con el campo usuario.
+
+Repetición innecesaria de información de mascotas: Estás definiendo fechas como fecha_nacimiento_mascota en el perfil del usuario, pero eso debería estar asociado al modelo Mascota.
+
+Relación mal interpretada con Mascota: Si un usuario puede tener más de una mascota, lo ideal sería una relación ManyToMany en lugar de una ForeignKey.
+"""
+# cal crear la classe USER propia de DJANGO i tot aixo amb foreing key 1 a 1 amb aquesta classe
+
 
 class UserProfile(models.Model):
     profile_id = models.AutoField(primary_key=True)
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-    mascota = models.ForeignKey(Mascota, on_delete=models.SET_NULL, null=True, blank=True)
+    mascota = models.ForeignKey(
+        Mascota, on_delete=models.SET_NULL, null=True, blank=True)
     telefono = models.CharField(max_length=15, blank=True, null=True)
     direccion = models.TextField(max_length=100, blank=True, null=True)
     first_name = models.CharField(max_length=100, blank=True, null=True)

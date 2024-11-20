@@ -5,7 +5,8 @@ from home import urls  # Importamos la vista home desde la app home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('home.urls')), # Ruta raíz, ahora apuntando a la vista home
+    # Ruta raíz, ahora apuntando a la vista home
+    path('', include('home.urls')),
     path('usuarios/', include('usuarios.urls')),
     path('mascotas/', include('mascotas.urls')),
 ]

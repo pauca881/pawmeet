@@ -9,7 +9,7 @@ urlpatterns = [
     # ejemplo de cómo incluir URLs de una app
     path('', listar_usuarios, name='listar_usuarios'),
     path('crear-usuario/', crear_usuario, name='crear_usuario'),
-    path('usuario_exitoso/', usuario_exitoso, name='usuario_exitoso'),
+    path('usuario_exitoso/', usuario_exitoso, name='usuario_exitoso')
 ]
 
 # En desarrollo, servir archivos estáticos y de medios

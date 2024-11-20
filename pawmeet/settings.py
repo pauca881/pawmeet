@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'home',  # primera pagina creada
     'usuarios',
     'mascotas',
-    'petadvisor'
+    'petadvisor',
+    'lostpets'
 ]
 
 MIDDLEWARE = [
