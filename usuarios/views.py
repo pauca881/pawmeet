@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 from usuarios.models import UserProfile
 from usuarios.forms import UserProfileCreationForm, UserForm
 from mascotas.forms import MascotaForm
+from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login, logout
+
 
 def listar_usuarios(request):
     usuarios = User.objects.all()  # Usuarios registrados
@@ -65,3 +69,28 @@ def crear_mascota(request, usuario_id):
 
 def usuario_exitoso(request):
     return render(request, 'usuario_exitoso.html')
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, f"¡Bienvenido, {username}!")
+                return redirect('home')  # Redirige a la vista principal
+            else:
+                messages.error(request, "Usuario o contraseña incorrectos.")
+        else:
+            messages.error(request, "Usuario o contraseña incorrectos.")
+    else:
+        form = AuthenticationForm()
+
+    return render(request, 'login.html', {'form': form})
+
+def logout_view(request):
+    logout(request)  # Cierra la sesión del usuario
+    messages.success(request, "Sesión cerrada correctamente.")
+    return redirect('login')  # Redirige a la página de login después del logout
