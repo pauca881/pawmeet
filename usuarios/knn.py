@@ -1,0 +1,1 @@
+#Archivo donde se entrenará el algoritmo KNN para encontrar usuarios afines
