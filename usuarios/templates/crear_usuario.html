@@ -1,17 +1,49 @@
-<h1>Crear Usuario</h1>
-<form method="post" action="{% url 'crear_usuario' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    <h2>Datos personales</h2>
-    {{ user_form.as_p }}
-    <div class="form-field">
-        {{ profile_form.fecha_nacimiento_dueño.label_tag }} {{ profile_form.fecha_nacimiento_dueño }}
-    </div>
-    <div class="form-field">
-        {{ profile_form.telefono.label_tag }} {{ profile_form.telefono }}
-    </div>
-    <div class="form-field">
-        {{ profile_form.direccion.label_tag }} {{ profile_form.direccion }}
-    </div>
-    <button type="submit">Crear Usuario</button>
-</form>
+{% load static %}
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Usuario</title>
+    <link rel="stylesheet" href="{% static 'registro/crear_usuario.css' %}">
+</head>
+<body>
+    <div class="header">
+        <img src="{% static 'Pawmeet.png' %}" alt="Logo" class="logo">
+        <h1>Crear Usuario</h1>
+    </div>
+    <form method="post" action="{% url 'crear_usuario' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Datos personales</h2>
+
+        <div class="form-field">
+            {{ user_form.username.label_tag }}
+            {{ user_form.username }}
+        </div>
+        <div class="form-field">
+            {{ user_form.email.label_tag }}
+            {{ user_form.email }}
+        </div>
+        <div class="form-field">
+            {{ user_form.password.label_tag }}
+            {{ user_form.password }}
+        </div>
+
+        <div class="form-field">
+            {{ profile_form.fecha_nacimiento_dueño.label_tag }}
+            {{ profile_form.fecha_nacimiento_dueño }}
+        </div>
+        <div class="form-field">
+            {{ profile_form.telefono.label_tag }}
+            {{ profile_form.telefono }}
+        </div>
+        <div class="form-field">
+            {{ profile_form.direccion.label_tag }}
+            {{ profile_form.direccion }}
+        </div>
+
+        <button type="submit">Crear Usuario</button>
+    </form>
+</body>
+</html>

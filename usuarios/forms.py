@@ -14,6 +14,9 @@ class UserForm(forms.ModelForm):
             'last_name': 'Apellido',
             'password': 'Contraseña',
         }
+        help_texts = {
+            'username': '',  # Elimina el texto de ayuda del campo username
+        }
 
 class UserProfileCreationForm(forms.ModelForm):
     class Meta:
