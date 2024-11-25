@@ -5,6 +5,8 @@ from usuarios.models import UserProfile
 from django.contrib.auth.models import User
 
 class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput, label='Contraseña', required=True)
+
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'password']
@@ -12,19 +14,54 @@ class UserForm(forms.ModelForm):
             'username': 'Nombre de Usuario',
             'first_name': 'Nombre',
             'last_name': 'Apellido',
-            'password': 'Contraseña',
         }
         help_texts = {
             'username': '',  # Elimina el texto de ayuda del campo username
         }
 
 class UserProfileCreationForm(forms.ModelForm):
+    telefono = forms.CharField(
+        max_length=9,
+        min_length=9,
+        label='Teléfono',
+        widget=forms.TextInput(attrs={
+            'type': 'tel',  # Cambia el tipo a 'tel' para permitir solo números
+            'pattern': '[0-9]*', 
+            'title': 'Solo números', 
+            'maxlength': '9'
+        }),
+        required=True  # Campo obligatorio
+    )
+    
+    # Campo dirección como un campo de texto simple
+    direccion = forms.CharField(
+        label='Dirección',
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Ingresa tu dirección completa',  # Mensaje de ayuda
+            'maxlength': '255'  # Limitar la longitud de la dirección
+        }),
+        required=True  # Campo obligatorio
+    )
+    
+    fecha_nacimiento_dueño = forms.DateField(
+        label='Fecha de Nacimiento',
+        widget=forms.DateInput(attrs={'type': 'date'}),
+        required=True  # Campo obligatorio
+    )
+
     class Meta:
         model = UserProfile
         fields = ['fecha_nacimiento_dueño', 'telefono', 'direccion']
-        widgets = {
-            'fecha_nacimiento_dueño': forms.DateInput(attrs={'type': 'date'}),
-        }
+
+    # Validación personalizada para el campo telefono
+    def clean_telefono(self):
+        telefono = self.cleaned_data.get('telefono')
+
+        if telefono:
+            if len(telefono) != 9:
+                raise ValidationError('El teléfono debe tener exactamente 9 dígitos.')
+
+        return telefono
 
     # Validación personalizada para fecha_nacimiento_dueño
     def clean_fecha_nacimiento_dueño(self):
