@@ -1,8 +1,26 @@
-<h1>Crear Mascota</h1>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ mascota_form.as_p }}
-    <button type="submit">Guardar</button>
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Mascota</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'registro/crear_mascota.css' %}"> <!-- Asegúrate de actualizar la ruta -->
+</head>
+<body>
+    <div class="header">
+        <img src="{% static 'Pawmeet.png' %}" alt="Logo" class="logo">
+        <h1>Crear Mascota</h1>
+    </div>
 
-<a href="{% url 'logout' %}">Cerrar sesión</a>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-field">
+            {{ mascota_form.as_p }} <!-- Los campos del formulario se generarán aquí -->
+        </div>
+        <button type="submit">Guardar</button>
+    </form>
+
+    <a href="{% url 'logout' %}">Cerrar sesión</a>
+</body>
+</html>
