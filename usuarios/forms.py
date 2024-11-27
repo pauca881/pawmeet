@@ -19,6 +19,15 @@ class UserForm(forms.ModelForm):
             'username': '',  # Elimina el texto de ayuda del campo username
         }
 
+    # Validación personalizada para el campo username
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        
+        if User.objects.filter(username=username).exists():
+            raise ValidationError('Este nombre de usuario ya está en uso. Por favor elige otro.')
+
+        return username
+
 class UserProfileCreationForm(forms.ModelForm):
     telefono = forms.CharField(
         max_length=9,
@@ -26,13 +35,13 @@ class UserProfileCreationForm(forms.ModelForm):
         label='Teléfono',
         widget=forms.TextInput(attrs={
             'type': 'tel',  # Cambia el tipo a 'tel' para permitir solo números
-            'pattern': '[0-9]*', 
-            'title': 'Solo números', 
+            'pattern': '[0-9]*',
+            'title': 'Solo números',
             'maxlength': '9'
         }),
         required=True  # Campo obligatorio
     )
-    
+
     # Campo dirección como un campo de texto simple
     direccion = forms.CharField(
         label='Dirección',
@@ -42,7 +51,7 @@ class UserProfileCreationForm(forms.ModelForm):
         }),
         required=True  # Campo obligatorio
     )
-    
+
     fecha_nacimiento_dueño = forms.DateField(
         label='Fecha de Nacimiento',
         widget=forms.DateInput(attrs={'type': 'date'}),
@@ -60,6 +69,10 @@ class UserProfileCreationForm(forms.ModelForm):
         if telefono:
             if len(telefono) != 9:
                 raise ValidationError('El teléfono debe tener exactamente 9 dígitos.')
+
+            # Verificar si el número de teléfono ya existe en la base de datos
+            if UserProfile.objects.filter(telefono=telefono).exists():
+                raise ValidationError("Este número de teléfono ya está en uso.")
 
         return telefono
 

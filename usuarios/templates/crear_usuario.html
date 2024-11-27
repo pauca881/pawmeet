@@ -7,6 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Usuario</title>
     <link rel="stylesheet" href="{% static 'registro/crear_usuario.css' %}">
+    <style>
+        .error {
+            color: red; /* Cambia el color del texto a rojo */
+            font-size: 0.9em; /* Ajusta el tamaño de la fuente si es necesario */
+        }
+    </style>
 </head>
 <body>
     <div class="header">
@@ -20,27 +26,69 @@
         <div class="form-field">
             {{ user_form.username.label_tag }}
             {{ user_form.username }}
+            {% if user_form.username.errors %}
+                <div class="error">
+                    {% for error in user_form.username.errors %}
+                        {{ error|escape }}<br>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
         <div class="form-field">
             {{ user_form.email.label_tag }}
             {{ user_form.email }}
+            {% if user_form.email.errors %}
+                <div class="error">
+                    {% for error in user_form.email.errors %}
+                        {{ error|escape }}<br>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
         <div class="form-field">
             {{ user_form.password.label_tag }}
             {{ user_form.password }}
+            {% if user_form.password.errors %}
+                <div class="error">
+                    {% for error in user_form.password.errors %}
+                        {{ error|escape }}<br>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
 
         <div class="form-field">
             {{ profile_form.fecha_nacimiento_dueño.label_tag }}
             {{ profile_form.fecha_nacimiento_dueño }}
+            {% if profile_form.fecha_nacimiento_dueño.errors %}
+                <div class="error">
+                    {% for error in profile_form.fecha_nacimiento_dueño.errors %}
+                        {{ error|escape }}<br>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
         <div class="form-field">
             {{ profile_form.telefono.label_tag }}
             {{ profile_form.telefono }}
+            {% if profile_form.telefono.errors %}
+                <div class="error">
+                    {% for error in profile_form.telefono.errors %}
+                        {{ error|escape }}<br>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
         <div class="form-field">
             {{ profile_form.direccion.label_tag }}
             {{ profile_form.direccion }}
+            {% if profile_form.direccion.errors %}
+                <div class="error">
+                    {% for error in profile_form.direccion.errors %}
+                        {{ error|escape }}<br>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
 
         <button type="submit">Crear Usuario</button>
