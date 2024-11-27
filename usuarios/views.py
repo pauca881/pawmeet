@@ -33,8 +33,8 @@ def crear_usuario(request):
             perfil.usuario = usuario
             perfil.save()
 
-            # Redirigir a 'crear_mascota_opcion'
-            return redirect('crear_mascota_opcion', usuario_id=perfil.profile_id)
+            # Redirigir a 'crear_mascota' en lugar de 'crear_mascota_opcion'
+            return redirect('crear_mascota', usuario_id=perfil.profile_id)  # Cambiado aquí
     else:
         user_form = UserForm()
         profile_form = UserProfileCreationForm()
