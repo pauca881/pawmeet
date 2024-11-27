@@ -1,13 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Iniciar sesión</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'login/login.css' %}">
 </head>
 <body>
     <h2>Iniciar sesión</h2>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <div class="form-field">
+            {{ form.as_p }}
+        </div>
         <button type="submit">Ingresar</button>
     </form>
 
