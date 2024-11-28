@@ -1,11 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conectar</title>
-</head>
-<body>
-    <h1>Conectar</h1>
-</body>
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Conectar Mascotas - Pawmeet</title>
+        <link rel="stylesheet" href="{% static 'home/conectar.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="icon" type="image/png" href="{% static 'home/pawmeet.png' %}">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="nav-container">
+                    <div class="logo">
+                        <i class="logo-img"></i>
+                        <span>Pawmeet</span>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="swipe-container">
+                <div class="pet-card">
+                    <img src="{% static 'home/example_pet.jpg' %}" alt="Mascota">
+                    <div class="pet-info">
+                        <h3>Luna</h3>
+                        <p>Golden Retriever · 3 años</p>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="btn-dislike" onclick="handleDislike()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <button class="btn-like" onclick="handleLike()">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+        <script>
+            function handleLike() {
+                alert("¡Te gusta esta mascota!");
+                // Aquí podrías integrar el siguiente perfil o lógica de API
+            }
+
+            function handleDislike() {
+                alert("Pasaste esta mascota.");
+                // Aquí podrías integrar el siguiente perfil o lógica de API
+            }
+        </script>
+    </body>
 </html>
