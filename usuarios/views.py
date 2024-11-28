@@ -70,8 +70,6 @@ def crear_mascota(request, usuario_id):
 
     return render(request, 'crear_mascota.html', {'mascota_form': mascota_form})
 
-def usuario_exitoso(request):
-    return render(request, 'usuario_exitoso.html')
 
 def login_view(request):
     if request.method == 'POST':
