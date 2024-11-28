@@ -12,7 +12,7 @@
         <div class="form-field">
             {{ form.as_p }}
         </div>
-        <button type="submit">Ingresar</button>
+        <button class="btn-login" onclick="window.location.href='{% url 'conectar' %}'">Ingresar</button>
     </form>
 
     {% if messages %}

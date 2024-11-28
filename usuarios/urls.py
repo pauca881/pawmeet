@@ -11,7 +11,6 @@ urlpatterns = [
     path('listar_usuarios/', views.listar_usuarios, name='listar_usuarios'),  # Asegúrate de que esto esté incluido
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
-
 ]
 
 
