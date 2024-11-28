@@ -1,18 +1,25 @@
 from django.db import models
 
-class TipoMascota(models.Model):
-    nombre = models.CharField(max_length=50, unique=True)
-
-    def __str__(self):
-        return self.nombre
-
 
 class Mascota(models.Model):
     nombre = models.CharField(max_length=100)
     fecha_nacimiento = models.DateField(blank=True, null=True)
     foto = models.ImageField(upload_to='mascotas/', blank=True, null=True)
     dueño = models.ForeignKey('usuarios.UserProfile', on_delete=models.CASCADE, related_name="mascotas_datos")
-    tipo = models.ForeignKey(TipoMascota, on_delete=models.CASCADE, related_name="mascotas")
+
+    #Aquí he añadido campos para poder programar el algoritmo KNN
+
+    #el primer valor en cada tupla es el valor que se almacenará en la base de datos, 
+    #mientras que el segundo valor es lo que se mostrará en el formulario o en la interfaz de usuario
+
+    raza = models.CharField(max_length=100, blank=True, null=True)
+    tamaño = models.CharField(max_length=50, choices=[('Pequeño', 'Pequeño'), ('Mediano', 'Mediano'), ('Grande', 'Grande')], blank=True, null=True)
+    color = models.CharField(max_length=50, choices=[('Negro', 'Negro'), ('Blanco', 'Blanco'), ('Gris', 'Gris'), ('Marrón', 'Marrón'), ('Amarillo', 'Amarillo'), ('Naranja', 'Naranja'), ('Beige', 'Beige'), ('Rojo', 'Rojo'), ('Azul', 'Azul'), ('Verde', 'Verde'), ('Pardo', 'Pardo'), ('Dorado', 'Dorado'), ('Plata', 'Plata'), ('Morado', 'Morado'), ('Rosado', 'Rosado'), ('Café', 'Café'), ('Celeste', 'Celeste'), ('Blanco y negro', 'Blanco y negro'), ('Tricolor', 'Tricolor'), ('Atigrado', 'Atigrado')], blank=True, null=True) 
+    temperamento = models.CharField(max_length=50, choices=[('Activo', 'Activo'), ('Juguetón', 'Juguetón'), ('Tranquilo', 'Tranquilo'), ('Independiente', 'Independiente'), ('Sociable', 'Sociable'), ('Cariñoso', 'Cariñoso'), ('Protector', 'Protector'), ('Cauteloso', 'Cauteloso'), ('Tímido', 'Tímido'), ('Agresivo', 'Agresivo'), ('Dominante', 'Dominante'), ('Curioso', 'Curioso'), ('Desobediente', 'Desobediente'), ('Obediente', 'Obediente'), ('Amigable', 'Amigable')], blank=True, null=True)
+    nivel_actividad = models.CharField(max_length=50, choices=[('Bajo', 'Bajo'), ('Medio', 'Medio'), ('Alto', 'Alto')], blank=True, null=True)
+    peso = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    nivel_socializacion = models.CharField(max_length=50, choices=[('Alta', 'Alta'), ('Media', 'Media'), ('Baja', 'Baja')], blank=True, null=True)
+    vacunado = models.BooleanField(default=False)
 
 
     def __str__(self):

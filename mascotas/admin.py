@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import TipoMascota, Mascota, Evento, Amigos
+from .models import Mascota, Evento, Amigos
 
-@admin.register(TipoMascota)
-class TipoMascotaAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nombre')
-    search_fields = ('nombre',)
-    ordering = ('nombre',)
+# @admin.register(TipoMascota)
+# class TipoMascotaAdmin(admin.ModelAdmin):
+#     list_display = ('id', 'nombre')
+#     search_fields = ('nombre',)
+#     ordering = ('nombre',)
 
 @admin.register(Mascota)
 class MascotaAdmin(admin.ModelAdmin):
