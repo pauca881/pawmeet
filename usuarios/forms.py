@@ -22,7 +22,7 @@ class UserForm(forms.ModelForm):
     # Validación personalizada para el campo username
     def clean_username(self):
         username = self.cleaned_data.get('username')
-        
+
         if User.objects.filter(username=username).exists():
             raise ValidationError('Este nombre de usuario ya está en uso. Por favor elige otro.')
 

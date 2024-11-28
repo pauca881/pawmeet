@@ -18,7 +18,6 @@ def listar_usuarios(request):
 
 def crear_usuario(request):
     if request.method == 'POST':
-        print("Formulario enviado")
         user_form = UserForm(request.POST)
         profile_form = UserProfileCreationForm(request.POST, request.FILES)
 
@@ -33,24 +32,24 @@ def crear_usuario(request):
             perfil.usuario = usuario
             perfil.save()
 
-            # Redirigir a 'crear_mascota' en lugar de 'crear_mascota_opcion'
-            return redirect('crear_mascota', usuario_id=perfil.profile_id)  # Cambiado aquí
+            # Agregar un mensaje de éxito
+            messages.success(request, 'Usuario creado exitosamente.')
+
+            # Renderizar la misma plantilla con el mensaje
+            return render(request, 'crear_usuario.html', {
+                'user_form': user_form,
+                'profile_form': profile_form,
+                'messages': messages.get_messages(request)  # Pasar los mensajes
+            })
+
     else:
         user_form = UserForm()
         profile_form = UserProfileCreationForm()
-
-    if not user_form.is_valid() or not profile_form.is_valid():
-        print("Errores en los formularios:")
-        print(user_form.errors)
-        print(profile_form.errors)
 
     return render(request, 'crear_usuario.html', {
         'user_form': user_form,
         'profile_form': profile_form
     })
-
-def crear_mascota_opcion(request, usuario_id):
-    return render(request, 'crear_mascota_opcion.html', {'usuario_id': usuario_id})
 
 def crear_mascota(request, usuario_id):
     perfil = get_object_or_404(UserProfile, profile_id=usuario_id)
@@ -61,7 +60,15 @@ def crear_mascota(request, usuario_id):
             mascota = mascota_form.save(commit=False)
             mascota.dueño = perfil  # Relacionar con el perfil del usuario
             mascota.save()
-            return redirect('usuario_exitoso')
+
+            # Agregar un mensaje de éxito
+            messages.success(request, 'Mascota añadida.')
+
+            # Renderizar la misma plantilla con el mensaje
+            return render(request, 'crear_mascota.html', {
+                'mascota_form': mascota_form,
+                'messages': messages.get_messages(request)  # Pasar los mensajes
+            })
     else:
         mascota_form = MascotaForm()
 
