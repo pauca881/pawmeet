@@ -12,9 +12,11 @@ class Mascota(models.Model):
     fecha_nacimiento = models.DateField(blank=True, null=True)
     foto = models.ImageField(upload_to='mascotas/', blank=True, null=True)
     dueño = models.ForeignKey('usuarios.UserProfile', on_delete=models.CASCADE, related_name="mascotas_datos")
+    tipo = models.ForeignKey(TipoMascota, on_delete=models.CASCADE, related_name="mascotas")
+
 
     def __str__(self):
-        return self.nombre
+        return f"{self.nombre} - {self.tipo.nombre}"
 
 
 class Evento(models.Model):
