@@ -35,12 +35,8 @@ def crear_usuario(request):
             # Agregar un mensaje de éxito
             messages.success(request, 'Usuario creado exitosamente.')
 
-            # Renderizar la misma plantilla con el mensaje
-            return render(request, 'crear_usuario.html', {
-                'user_form': user_form,
-                'profile_form': profile_form,
-                'messages': messages.get_messages(request)  # Pasar los mensajes
-            })
+            # Redirigir a la página de crear mascota
+            return redirect('crear_mascota', usuario_id=usuario.id)
 
     else:
         user_form = UserForm()
@@ -52,7 +48,7 @@ def crear_usuario(request):
     })
 
 def crear_mascota(request, usuario_id):
-    perfil = get_object_or_404(UserProfile, profile_id=usuario_id)
+    perfil = get_object_or_404(UserProfile, usuario_id=usuario_id)
 
     if request.method == 'POST':
         mascota_form = MascotaForm(request.POST, request.FILES)
