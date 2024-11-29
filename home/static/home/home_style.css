@@ -1,7 +1,6 @@
 :root {
     --primary-color: #b86800;
     --secondary-color:#e38000;
-    ;
     --text-color: #424242;
     --light-gray: #f5f5f5;
     --white: #ffffff;
@@ -19,7 +18,7 @@ body {
     color: var(--text-color);
 }
 
-/* Navigation */
+/* Contenedor del header */
 nav {
     background: var(--white);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
