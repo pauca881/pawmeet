@@ -14,8 +14,11 @@
 }
 
 body {
+    margin: 0;
+    padding: 0;
     line-height: 1.6;
     color: var(--text-color);
+    background: #ffffff; /* Color de fondo rosado */
 }
 
 /* Contenedor del header */
@@ -55,12 +58,14 @@ nav {
 
 /* Carta de swipe */
 .swipe-container {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: calc(100vh - 60px);
     overflow: hidden;
+    background: linear-gradient(45deg, rgba(254, 63, 97, 0.1), rgba(255, 123, 145, 0.1));
+    padding: 0 1rem;
 }
 .pet-card {
     width: 300px;
@@ -102,10 +107,10 @@ nav {
     background-color: transparent;
     font-size: 2rem;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.5s;
 }
 .actions button:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 .btn-like {
     color: #4caf50;
