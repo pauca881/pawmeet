@@ -10,8 +10,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <style>
         .error {
-            color: red; /* Cambia el color del texto a rojo */
-            font-size: 0.9em; /* Ajusta el tamaño de la fuente si es necesario */
+            color: red;
+            font-size: 0.9em;
         }
     </style>
 </head>
@@ -24,7 +24,14 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-field">
-            {{ mascota_form.as_p }} <!-- Los campos del formulario se generarán aquí -->
+            {{ mascota_form.nombre.label_tag }} {{ mascota_form.nombre }}
+            {{ mascota_form.fecha_nacimiento.label_tag }} {{ mascota_form.fecha_nacimiento }}
+            {{ mascota_form.foto.label_tag }} {{ mascota_form.foto }}
+            
+            <label for="id_castrado">Castrado</label>
+            <div class="radio-inline">
+                {{ mascota_form.castrado }}
+            </div>
         </div>
         <button type="submit">Guardar</button>
     </form>
@@ -40,7 +47,7 @@
                     type: "success",
                     confirmButtonText: "Aceptar"
                 }).then(function() {
-                    window.location.href = "{% url 'usuario_exitoso' %}";  // Cambia a la URL a la que deseas redirigir
+                    window.location.href = "{% url 'usuario_exitoso' %}";
                 });
             {% endfor %}
         </script>

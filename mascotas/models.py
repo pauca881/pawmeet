@@ -6,11 +6,7 @@ class Mascota(models.Model):
     foto = models.ImageField(upload_to='mascotas/', blank=True, null=True)
     dueño = models.ForeignKey('usuarios.UserProfile', on_delete=models.CASCADE, related_name="mascotas_datos")
 
-    #Aquí he añadido campos para poder programar el algoritmo KNN
-
-    #el primer valor en cada tupla es el valor que se almacenará en la base de datos, 
-    #mientras que el segundo valor es lo que se mostrará en el formulario o en la interfaz de usuario
-
+    # Campos para el algoritmo KNN
     raza = models.CharField(max_length=100, blank=True, null=True)
     tamaño = models.CharField(max_length=50, choices=[('Pequeño', 'Pequeño'), ('Mediano', 'Mediano'), ('Grande', 'Grande')], blank=True, null=True)
     color = models.CharField(max_length=50, choices=[('Negro', 'Negro'), ('Blanco', 'Blanco'), ('Gris', 'Gris'), ('Marrón', 'Marrón'), ('Amarillo', 'Amarillo'), ('Naranja', 'Naranja'), ('Beige', 'Beige'), ('Rojo', 'Rojo'), ('Azul', 'Azul'), ('Verde', 'Verde'), ('Pardo', 'Pardo'), ('Dorado', 'Dorado'), ('Plata', 'Plata'), ('Morado', 'Morado'), ('Rosado', 'Rosado'), ('Café', 'Café'), ('Celeste', 'Celeste'), ('Blanco y negro', 'Blanco y negro'), ('Tricolor', 'Tricolor'), ('Atigrado', 'Atigrado')], blank=True, null=True) 
@@ -19,10 +15,12 @@ class Mascota(models.Model):
     peso = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     nivel_socializacion = models.CharField(max_length=50, choices=[('Alta', 'Alta'), ('Media', 'Media'), ('Baja', 'Baja')], blank=True, null=True)
     vacunado = models.BooleanField(default=False)
-
+    
+    # Agregar el campo 'castrado'
+    castrado = models.BooleanField(default=False)  # Este campo indica si la mascota está castrada
 
     def __str__(self):
-        return f"{self.nombre} - {self.tipo.nombre}"
+        return f"{self.nombre} - {self.raza}"  # Cambié 'tipo.nombre' por 'raza' ya que no hay 'tipo' en el modelo
 
 class Evento(models.Model):
     """
