@@ -36,7 +36,7 @@ def crear_usuario(request):
             messages.success(request, 'Usuario creado exitosamente.')
 
             # Redirigir a la página de crear mascota
-            return redirect('crear_mascota')
+            return redirect('crear_mascota', usuario_id=usuario.id)
 
     else:
         user_form = UserForm()
