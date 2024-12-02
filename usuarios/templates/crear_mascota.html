@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <style>
-        .error {
+    .error {
             color: red;
             font-size: 0.9em;
         }
@@ -21,24 +21,37 @@
         <h1>Crear Mascota</h1>
     </div>
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="form-field">
-            {{ mascota_form.nombre.label_tag }} {{ mascota_form.nombre }}
-            {{ mascota_form.fecha_nacimiento.label_tag }} {{ mascota_form.fecha_nacimiento }}
-            {{ mascota_form.foto.label_tag }} {{ mascota_form.foto }}
-
-            <label for="id_castrado">Castrado</label>
-            <div class="radio-inline">
-                {{ mascota_form.castrado }}
+    <div class="formulario-y-dropzone-contenedor">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-container">
+                <div class="form-field">
+                    {{ mascota_form.nombre.label_tag }} {{ mascota_form.nombre }}
+                </div>
+                <div class="form-field">
+                    {{ mascota_form.fecha_nacimiento.label_tag }} {{ mascota_form.fecha_nacimiento }}
+                </div>
+                <div class="form-field">
+                    <label for="id_castrado">Castrado</label>
+                    <div class="radio-inline">
+                        {{ mascota_form.castrado }}
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label for="id_raza">Selecciona la raza:</label>
+                    {{ mascota_form.raza }}
+                </div>
             </div>
-            <div class="form-group">
-                <label for="id_raza">Selecciona la raza:</label>
-                {{ mascota_form.raza }}
+            <button type="submit">Guardar</button>
+        </form>
+        <div class="dropzone-contenedor">
+            <label for="id_foto">Sube la foto:</label>
+            <div class="dropzone" id="dropzone" style="width: 100%; height: 200px;"> <!-- Ajustado el tamaño del dropzone -->
+                Arrastra y suelta la imagen aquí o haz clic para seleccionar un archivo.
+                <input type="file" name="foto" id="id_foto" accept="image/*" hidden>
             </div>
         </div>
-        <button type="submit">Guardar</button>
-    </form>
+    </div>
 
     <a href="{% url 'logout' %}">Cerrar sesión</a>
 
@@ -56,5 +69,46 @@
             {% endfor %}
         </script>
     {% endif %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropzone = document.getElementById("dropzone");
+            const fileInput = document.getElementById("id_foto");
+
+            dropzone.addEventListener("click", () => {
+                fileInput.click();
+            });
+
+            dropzone.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropzone.classList.add("dragover");
+            });
+
+            dropzone.addEventListener("dragleave", () => {
+                dropzone.classList.remove("dragover");
+            });
+
+            dropzone.addEventListener("drop", (e) => {
+                e.preventDefault();
+                dropzone.classList.remove("dragover");
+
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                }
+            });
+
+            fileInput.addEventListener("change", () => {
+                if (fileInput.files.length) {
+                    dropzone.textContent = `Archivo seleccionado: ${fileInput.files[0].name}`;
+                }
+            });
+        });
+    </script>
+    <!-- Añadido estilo inline para aumentar el espacio entre opciones de radio -->
+    <style>
+    .radio-inline {
+            gap: 1.5rem; /* Aumentado el espacio entre opciones */
+        }
+    </style>
 </body>
 </html>
