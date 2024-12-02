@@ -27,10 +27,14 @@
             {{ mascota_form.nombre.label_tag }} {{ mascota_form.nombre }}
             {{ mascota_form.fecha_nacimiento.label_tag }} {{ mascota_form.fecha_nacimiento }}
             {{ mascota_form.foto.label_tag }} {{ mascota_form.foto }}
-            
+
             <label for="id_castrado">Castrado</label>
             <div class="radio-inline">
                 {{ mascota_form.castrado }}
+            </div>
+            <div class="form-group">
+                <label for="id_raza">Selecciona la raza:</label>
+                {{ mascota_form.raza }}
             </div>
         </div>
         <button type="submit">Guardar</button>
