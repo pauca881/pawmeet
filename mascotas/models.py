@@ -15,12 +15,87 @@ class Mascota(models.Model):
     peso = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     nivel_socializacion = models.CharField(max_length=50, choices=[('Alta', 'Alta'), ('Media', 'Media'), ('Baja', 'Baja')], blank=True, null=True)
     vacunado = models.BooleanField(default=False)
-    
+
     # Agregar el campo 'castrado'
     castrado = models.BooleanField(default=False)  # Este campo indica si la mascota está castrada
 
+    #Agregado campo raza
     def __str__(self):
-        return f"{self.nombre} - {self.raza}"  # Cambié 'tipo.nombre' por 'raza' ya que no hay 'tipo' en el modelo
+        return f"{self.nombre} - {self.raza}"
+    RAZAS_OPCIONES = [
+    ('Airedale Terrier', 'Airedale Terrier'),
+    ('Akita Inu', 'Akita Inu'),
+    ('Alaskan Malamute', 'Alaskan Malamute'),
+    ('American Bully', 'American Bully'),
+    ('American Pit Bull Terrier', 'American Pit Bull Terrier'),
+    ('American Staffordshire Terrier', 'American Staffordshire Terrier'),
+    ('Australian Cattle Dog', 'Australian Cattle Dog'),
+    ('Australian Shepherd', 'Australian Shepherd'),
+    ('Basset Hound', 'Basset Hound'),
+    ('Beagle', 'Beagle'),
+    ('Belgian Malinois', 'Belgian Malinois'),
+    ('Bernese Mountain Dog', 'Bernese Mountain Dog'),
+    ('Bichón Frisé', 'Bichón Frisé'),
+    ('Bloodhound', 'Bloodhound'),
+    ('Border Collie', 'Border Collie'),
+    ('Boston Terrier', 'Boston Terrier'),
+    ('Boxer', 'Boxer'),
+    ('Bulldog Francés', 'Bulldog Francés'),
+    ('Bulldog Inglés', 'Bulldog Inglés'),
+    ('Bullmastiff', 'Bullmastiff'),
+    ('Cane Corso', 'Cane Corso'),
+    ('Caniche (Poodle)', 'Caniche (Poodle)'),
+    ('Cavalier King Charles Spaniel', 'Cavalier King Charles Spaniel'),
+    ('Chihuahua', 'Chihuahua'),
+    ('Chow Chow', 'Chow Chow'),
+    ('Cocker Spaniel', 'Cocker Spaniel'),
+    ('Collie', 'Collie'),
+    ('Dálmata', 'Dálmata'),
+    ('Dóberman', 'Dóberman'),
+    ('Dogo Argentino', 'Dogo Argentino'),
+    ('Dogo de Burdeos', 'Dogo de Burdeos'),
+    ('Galgo Español', 'Galgo Español'),
+    ('Golden Retriever', 'Golden Retriever'),
+    ('Gran Danés', 'Gran Danés'),
+    ('Husky Siberiano', 'Husky Siberiano'),
+    ('Jack Russell Terrier', 'Jack Russell Terrier'),
+    ('Labrador Retriever', 'Labrador Retriever'),
+    ('Maltés', 'Maltés'),
+    ('Mastín Español', 'Mastín Español'),
+    ('Mastín Napolitano', 'Mastín Napolitano'),
+    ('Pastor Alemán', 'Pastor Alemán'),
+    ('Pastor Australiano', 'Pastor Australiano'),
+    ('Pekinés', 'Pekinés'),
+    ('Pembroke Welsh Corgi', 'Pembroke Welsh Corgi'),
+    ('Pinscher Miniatura', 'Pinscher Miniatura'),
+    ('Pit Bull Terrier', 'Pit Bull Terrier'),
+    ('Pomerania', 'Pomerania'),
+    ('Pug', 'Pug'),
+    ('Rottweiler', 'Rottweiler'),
+    ('Samoyedo', 'Samoyedo'),
+    ('San Bernardo', 'San Bernardo'),
+    ('Scottish Terrier', 'Scottish Terrier'),
+    ('Setter Irlandés', 'Setter Irlandés'),
+    ('Shiba Inu', 'Shiba Inu'),
+    ('Shih Tzu', 'Shih Tzu'),
+    ('Schnauzer', 'Schnauzer'),
+    ('Staffordshire Bull Terrier', 'Staffordshire Bull Terrier'),
+    ('Teckel (Dachshund)', 'Teckel (Dachshund)'),
+    ('Terranova', 'Terranova'),
+    ('Weimaraner', 'Weimaraner'),
+    ('West Highland White Terrier', 'West Highland White Terrier'),
+    ('Whippet', 'Whippet'),
+    ('Yorkshire Terrier', 'Yorkshire Terrier'),
+    ('Mestizo', 'Mestizo'),# Opción genérica
+    ]
+
+    raza = models.CharField(
+        max_length=50,
+        choices=RAZAS_OPCIONES,
+        blank=False,
+        null=False,
+        default='Otra'
+    )
 
 class Evento(models.Model):
     """
