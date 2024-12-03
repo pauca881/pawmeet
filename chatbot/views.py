@@ -80,3 +80,40 @@ def chatbot_response(request):
 
 def chatbot_interface(request):
     return render(request, 'chatbot.html')
+
+
+# En un sentido estricto, este chatbot no implementa inteligencia artificial avanzada como aprendizaje profundo o 
+# procesamiento del lenguaje natural avanzado. Sin embargo, se puede considerar una forma básica de "IA" al 
+# proporcionar respuestas automáticas basadas en reglas predefinidas.
+
+# El algoritmo implementa un chatbot utilizando el módulo nltk.chat.util de la biblioteca NLTK. 
+# Es un chatbot basado en patrones que responde a preguntas predefinidas utilizando expresiones regulares para encontrar coincidencias.
+
+# Alternativa con IA real no entrenada por nosotros:
+
+# Configura tu API Key aquí
+# openai.api_key = 'YOUR_OPENAI_API_KEY'
+
+# def chatbot_response(request):
+#     if request.method == 'POST':
+#         user_message = request.POST.get('message', '')
+
+#         time.sleep(1)
+
+#         response = openai.Completion.create(
+#             engine='gpt-4',
+#             prompt=f'User: {user_message}\nAI:',
+#             max_tokens=150,
+#             temperature=0.7,
+#             stop=['User:', 'AI:']
+#         )
+
+#         ai_response = response.choices[0].text.strip()
+#         return JsonResponse({'response': ai_response})
+
+#     return JsonResponse({'response': "Método no permitido"}, status=405)
+
+# def chatbot_interface(request):
+#     return render(request, 'chatbot.html')
+
+
