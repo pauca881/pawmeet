@@ -19,18 +19,17 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background: linear-gradient(45deg, rgba(254, 63, 97, 0.1), rgba(255, 123, 145, 0.1)); /* Fondo rosado */
+    overflow-x: hidden; /* Oculta el scroll horizontal */
 }
 
 /* Header */
-/**
- * Contenedor del header
- */
 nav {
     background: var(--white);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
     z-index: 1000;
+    overflow-x: hidden;
 }
 
 .nav-container {
@@ -41,6 +40,20 @@ nav {
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
+}
+
+/* Botones del header */
+.nav-container button {
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.nav-container button:hover {
+    background: var(--secondary-color);
 }
 
 /* Logo */
@@ -54,7 +67,6 @@ nav {
 }
 
 .logo-img {
-    /* Ruta relativa, ajusta según sea necesario */
     background-image: url('Pawmeet.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -62,8 +74,27 @@ nav {
     height: 50px;
 }
 
+/* PARTE CENTRAL */
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2rem;
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden; /* Oculta el scroll horizontal */
+    background: inherit;
+    position: relative;
+}
+
 /* Carta de swipe */
 .swipe-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -73,7 +104,6 @@ nav {
     background: inherit;
     padding: 0 1rem;
 }
-
 .pet-card {
     width: 300px;
     height: 400px;
@@ -84,37 +114,31 @@ nav {
     overflow: hidden;
     text-align: center;
 }
-
 .pet-card img {
     width: 100%;
     height: 70%;
     object-fit: cover;
 }
-
 .pet-info {
     padding: 10px;
     overflow: hidden;
 }
-
 .pet-info h3 {
     margin: 0;
     font-size: 1.5rem;
     color: #333;
 }
-
 .pet-info p {
     margin: 5px 0;
     font-size: 1rem;
     color: #666;
 }
-
 .actions {
     margin-top: 20px;
     display: flex;
     gap: 20px;
     overflow: hidden;
 }
-
 .actions button {
     border: none;
     background-color: transparent;
@@ -122,57 +146,42 @@ nav {
     cursor: pointer;
     transition: transform 0.5s;
 }
-
 .actions button:hover {
     transform: scale(1.1);
 }
-
 .btn-like {
     color: #4caf50;
 }
-
 .btn-dislike {
     color: #f44336;
 }
 
-/* Contenedor principal */
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 2rem;
-    width: 100%;
-    height: 100vh; /* (Opcional) Para fondo completo */
-    background: inherit; /* Hereda fondo del cuerpo */
-}
-
 /* Filtros de búsqueda (izquierda) */
 .filters-sidebar {
+    position: absolute;
+    top: 150px;
+    left: 100px;
     width: 250px;
-    background-color: var(--light-gray); /* Utiliza variable para coherencia */
+    background-color: var(--light-gray);
     padding: 1rem;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 .filters-sidebar h4 {
     margin-top: 0;
 }
-
 .filters-sidebar form {
     margin-top: 1rem;
 }
-
 .filters-sidebar label {
     display: block;
     margin-bottom: 0.5rem;
 }
-
 .filters-sidebar select,
 .filters-sidebar input[type="text"] {
     width: 100%;
-    height: 2rem;
+    height: 3rem;
     margin-bottom: 1rem;
     padding: 0.5rem;
     border: 1px solid #ccc;
@@ -184,38 +193,36 @@ nav {
 
 /* Chats abiertos y contactos (derecha) */
 .chats-sidebar {
-    width: 300px;
-    background-color: var(--light-gray); /* Coherencia con filtros */
+    position: absolute;
+    top: 150px;
+    right: 100px;
+    width: 250px;
+    background-color: var(--light-gray);
     padding: 1rem;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 .chats-sidebar h4 {
     margin-top: 0;
 }
-
 .chats-sidebar ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-
 .chats-sidebar li {
     display: flex;
     align-items: center;
     padding: 0.5rem;
     border-bottom: 1px solid #eee;
 }
-
 .chats-sidebar li img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 0.5rem;
 }
-
 .chats-sidebar button {
     background-color: #4caf50;
     color: #fff;
@@ -224,7 +231,6 @@ nav {
     border-radius: 5px;
     cursor: pointer;
 }
-
 .chats-sidebar button:hover {
     background-color: #3e8e41;
 }
