@@ -83,7 +83,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, f"¡Bienvenido, {username}!")
-                return redirect('perfil')  # Redirige al perfil tras login
+                return redirect('conectar')  # Redirige a la vista conectar
             else:
                 messages.error(request, "Usuario o contraseña incorrectos.")
         else:
