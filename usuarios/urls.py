@@ -7,6 +7,7 @@ from . import views
 urlpatterns = [
     path('crear_usuario/', views.crear_usuario, name='crear_usuario'),
     path('crear_mascota/<int:usuario_id>/', views.crear_mascota, name='crear_mascota'),
+    path('perfil/', views.perfil, name='perfil'),
     path('listar_usuarios/', views.listar_usuarios, name='listar_usuarios'),
     path('usuario_exitoso/', views.usuario_exitoso, name='usuario_exitoso'),# Asegúrate de que esto esté incluido
     path('login/', views.login_view, name='login'),
