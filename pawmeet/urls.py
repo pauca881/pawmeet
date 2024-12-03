@@ -9,5 +9,7 @@ urlpatterns = [
     path('mascotas/', include('mascotas.urls')),
     path('report/', include('lostpets.urls')),
     path('petadvisor/', include('petadvisor.urls')),
-    path('chatbot/', include('chatbot.urls'))
+    path('chatbot/', include('chatbot.urls')),
+    path('meetups/', include('meetups.urls'))
+
 ]

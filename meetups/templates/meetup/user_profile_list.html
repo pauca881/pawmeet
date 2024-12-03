@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Perfiles de Usuario</title>
+</head>
+<body>
+    <h1>Usuarios de meetup</h1>
+    <ul>
+        {% for profile in user_profiles %}
+            <li>
+                <strong>{{ profile.user.username }}</strong><br>
+                Bio: {{ profile.bio }}<br>
+                Website: <a href="{{ profile.website }}">{{ profile.website }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
