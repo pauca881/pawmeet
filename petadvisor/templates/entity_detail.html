@@ -1,14 +1,46 @@
-<h1>{{ entity.name }}</h1>
-<p>Type: {{ entity.get_entity_type_display }}</p>
-<p>Address: {{ entity.address }}</p>
-<p>Average Rating: {{ entity.average_rating }}</p>
+<!DOCTYPE html>
+<html lang="en">
 
-<h2>Reviews:</h2>
-<ul>
-    {% for review in reviews %}
-    <li>
-        <strong>{{ review.user.username }}</strong>: {{ review.rating }}/5<br>
-        {{ review.comment }}
-    </li>
-    {% endfor %}
-</ul>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ entity.name }} - Details</title>
+    <link rel="stylesheet" href="{% static 'styles/entity_details.css' %}">
+</head>
+
+<body>
+    <header>
+        <h1>{{ entity.name }}</h1>
+    </header>
+
+    <main>
+        <section class="entity-details">
+            <h2>Details</h2>
+            <p><strong>Type:</strong> {{ entity.get_entity_type_display }}</p>
+            <p><strong>Address:</strong> {{ entity.address }}</p>
+            <p><strong>Average Rating:</strong> {{ entity.average_rating }} / 5</p>
+        </section>
+
+        <section class="entity-reviews">
+            <h2>Reviews</h2>
+            {% if reviews %}
+            <ul class="reviews-list">
+                {% for review in reviews %}
+                <li class="review-item">
+                    <p><strong>{{ review.user.username }}</strong> rated it {{ review.rating }} / 5</p>
+                    <p class="review-comment">{{ review.comment }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No reviews yet. Be the first to leave a review!</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
