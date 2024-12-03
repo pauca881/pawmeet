@@ -8,19 +8,15 @@
 <body>
     <h2>Iniciar sesión</h2>
     <form method="post">
+
         {% csrf_token %}
+
         <div class="form-field">
             {{ form.as_p }}
         </div>
-        <button class="btn-login" onclick="window.location.href='{% url 'conectar' %}'">Ingresar</button>
-    </form>
 
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li style="color: red;">{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+        <button class="btn-login" onclick="window.location.href='{% url 'conectar' %}'">Ingresar</button>
+
+    </form>
 </body>
 </html>
