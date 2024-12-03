@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'usuarios',
     'mascotas',
     'petadvisor',
-    'lostpets'
+    'lostpets',
+    'chatbot',
 ]
 
 MIDDLEWARE = [
