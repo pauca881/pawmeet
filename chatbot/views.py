@@ -49,8 +49,26 @@ class MiChatbot(Chat):
                 # Seleccionar una respuesta aleatoria
                 return random.choice(respuestas)
         
+        respuestas = [
+    "Lo siento, no entendí esa pregunta. ¿Podrías ser más específico?",
+    "No estoy seguro de haber entendido bien. ¿Podrías reformular la pregunta?",
+    "Perdón, no comprendo lo que estás pidiendo. ¿Puedes ser más claro?",
+    "Lo siento, no tengo suficiente información para responder. ¿Podrías aclarar tu pregunta?",
+    "No estoy completamente seguro de lo que necesitas. ¿Podrías explicarlo de otra manera?",
+    "Parece que no entendí bien tu consulta. ¿Puedes darme más detalles?",
+    "Disculpa, no entendí bien. ¿Puedes ser más específico en tu pregunta?",
+    "No logro comprender lo que estás diciendo. ¿Podrías reformularlo?",
+    "Lo siento, pero no entendí lo que quisieras saber. ¿Puedes aclarar un poco más?",
+    "No estoy seguro de cómo responder a eso. ¿Puedes darme más contexto?",
+    "Perdón, pero no entendí la pregunta correctamente. ¿Podrías detallarla más?",
+    "Lo siento, pero no comprendí completamente tu pregunta. ¿Puedes ser más preciso?",
+    "No estoy seguro de qué estás preguntando. ¿Podrías ser más específico?",
+    "No entendí bien. ¿Podrías explicarme con más detalle?",
+    "Perdón, pero no estoy seguro de lo que necesitas. ¿Podrías aclararlo?"
+]
+
         # Si no hay coincidencia, devolver mensaje predeterminado
-        return "Lo siento, no entendí esa pregunta. ¿Podrías ser más específico?"
+        return random.choice(respuestas)
 
 # Instanciar el chatbot
 chatbot = MiChatbot(patrones, reflections)
