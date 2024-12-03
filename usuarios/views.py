@@ -6,7 +6,7 @@ from mascotas.forms import MascotaForm
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
-
+from django.contrib.auth.decorators import login_required
 
 def listar_usuarios(request):
     usuarios = User.objects.all()  # Usuarios registrados
@@ -83,7 +83,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, f"¡Bienvenido, {username}!")
-                return redirect('conectar')  # Redirige a la vista principal
+                return redirect('perfil')  # Redirige al perfil tras login
             else:
                 messages.error(request, "Usuario o contraseña incorrectos.")
         else:
@@ -97,3 +97,7 @@ def logout_view(request):
     logout(request)  # Cierra la sesión del usuario
     messages.success(request, "Sesión cerrada correctamente.")
     return redirect('login')  # Redirige a la página de login después del logout
+
+@login_required
+def perfil(request):
+    return render(request, 'perfil.html')
