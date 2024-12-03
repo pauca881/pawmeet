@@ -6,9 +6,9 @@ class PetEntity(m.Model):
 
     # Classe de python on apereixen tot els tipus de llocs possibles per a gossos.
     entity_type = [('veterinary', 'Veterinary'),
-                ('pet store', 'Pet Store'),
-                ('dog park', 'Dog Park')
-                ]
+                   ('pet store', 'Pet Store'),
+                   ('dog park', 'Dog Park')
+                   ]
 
     name = m.CharField(max_length=255)
     entity_type = m.CharField(max_length=50, choices=entity_type)
@@ -27,7 +27,7 @@ class PetEntity(m.Model):
 
 
 class Reviews(m.Model):
-    # Cada classe representa una resenya d'usuaria sobre qualsevol tipus de PetEntity
+    # Cada classe representa una resenya d'usuari sobre qualsevol tipus de PetEntity
     user = m.ForeignKey(UserProfile, on_delete=m.Case)
     pet_entity = m.ForeignKey(
         PetEntity, related_name='reviews', on_delete=m.CASCADE)
