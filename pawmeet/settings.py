@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'petadvisor',
     'lostpets',
     'chatbot',
-    'meetups',
 ]
 
 MIDDLEWARE = [
