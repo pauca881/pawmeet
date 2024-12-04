@@ -238,3 +238,25 @@ footer {
         width: 100%;
     }
 }
+
+
+.chatbot {
+    width: 100px;          /* Tamaño del círculo */
+    height: 100px;         /* Tamaño del círculo */
+    background-color: #ff5733; /* Color de fondo (puedes cambiarlo) */
+    border-radius: 50%;    /* Hace que el div sea un círculo */
+    position: fixed;       /* Posición fija */
+    right: 20px;           /* Distancia desde el borde derecho de la pantalla */
+    bottom: 20px;          /* Distancia desde el borde inferior de la pantalla */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle efecto de profundidad */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;      /* Cambiar el cursor para indicar que es clickeable */
+    /* tamaño del texto */
+    font-size: 50px;
+}
+
+.chatbot:hover {
+    background-color: #ff3f00; /* Cambia de color cuando el ratón pasa sobre el círculo */
+}

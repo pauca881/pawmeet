@@ -113,6 +113,8 @@ def ver_mascota_cercana_view(request):
         'mascotas_cercanas': mascotas_cercanas
     }
 
+    print(mascotas_cercanas)
+
     return render(request, 'mostrar_mascota_cercana.html', context)
 
 # View sencilla para listar mascotas
