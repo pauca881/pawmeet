@@ -9,7 +9,7 @@ class Mascota(models.Model):
     # Campos para el algoritmo KNN
     raza = models.CharField(max_length=100, blank=True, null=True)
     tamaño = models.CharField(max_length=50, choices=[('Pequeño', 'Pequeño'), ('Mediano', 'Mediano'), ('Grande', 'Grande')], blank=True, null=True)
-    color = models.CharField(max_length=50, choices=[('Negro', 'Negro'), ('Blanco', 'Blanco'), ('Gris', 'Gris'), ('Marrón', 'Marrón'), ('Amarillo', 'Amarillo'), ('Naranja', 'Naranja'), ('Beige', 'Beige'), ('Rojo', 'Rojo'), ('Azul', 'Azul'), ('Verde', 'Verde'), ('Pardo', 'Pardo'), ('Dorado', 'Dorado'), ('Plata', 'Plata'), ('Morado', 'Morado'), ('Rosado', 'Rosado'), ('Café', 'Café'), ('Celeste', 'Celeste'), ('Blanco y negro', 'Blanco y negro'), ('Tricolor', 'Tricolor'), ('Atigrado', 'Atigrado')], blank=True, null=True) 
+    color = models.CharField(max_length=50, choices=[('Negro', 'Negro'), ('Blanco', 'Blanco'), ('Gris', 'Gris'), ('Marrón', 'Marrón'), ('Amarillo', 'Amarillo'), ('Naranja', 'Naranja'), ('Beige', 'Beige'), ('Rojo', 'Rojo'), ('Azul', 'Azul'), ('Verde', 'Verde'), ('Pardo', 'Pardo'), ('Dorado', 'Dorado'), ('Plata', 'Plata'), ('Morado', 'Morado'), ('Rosado', 'Rosado'), ('Café', 'Café'), ('Celeste', 'Celeste'), ('Blanco y negro', 'Blanco y negro'), ('Tricolor', 'Tricolor'), ('Atigrado', 'Atigrado')], blank=True, null=True)
     temperamento = models.CharField(max_length=50, choices=[('Activo', 'Activo'), ('Juguetón', 'Juguetón'), ('Tranquilo', 'Tranquilo'), ('Independiente', 'Independiente'), ('Sociable', 'Sociable'), ('Cariñoso', 'Cariñoso'), ('Protector', 'Protector'), ('Cauteloso', 'Cauteloso'), ('Tímido', 'Tímido'), ('Agresivo', 'Agresivo'), ('Dominante', 'Dominante'), ('Curioso', 'Curioso'), ('Desobediente', 'Desobediente'), ('Obediente', 'Obediente'), ('Amigable', 'Amigable')], blank=True, null=True)
     nivel_actividad = models.CharField(max_length=50, choices=[('Bajo', 'Bajo'), ('Medio', 'Medio'), ('Alto', 'Alto')], blank=True, null=True)
     peso = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
@@ -94,7 +94,6 @@ class Mascota(models.Model):
         choices=RAZAS_OPCIONES,
         blank=False,
         null=False,
-        default='Otra'
     )
 
 class Evento(models.Model):

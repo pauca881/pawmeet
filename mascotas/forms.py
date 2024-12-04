@@ -5,16 +5,16 @@ class MascotaForm(forms.ModelForm):
     class Meta:
         model = Mascota
         fields = [
-            'nombre', 
-            'fecha_nacimiento', 
-            'foto', 
-            'castrado', 
-            'raza', 
-            'temperamento', 
-            'nivel_actividad', 
-            'peso', 
-            'vacunado', 
-            'color', 
+            'nombre',
+            'fecha_nacimiento',
+            'foto',
+            'castrado',
+            'raza',
+            'temperamento',
+            'nivel_actividad',
+            'peso',
+            'vacunado',
+            'color',
             'nivel_socializacion'
         ]
         labels = {

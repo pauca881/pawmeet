@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <style>
-    .error {
+.error {
             color: red;
             font-size: 0.9em;
         }
@@ -41,12 +42,34 @@
                     <label for="id_raza">Selecciona la raza:</label>
                     {{ mascota_form.raza }}
                 </div>
+                <!-- Campos agregados -->
+                <div class="form-field">
+                    {{ mascota_form.temperamento.label_tag }} {{ mascota_form.temperamento }}
+                </div>
+                <div class="form-field">
+                    {{ mascota_form.nivel_actividad.label_tag }} {{ mascota_form.nivel_actividad }}
+                </div>
+                <div class="form-field">
+                    {{ mascota_form.peso.label_tag }} {{ mascota_form.peso }}
+                </div>
+                <div class="form-field">
+                    <label for="id_vacunado">Vacunado</label>
+                    <div class="radio-inline">
+                        {{ mascota_form.vacunado }}
+                    </div>
+                </div>
+                <div class="form-field">
+                    {{ mascota_form.color.label_tag }} {{ mascota_form.color }}
+                </div>
+                <div class="form-field">
+                    {{ mascota_form.nivel_socializacion.label_tag }} {{ mascota_form.nivel_socializacion }}
+                </div>
             </div>
             <button type="submit">Guardar</button>
         </form>
         <div class="dropzone-contenedor">
             <label for="id_foto">Sube la foto:</label>
-            <div class="dropzone" id="dropzone" style="width: 100%; height: 200px;"> <!-- Ajustado el tamaño del dropzone -->
+            <div class="dropzone" id="dropzone" style="width: 100%; height: 200px;"> 
                 Arrastra y suelta la imagen aquí o haz clic para seleccionar un archivo.
                 <input type="file" name="foto" id="id_foto" accept="image/*" hidden>
             </div>
@@ -106,7 +129,7 @@
     </script>
     <!-- Añadido estilo inline para aumentar el espacio entre opciones de radio -->
     <style>
-    .radio-inline {
+.radio-inline {
             gap: 1.5rem; /* Aumentado el espacio entre opciones */
         }
     </style>
