@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from mascotas.models import Mascota
+from django.contrib.auth.decorators import login_required
 
 from datetime import datetime, timedelta
 import pandas as pd
@@ -15,6 +16,7 @@ from sklearn.neighbors import NearestNeighbors
 def home_view(request):
     return render(request, 'home.html')
 
+@login_required
 def conectar_view(request):
     return render(request, 'conectar.html')
 
