@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from mascotas.models import Mascota
+from mascotas.models import Mascota, Evento
 from django.contrib.auth.decorators import login_required
 
 from datetime import datetime, timedelta
@@ -19,6 +19,12 @@ def home_view(request):
 @login_required
 def conectar_view(request):
     return render(request, 'conectar.html')
+
+def eventos_view(request):
+    eventos = Evento.objects.all()
+
+    # Pasar los eventos al contexto
+    return render(request, 'meetups.html', {'eventos': eventos})
 
 def ver_mascota_cercana_view(request):
     df = pd.read_csv('C:/Users/pcpau/Desktop/pawmeet/home/dades_mascotas.csv', encoding='utf-8')
