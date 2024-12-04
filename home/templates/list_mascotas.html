@@ -1,0 +1,16 @@
+<h1>Lista de mascotas</h1>
+<ul>
+    {% for mascota in mascotas %}
+        <li>
+            <strong>ID:</strong> {{ mascota.id }} <br>
+            <strong>Nombre:</strong> {{ mascota.nombre }} <br>
+            <strong>Raza:</strong> {{ mascota.raza }} <br>
+            <strong>Tamaño:</strong> {{ mascota.tamaño }} <br>
+            <strong>Color:</strong> {{ mascota.color }} <br>
+            <strong>Temperamento:</strong> {{ mascota.temperamento }} <br>
+            <strong>Nivel de actividad:</strong> {{ mascota.nivel_actividad }} <br>
+            <strong>Peso:</strong> {{ mascota.peso }} <br>
+            <strong>Nivel de socialización:</strong> {{ mascota.nivel_socializacion }} <br>
+            <strong>Vacunado:</strong> {{ mascota.vacunado }} <br>
+        </li>
+    {% endfor %}

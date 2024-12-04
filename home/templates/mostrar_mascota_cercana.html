@@ -1,0 +1,16 @@
+<h1>Las mascotas más cercanas</h1>
+<ul>
+    {% for mascota in mascotas_cercanas %}
+        <li>
+            <strong>ID:</strong> {{ mascota.id }} <br>
+            <strong>Tamaño:</strong> {{ mascota.tamaño }} <br>
+            <strong>Color:</strong> {{ mascota.color }} <br>
+            <strong>Temperamento:</strong> {{ mascota.temperamento }} <br>
+            <strong>Nivel de actividad:</strong> {{ mascota.nivel_actividad }} <br>
+            <strong>Peso:</strong> {{ mascota.peso }} <br>
+            <strong>Nivel de socialización:</strong> {{ mascota.nivel_socializacion }} <br>
+            <strong>Vacunado:</strong> {{ mascota.vacunado }} <br>
+            <strong>Distancia:</strong> {{ mascota.distancia }} <br>
+        </li>
+    {% endfor %}
+</ul>
