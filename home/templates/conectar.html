@@ -13,17 +13,17 @@
     <body>
 
         <header class="header">
-            <a href="{% url 'home' %}">
-                <button class="logo-btn">Pawmeet</button>
-            </a>
+            <img src="{% static 'home/pawmeet.png' %}" alt="Logo" class="logo">
+
+            <button class="home-btn" href="{% url 'home' %}">Home</button>
 
             <a href="{% url 'petadvisor' %}">
                 <button class="center-btn">PetAdvisor</button>
             </a>
 
-            <div class="right-buttons">
-                <button class="btn">Mi Perfil</button>
-                <button class="btn">Cerrar sesión</button>
+            <div>
+                <button class="btn1">Mi Perfil</button>
+                <button class="btn2">Cerrar sesión</button>
             </div>
         </header>
 

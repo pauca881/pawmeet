@@ -11,6 +11,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 body {
@@ -31,10 +32,18 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)
 }
 
-.logo-btn {
-    background-color: #282c34;
+.logo{
+    width: 50px;
+}
+
+.home-btn {
+    top: 13px;
+    position: absolute;
+
+    left: 80px;
+    background-color: transparent;
     color: #CD7400;
-    border: none;
+    border: #CD7400;
     padding: 10px 15px;
     font-size: 16px;
     font-weight: bold;
@@ -42,29 +51,37 @@ body {
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
-.logo-btn:hover {
-    background-color: #f5a947;
+.home-btn:hover {
+    background-color: #f6dbb9;
 }
 
 .center-btn {
-    background-color:  #282c34;
+    top: 13px;
+    background-color:  transparent;
     color: #CD7400;
-    border: none;
+    border: #CD7400;
     padding: 10px 15px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .center-btn:hover {
-    background-color: #f5a947;
+    background-color: #f6dbb9;
 }
 
-.right-buttons .btn{
-    background-color: #282c34;
+.btn1 {
+    position: absolute;
+    top: 13px;
+    right: 140px;
+
+    background-color: transparent;
     color: #CD7400;
-    border: none;
+    border: #CD7400;
     padding: 10px 15px;
     font-size: 14px;
     margin-left: 10px;
@@ -72,8 +89,26 @@ body {
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
-.right-buttons .btn:hover {
-    background-color: #f5a947;
+.btn2 {
+    position: absolute;
+    top: 13px;
+    right: 20px;
+
+    background-color: transparent;
+    color: #CD7400;
+    border: #CD7400;
+    padding: 10px 15px;
+    font-size: 14px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.btn1:hover {
+    background-color: #f6dbb9;
+}
+.btn2:hover {
+    background-color: #f6dbb9;
 }
 
 .container {
