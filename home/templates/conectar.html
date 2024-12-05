@@ -12,18 +12,17 @@
 
     <body>
 
-        <header>
-            <a href="{% url 'home' %}" class="logo" style="text-decoration: none;">
-                <i class="logo-img"></i>
-                <span>Pawmeet</span>
+        <header class="header">
+            <a href="{% url 'home' %}">
+                <button class="logo-btn">Pawmeet</button>
             </a>
 
-            <a href="{% url 'petadvisor' %}" style="text-decoration: none;">
-                <button class="btn-petadvisor">PetAdvisor</button>
+            <a href="{% url 'petadvisor' %}">
+                <button class="center-btn">PetAdvisor</button>
             </a>
 
             <div class="right-buttons">
-                <button class="btn-profile">Mi Perfil</button>
+                <button class="btn">Mi Perfil</button>
                 <button class="btn">Cerrar sesión</button>
             </div>
         </header>

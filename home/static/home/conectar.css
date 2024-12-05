@@ -11,37 +11,69 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
 body {
+    font-family: Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background: linear-gradient(45deg, rgba(254, 63, 97, 0.1), rgba(255, 123, 145, 0.1));
     overflow-x: hidden;
 }
 
-header {
-    background: var(--white);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-}
-
-.logo {
+.header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--primary-color);
+    padding: 10px 20px;
+    background-color: white;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)
 }
 
-.logo-img {
-    background: url('Pawmeet.png') no-repeat center/contain;
-    width: 50px;
-    height: 50px;
+.logo-btn {
+    background-color: #282c34;
+    color: #CD7400;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.logo-btn:hover {
+    background-color: #f5a947;
+}
+
+.center-btn {
+    background-color:  #282c34;
+    color: #CD7400;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.center-btn:hover {
+    background-color: #f5a947;
+}
+
+.right-buttons .btn{
+    background-color: #282c34;
+    color: #CD7400;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.right-buttons .btn:hover {
+    background-color: #f5a947;
 }
 
 .container {
