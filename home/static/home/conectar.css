@@ -26,7 +26,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 20px;
     background-color: white;
     color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)
@@ -37,15 +37,15 @@ body {
 }
 
 .home-btn {
-    top: 13px;
+    top: 16px;
     position: absolute;
 
     left: 80px;
-    background-color: transparent;
+    background-color: #f6efe5;
     color: #CD7400;
     border: #CD7400;
     padding: 10px 15px;
-    font-size: 16px;
+    font-size: 25px;
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
@@ -56,12 +56,12 @@ body {
 }
 
 .center-btn {
-    top: 13px;
-    background-color:  transparent;
-    color: #CD7400;
+    top: 16px;
+    background-color:  #0D3B66;
+    color: #FAF0CA;
     border: #CD7400;
     padding: 10px 15px;
-    font-size: 16px;
+    font-size: 25px;
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
@@ -76,14 +76,14 @@ body {
 
 .btn1 {
     position: absolute;
-    top: 13px;
-    right: 140px;
+    top: 24px;
+    right: 170px;
 
-    background-color: transparent;
+    background-color: #f6efe5;
     color: #CD7400;
     border: #CD7400;
     padding: 10px 15px;
-    font-size: 14px;
+    font-size: 15px;
     margin-left: 10px;
     cursor: pointer;
     border-radius: 5px;
@@ -91,14 +91,14 @@ body {
 }
 .btn2 {
     position: absolute;
-    top: 13px;
+    top: 24px;
     right: 20px;
 
-    background-color: transparent;
+    background-color: #f6efe5;
     color: #CD7400;
     border: #CD7400;
     padding: 10px 15px;
-    font-size: 14px;
+    font-size: 15px;
     margin-left: 10px;
     cursor: pointer;
     border-radius: 5px;

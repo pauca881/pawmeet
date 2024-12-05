@@ -14,10 +14,10 @@
         <nav>
             <div class="nav-container">
 
-                <div class="logo">
+                <a class="logo" href="{% url 'home' %}">
                     <i class="logo-img"></i>
                     <span>Pawmeet</span>
-                </div>
+                </a>
 
                 <div class="nav-buttons">
                     <button class="btn-login" onclick="window.location.href='{% url 'login' %}'">Iniciar Sesión</button>
@@ -49,7 +49,7 @@
                 <p>Conéctate con personas de todo el mundo</p>
             </div>
             <div class="feature-card">
-                <i class="fa-solid fa-messages"></i>c
+                <i class="fa-solid fa-messages"></i>
                 <h3>Conexiones Reales</h3>
                 <p>Encuentra todo tipo de mascotas sociales</p>
             </div>
