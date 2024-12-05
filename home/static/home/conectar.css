@@ -119,21 +119,22 @@ body {
     width: 100%;
     height: 100vh;
     position: relative;
+    overflow: visible;
 }
 
 .swipe-container {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: calc(100vh - 2rem);
-    width: 100%;
-    max-width: 100vw;
-    display: flex;
+    top: 200px;
+    left: 800px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 0 1rem;
+    flex-grow: 0;
+    max-width: none;
+    max-height: none;
+    padding: 1rem;
+    width: 400px; /* Set desired width */
+    height: 800px; /* Set desired height */
 }
 
 .pet-card {
@@ -181,11 +182,12 @@ body {
     color: #f44336;
 }
 
-.filters-sidebar, .chats-sidebar {
+.filters-sidebar{
     position: absolute;
-    top: 150px;
-    width: 250px;
+    top: 200px;
+
     background: var(--light-gray);
+    width: 250px;
     padding: 1rem;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -212,6 +214,21 @@ body {
     border: 1px solid #ccc;
 }
 
+.chats-sidebar {
+    position: absolute;
+    top: 200px;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background: var(--light-gray);
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 .chats-sidebar ul {
     list-style: none;
     padding: 0;
