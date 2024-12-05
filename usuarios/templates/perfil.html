@@ -10,6 +10,19 @@
 <body>
     <h1>Bienvenido a tu perfil, {{ request.user.username }}</h1>
     <p>Email: {{ request.user.email }}</p>
+
+    <h2>Opciones de Mascota</h2>
+    <ul>
+        <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Añadir mascota</a></li>
+        <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Editar mascota</a></li>
+        <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Borrar mascota</a></li>
+    </ul>
+
+    <h2>Opciones de Cuenta</h2>
+    <ul>
+        <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Borrar cuenta</a></li>
+    </ul>
+
     <a href="{% url 'logout' %}">Cerrar Sesión</a>
 </body>
 </html>
