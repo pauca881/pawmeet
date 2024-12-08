@@ -2,15 +2,29 @@
 <html lang="en">
 
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ entity.name }} - Details</title>
-    <link rel="stylesheet" href="{% static 'styles/entity_details.css' %}">
+    <link rel="stylesheet" href="{% static 'petadvisor.css' %}">
 </head>
 
 <body>
     <header>
-        <h1>{{ entity.name }}</h1>
+        <nav>
+            <h1>{{ entity.name }}</h1>
+
+            <div class="nav-container">
+
+                <a href="{% url 'conectar' %}" class="logo" style="text-decoration: none;">
+                    <i class="logo-img"></i>
+                    <span>Conectar</span>
+                </a>
+
+                <button class="btn-profile">Mi Perfil</button>
+
+            </div>
+        </nav>
     </header>
 
     <main>

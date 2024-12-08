@@ -50,16 +50,16 @@ class MiChatbot(Chat):
                 return random.choice(respuestas)
 
         respuestas_error = [
-  "Lo siento, no entendí esa pregunta. ¿Podrías ser más específico?",
-  "Perdón, no estoy seguro de haber entendido. ¿Podrías aclararlo?",
-  "Disculpa, no comprendo bien la pregunta. ¿Podrías darme más detalles?",
-  "No estoy seguro de haber captado lo que necesitas. ¿Podrías reformular la pregunta?",
-  "Lo siento, no logro entender lo que me estás preguntando. ¿Puedes explicarlo de otra manera?",
-  "No entiendo del todo. ¿Podrías ser más claro?",
-  "Perdón, no sé si he entendido tu pregunta. ¿Podrías especificar un poco más?",
-  "No estoy seguro de haber entendido correctamente. ¿Podrías volver a intentarlo con más detalles?",
-  "Lo siento, no comprendo lo que intentas preguntar. ¿Puedes ser un poco más específico?",
-  "No estoy seguro de lo que estás preguntando. ¿Podrías explicarlo mejor?"
+"Lo siento, no entendí esa pregunta. ¿Podrías ser más específico?",
+"Perdón, no estoy seguro de haber entendido. ¿Podrías aclararlo?",
+"Disculpa, no comprendo bien la pregunta. ¿Podrías darme más detalles?",
+"No estoy seguro de haber captado lo que necesitas. ¿Podrías reformular la pregunta?",
+"Lo siento, no logro entender lo que me estás preguntando. ¿Puedes explicarlo de otra manera?",
+"No entiendo del todo. ¿Podrías ser más claro?",
+"Perdón, no sé si he entendido tu pregunta. ¿Podrías especificar un poco más?",
+"No estoy seguro de haber entendido correctamente. ¿Podrías volver a intentarlo con más detalles?",
+"Lo siento, no comprendo lo que intentas preguntar. ¿Puedes ser un poco más específico?",
+"No estoy seguro de lo que estás preguntando. ¿Podrías explicarlo mejor?"
 ];
         # Si no hay coincidencia, devolver mensaje random del array
         return random.choice(respuestas_error)

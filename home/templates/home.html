@@ -14,10 +14,10 @@
         <nav>
             <div class="nav-container">
 
-                <div class="logo">
+                <a class="logo" href="{% url 'home' %}">
                     <i class="logo-img"></i>
                     <span>Pawmeet</span>
-                </div>
+                </a>
 
                 <div class="nav-buttons">
                     <button class="btn-login" onclick="window.location.href='{% url 'login' %}'">Iniciar Sesión</button>
@@ -37,11 +37,6 @@
             </div>
         </section>
 
-        <div class="chatbot" onclick="window.location.href='http://127.0.0.1:8000/chatbot/'">
-            <p>💬</p>
-        </div>
-        
-    
         <section class="features">
             <div class="feature-card">
                 <i class="fa-solid fa-shield-heart"></i>

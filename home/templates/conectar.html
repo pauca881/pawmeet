@@ -9,21 +9,24 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="icon" type="image/png" href="{% static 'home/pawmeet.png' %}">
     </head>
+
     <body>
-        <header>
-            <nav>
-                <div class="nav-container">
 
-                    <a href="{% url 'home' %}" class="logo" style="text-decoration: none;">
-                        <i class="logo-img"></i>
-                        <span>Pawmeet</span>
-                    </a>
+        <header class="header">
+            <img src="{% static 'home/pawmeet.png' %}" alt="Logo" class="logo">
 
-                    <button class="btn-profile">Mi Perfil</button>
+            <button class="home-btn" onclick="window.location.href='{% url 'home' %}'">Home</button>
 
-                </div>
-            </nav>
+            <a href="{% url 'petadvisor' %}">
+                <button class="center-btn">PetAdvisor</button>
+            </a>
+
+            <div>
+                <button class="btn1">Mi Perfil</button>
+                <button class="btn2">Cerrar sesión</button>
+            </div>
         </header>
+
         <main>
             <div class="container">
 
@@ -107,5 +110,91 @@
 
             </div>
         </main>
+
+        <!-- CHATBOT -->
+
+        <!-- Botón flotante para abrir el chatbot -->
+        <button id="open-chat-btn">💬</button>
+        <!-- Fondo opaco detrás del modal -->
+        <div id="modal-overlay"></div>
+        <!-- Modal del chatbot -->
+        <div id="chat-modal">
+            <button id="close-chat-btn">✖</button>
+            <div id="chat-container">
+                <h2 style="text-align: center;">Clifford, chat de Pawmeet</h2>
+                <div id="chat-log"></div>
+                <form id="message-form">
+                    <input type="text" id="user-message" placeholder="Escribe un mensaje a Clifford" autocomplete="off" required>
+                    <input type="submit" value="Enviar">
+                </form>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const openChatBtn = document.getElementById('open-chat-btn');
+                const chatModal = document.getElementById('chat-modal');
+                const modalOverlay = document.getElementById('modal-overlay');
+                const closeChatBtn = document.getElementById('close-chat-btn');
+
+                // Abrir modal
+                openChatBtn.addEventListener('click', function () {
+                    chatModal.style.display = 'block';
+                    modalOverlay.style.display = 'block';
+                });
+
+                // Cerrar modal
+                closeChatBtn.addEventListener('click', function () {
+                    chatModal.style.display = 'none';
+                    modalOverlay.style.display = 'none';
+                });
+
+                modalOverlay.addEventListener('click', function () {
+                    chatModal.style.display = 'none';
+                    modalOverlay.style.display = 'none';
+                });
+
+                // Chatbot funcionalidad
+                const chatLog = document.getElementById('chat-log');
+                const form = document.getElementById('message-form');
+                const userMessageInput = document.getElementById('user-message');
+
+                function appendMessage(message, sender) {
+                    const messageElement = document.createElement('div');
+                    messageElement.classList.add('message', sender);
+                    const messageContent = document.createElement('p');
+                    messageContent.textContent = message;
+                    messageElement.appendChild(messageContent);
+                    chatLog.appendChild(messageElement);
+                    chatLog.scrollTop = chatLog.scrollHeight;
+                }
+
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    const userMessage = userMessageInput.value;
+                    appendMessage(userMessage, 'user');
+                    fetch('/chatbot/api/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                        },
+                        body: `message=${encodeURIComponent(userMessage)}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const botResponse = data.response;
+                        appendMessage(botResponse, 'bot');
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        appendMessage('Lo siento, ocurrió un error.', 'bot');
+                    });
+                    userMessageInput.value = '';
+                });
+            });
+        </script>
+
+        {% csrf_token %}
     </body>
 </html>
