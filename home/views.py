@@ -14,7 +14,9 @@ from sklearn.neighbors import NearestNeighbors
 
 # Our views
 def home_view(request):
+
     return render(request, 'home.html')
+
 
 @login_required
 def conectar_view(request):
@@ -28,7 +30,6 @@ def eventos_view(request):
 
 def ver_mascota_cercana_view(request):
     df = pd.read_csv('C:/Users/pcpau/Desktop/pawmeet/home/dades_mascotas.csv', encoding='utf-8')
-    
     columnas_categoricas = ['tamano', 'color', 'temperamento', 'nivel_actividad', 'nivel_socializacion', 'vacunado']
     #columnas_numericas = ['fecha_nacimiento','peso']
     columnas_numericas = ['peso']
@@ -56,7 +57,11 @@ def ver_mascota_cercana_view(request):
     # ajusto el modelo con las características preprocesadas
     knn.fit(X)
 
-    #notas: 
+    usuario_actual = request.user
+    
+    # Imprimir el nombre de usuario en la consola
+    print(f"Usuario actual: {usuario_actual.username}")
+
     nueva_mascota = pd.DataFrame({
         #'fecha_nacimiento': [datetime.now() - timedelta(days=3*365)], 
         'tamano': ['Mediano'],
@@ -91,6 +96,9 @@ def ver_mascota_cercana_view(request):
             print(mascota)
             mascotas_cercanas.append({
                 'id': mascota.id,
+
+                'nombre': mascota.nombre,
+
                 'tamaño': mascota.tamaño,
                 'color': mascota.color,
                 'temperamento': mascota.temperamento,
@@ -126,4 +134,8 @@ def list_mascotas_view(request):
     context = {
         'mascotas': mascotas
     }
+
     return render(request, 'list_mascotas.html', context)
+
+
+
