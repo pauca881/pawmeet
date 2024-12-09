@@ -1,0 +1,128 @@
+<!-- chatbot/templates/chatbot/chatbot.html -->
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Clifford</title>
+
+    <!-- CSS -->
+
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #chat-container {
+            width: 400px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+        #chat-log {
+            height: 400px;
+            overflow-y: scroll;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #fff;
+            margin-bottom: 10px;
+        }
+        .message {
+            margin-bottom: 10px;
+        }
+        .message.user {
+            text-align: right;
+        }
+        .message.bot {
+            text-align: left;
+        }
+        .message p {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 20px;
+            max-width: 70%;
+        }
+        .message.user p {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .message.bot p {
+            background-color: #e9ecef;
+            color: #333;
+        }
+        #message-form input[type=text] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        #message-form input[type=submit] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <h2 style="text-align: center;">Clifford, chat de Pawmeet</h2>
+        <div id="chat-log"></div>
+        <form id="message-form">
+            <input type="text" id="user-message" placeholder="Escribe un mensaje a Clifford" autocomplete="off" required>
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatLog = document.getElementById('chat-log');
+            const form = document.getElementById('message-form');
+            const userMessageInput = document.getElementById('user-message');
+
+            function appendMessage(message, sender) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', sender);
+                const messageContent = document.createElement('p');
+                messageContent.textContent = message;
+                messageElement.appendChild(messageContent);
+                chatLog.appendChild(messageElement);
+                chatLog.scrollTop = chatLog.scrollHeight;
+            }
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const userMessage = userMessageInput.value;
+                appendMessage(userMessage, 'user');
+                fetch('/chatbot/api/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    },
+                    body: `message=${encodeURIComponent(userMessage)}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const botResponse = data.response;
+                    appendMessage(botResponse, 'bot');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    appendMessage('Lo siento, ocurrió un error.', 'bot');
+                });
+                userMessageInput.value = '';
+            });
+        });
+    </script>
+
+    {% csrf_token %}
+    
+</body>
+</html>

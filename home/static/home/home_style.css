@@ -5,7 +5,6 @@
     --light-gray: #f5f5f5;
     --white: #ffffff;
 }
-
 * {
     margin: 0;
     padding: 0;
@@ -53,7 +52,6 @@ nav {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--primary-color);
-    text-decoration: none
 }
 .logo-img {
     background-image: url('Pawmeet.png');
@@ -62,7 +60,6 @@ nav {
     width: 50px;
     height: 50px;
 }
-
 .nav-links {
     display: flex;
     gap: 2rem;
@@ -83,22 +80,18 @@ nav {
 }
 
 .btn-login {
-    top: 20px;
-    position: absolute;
-
-    right: 130px;
-    background-color: #f6efe5;
-    color: #CD7400;
-    border: #CD7400;
-    padding: 10px 15px;
-    font-size: 20px;
-    font-weight: bold;
+    background: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 .btn-login:hover {
-    background-color: #f6dbb9;
+    background: var(--primary-color);
+    color: var(--white);
 }
 .menu-toggle {
     display: none;
@@ -117,7 +110,7 @@ nav {
     padding: 0 1rem;
 }
 .hero-content {
-    max-width: 1000px;
+    max-width: 600px;
 }
 
 .hero h1 {
@@ -245,6 +238,7 @@ footer {
         width: 100%;
     }
 }
+
 
 .chatbot {
     width: 100px;          /* Tamaño del círculo */
