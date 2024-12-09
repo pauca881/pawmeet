@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mascotas Cercanas</title>
+</head>
+<body>
+
+    <h1>Las mascotas más cercanas</h1>
+
+    <h3>Usuario actual: {{ usuario_actual }}</h3>
+
+    {% if mascotas_cercanas %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Tamaño</th>
+                    <th>Color</th>
+                    <th>Temperamento</th>
+                    <th>Nivel de Actividad</th>
+                    <th>Peso</th>
+                    <th>Nivel de Socialización</th>
+                    <th>Vacunado</th>
+                    <th>Distancia</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mascota in mascotas_cercanas %}
+                    <tr>
+                        <td>{{ mascota.id }}</td>
+                        <td>{{ mascota.nombre }}</td>
+                        <td>{{ mascota.tamaño }}</td>
+                        <td>{{ mascota.color }}</td>
+                        <td>{{ mascota.temperamento }}</td>
+                        <td>{{ mascota.nivel_actividad }}</td>
+                        <td>{{ mascota.peso }}</td>
+                        <td>{{ mascota.nivel_socializacion }}</td>
+                        <td>{{ mascota.vacunado|yesno:"Sí,No" }}</td>
+                        <td>{{ mascota.distancia }}</td>
+                        <td><button>Me gusta</button></td>
+                        <td><button>Quita bicho</button></td>
+                        <!-- falta agregar mascota para dar like o eliminar -->
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No se encontraron mascotas cercanas.</p>
+    {% endif %}
+
+    <br>
+    <a href="{% url 'list_mascotas' %}">Volver al listado de mascotas</a>
+
+</body>
+</html>
+
+
+
+<!-- <h1>Las mascotas más cercanas</h1>
+<ul>
+    {% for mascota in mascotas_cercanas %}
+        <li>
+            <strong>ID:</strong> {{ mascota.id }} <br>
+            <strong>Nombre:</strong> {{ mascota.nombre }} <br>
+            <strong>Tamaño:</strong> {{ mascota.tamaño }} <br>
+            <strong>Color:</strong> {{ mascota.color }} <br>
+            <strong>Temperamento:</strong> {{ mascota.temperamento }} <br>
+            <strong>Nivel de actividad:</strong> {{ mascota.nivel_actividad }} <br>
+            <strong>Peso:</strong> {{ mascota.peso }} <br>
+            <strong>Nivel de socialización:</strong> {{ mascota.nivel_socializacion }} <br>
+            <strong>Vacunado:</strong> {{ mascota.vacunado }} <br>
+            <strong>Distancia:</strong> {{ mascota.distancia }} <br>
+        </li>
+    {% endfor %}
+</ul> -->
