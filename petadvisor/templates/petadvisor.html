@@ -11,20 +11,15 @@
 
 <body>
     <header>
-        <nav>
-            <h1>{{ entity.name }}</h1>
+        <img src="{% static 'home/pawmeet.png' %}" alt="Logo" class="logo">
 
-            <div class="nav-container">
+        <h1>{{ entity.name }}</h1>
 
-                <a href="{% url 'conectar' %}" class="logo" style="text-decoration: none;">
-                    <i class="logo-img"></i>
-                    <span>Conectar</span>
-                </a>
+        <a href="{% url 'conectar' %}">
+            <button class="conectar-btn">Conectar</button>
+        </a>
 
-                <button class="btn-profile">Mi Perfil</button>
-
-            </div>
-        </nav>
+        <button class="btn-profile">Mi Perfil</button>
     </header>
 
     <main>
