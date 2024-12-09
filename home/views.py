@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from mascotas.models import Mascota, Evento
 from django.contrib.auth.decorators import login_required
+from usuarios.models import UserProfile
+
 
 from datetime import datetime, timedelta
 import pandas as pd
@@ -57,10 +59,19 @@ def ver_mascota_cercana_view(request):
     # ajusto el modelo con las características preprocesadas
     knn.fit(X)
 
+
+    # MASCOTAS USUARIO ACTUAL
     usuario_actual = request.user
-    
-    # Imprimir el nombre de usuario en la consola
     print(f"Usuario actual: {usuario_actual.username}")
+
+    perfil_usuario = UserProfile.objects.get(usuario=usuario_actual)
+    print(f"Perfil del usuario actual: {perfil_usuario}")
+
+    mascotas = perfil_usuario.mascotas_datos.all()
+    print(f"Mascotas del usuario actual: {mascotas}")
+
+    primera_mascota = mascotas.first()
+    print(f"Primera mascota del usuario actual: {primera_mascota}")
 
     nueva_mascota = pd.DataFrame({
         #'fecha_nacimiento': [datetime.now() - timedelta(days=3*365)], 
@@ -125,7 +136,8 @@ def ver_mascota_cercana_view(request):
 
     print(mascotas_cercanas)
 
-    return render(request, 'mostrar_mascota_cercana.html', context)
+    return render(request, 'mostrar_mascota_cercana.html', {**context, 'usuario_actual': usuario_actual})
+
 
 
 # View sencilla para listar mascotas

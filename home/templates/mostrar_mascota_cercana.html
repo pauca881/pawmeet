@@ -11,6 +11,10 @@
 
     <h1>Las mascotas más cercanas</h1>
 
+    <h3>Bienvenido {{ usuario_actual.username }}</h3>
+
+    <h4>Seleccionar mascota para buscar mascotas cercanas: </h4>
+
     {% if mascotas_cercanas %}
         <table>
             <thead>
@@ -41,6 +45,8 @@
                         <td>{{ mascota.vacunado|yesno:"Sí,No" }}</td>
                         <td>{{ mascota.distancia }}</td>
                         <!-- falta agregar mascota para dar like o eliminar -->
+                         <td><button class="btn-like">Me gustas</button></td>
+                         <td><button class="btn-dislike">Quita bicho</button></td>
 
                     </tr>
                 {% endfor %}
