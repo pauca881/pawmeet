@@ -25,6 +25,24 @@ header h1 {
 .logo{
     max-width: 50px;
 }
+.home-btn {
+    top: 16px;
+    position: absolute;
+
+    left: 80px;
+    background-color: #f6efe5;
+    color: #CD7400;
+    border: #CD7400;
+    padding: 10px 15px;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.home-btn:hover {
+    background-color: #f6dbb9;
+}
 
 .conectar-btn{
     top: 16px;
@@ -56,6 +74,28 @@ header h1 {
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+}
+.btn-profile:hover {
+    background-color: #f6dbb9;
+}
+
+.btn-cerrarsesion {
+    position: absolute;
+    top: 24px;
+    right: 20px;
+
+    background-color: #f6efe5;
+    color: #CD7400;
+    border: #CD7400;
+    padding: 10px 15px;
+    font-size: 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.btn-cerrarsesion:hover {
+    background-color: #f6dbb9;
 }
 
 /* Main Content Styles */
