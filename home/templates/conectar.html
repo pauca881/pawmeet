@@ -13,9 +13,11 @@
     <body>
 
         <header>
-            <img src="{% static 'home/pawmeet.png' %}" alt="Logo" class="logo">
+            <div class="logo-plus-homebutton">
+                <img class="pawmeet_logo" src="{% static 'home/pawmeet.png' %}">
 
-            <button class="home-btn" onclick="window.location.href='{% url 'home' %}'">Home</button>
+                <button class="home-btn" onclick="window.location.href='{% url 'home' %}'">Home</button>
+            </div>
 
             <div class="central-buttons">
                 <a href="{% url 'petadvisorUser' %}">

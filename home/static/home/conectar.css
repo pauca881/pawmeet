@@ -32,15 +32,19 @@ header {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)
 }
 
-.logo{
-    width: 50px;
+.logo-plus-homebutton{
+    display: flex;
+    align-items: center;
 }
-
+.pawmeet_logo {
+    position: relative;
+    max-width: 50px;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+}
 .home-btn {
-    top: 16px;
-    position: absolute;
-
-    left: 80px;
+    position: relative;
     background-color: #f6efe5;
     color: #CD7400;
     border: #CD7400;
