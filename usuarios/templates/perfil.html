@@ -1,26 +1,38 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'login/perfil.css' %}">
     <title>Perfil de Usuario</title>
 </head>
 <body>
-    <h1>Bienvenido a tu perfil, {{ request.user.username }}</h1>
-    <p>Email: {{ request.user.email }}</p>
+    <div class="profile-container">
+        <h1>Bienvenido a tu perfil, {{ request.user.username }}</h1>
+        <div class="user-info">
+            <p>Email: {{ request.user.email }}</p>
+        </div>
 
-    <h2>Opciones de Mascota</h2>
-    <ul>
-        <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Añadir mascota</a></li>
-        <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Editar mascota</a></li>
-        <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Borrar mascota</a></li>
-    </ul>
+        <div class="options-section">
+            <h2>Opciones de Mascota</h2>
+            <ul>
+                <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Añadir mascota</a></li>
+                <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Editar mascota</a></li>
+                <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Borrar mascota</a></li>
+            </ul>
+        </div>
 
-    <h2>Opciones de Cuenta</h2>
-    <ul>
-        <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Borrar cuenta</a></li>
-    </ul>
+        <div class="options-section">
+            <h2>Opciones de Cuenta</h2>
+            <ul>
+                <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Borrar cuenta</a></li>
+            </ul>
+        </div>
 
-    <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        <footer>
+            <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        </footer>
+    </div>
 </body>
 </html>

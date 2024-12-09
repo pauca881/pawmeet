@@ -3,7 +3,10 @@
     --secondary-color: #e38000;
     --text-color: #424242;
     --light-gray: #f5f5f5;
-    --white: #ffffff;
+    --background: #ffffff;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --border-radius: 10px;
+    --hover-color: #d97300;
 }
 
 * {
@@ -13,42 +16,57 @@
     font-family: Arial, sans-serif;
 }
 
-html {
-    overflow-y: scroll;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
-}
-html::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
-}
-
 body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--light-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     padding: 2rem;
 }
 
+.profile-container {
+    background: var(--background);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 20px var(--card-shadow);
+    width: 100%;
+    max-width: 600px;
+}
+
 h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--primary-color);
-}
-
-h2 {
     font-size: 2rem;
-    margin: 1.5rem 0;
-    color: var(--secondary-color);
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
 }
 
-p {
+.user-info {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.user-info p {
     font-size: 1.2rem;
+    margin: 0.5rem 0;
+    color: var(--text-color);
+}
+
+.options-section {
+    margin-bottom: 2rem;
+}
+
+.options-section h2 {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
     margin-bottom: 1rem;
 }
 
 ul {
     list-style-type: none;
-    margin: 1rem 0;
+    margin: 0;
     padding: 0;
 }
 
@@ -57,29 +75,27 @@ li {
 }
 
 a {
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    color: var(--text-color);
-    font-weight: 500;
-    transition: color 0.3s ease;
+    color: var(--primary-color);
+    font-weight: bold;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 a:hover {
-    color: var(--primary-color);
+    background: var(--hover-color);
+    color: var(--background);
 }
 
 footer {
-    margin-top: 2rem;
-    padding: 1rem 0;
     text-align: center;
-    background: var(--white);
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-}
-
-footer a {
-    color: var(--text-color);
-    text-decoration: none;
-}
-
-footer a:hover {
-    color: var(--primary-color);
+    margin-top: 2rem;
+    padding: 1rem;
+    background: var(--light-gray);
+    border-radius: var(--border-radius);
+    box-shadow: 0 -2px 10px var(--card-shadow);
 }
