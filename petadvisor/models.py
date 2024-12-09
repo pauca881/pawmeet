@@ -1,23 +1,47 @@
-from django.db import models
+from django.db import models as m
 from usuarios.models import UserProfile
-from django.core.validators import MinValueValidator, MaxValueValidator
-from django.utils.timezone import now
 
 
-class PetAdvisor(models.Model):
-    id = models.AutoField(primary_key=True)
-    author = models.ForeignKey(
-        'usuarios.UserProfile', on_delete=models.CASCADE, related_name='reviews')
-    professional = models.ForeignKey(
-        'usuarios.ProfesionalUser', on_delete=models.CASCADE, related_name='reviews')
-    puntuation = models.IntegerField(validators=[MinValueValidator(
-        1), MaxValueValidator(5)], help_text='Puntuacuion de 1 a 5 estrellas.')
-    description = models.TextField(max_length=500, blank=True, null=True)
-    date = models.DateTimeField(default=now)
+class PetEntity(m.Model):
 
-    class Meta:
-        unique_together = ('author', 'professional')
-        ordering = ['-date']
+    # Classe de python on apereixen tot els tipus de llocs possibles per a gossos.
+    entity_type = [('veterinary', 'Veterinary'),
+                   ('pet store', 'Pet Store'),
+                   ('dog park', 'Dog Park')
+                   ]
+
+    name = m.CharField(max_length=255)
+    entity_type = m.CharField(max_length=50, choices=entity_type)
+    adress = m.TextField()
+    description = m.TextField(null=True, blank=True)
+    created_at = m.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f"Reseña de {self.author} a {self.professional} - {self.puntuation}"
+        return f"{self.name} ({self.get_entity_type_display()})"
+
+    def average_rating(self):
+        reviews = self.reviews.all()
+        if reviews.exists():
+            return sum(review.rating for review in reviews) / reviews.count()
+        return 0
+
+
+class Reviews(m.Model):
+    # Cada classe representa una resenya d'usuari sobre qualsevol tipus de PetEntity
+    user = m.ForeignKey(UserProfile, on_delete=m.Case)
+    pet_entity = m.ForeignKey(
+        PetEntity, related_name='reviews', on_delete=m.CASCADE)
+    rating = m.PositiveSmallIntegerField(null=False)
+    comment = m.TextField(blank=True, null=True)
+    created_at = m.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Review by {self.user.usuario} on {self.pet_entity.name}"
+
+    class Meta:
+        # Fem que un usuari tingui la capacitat nomes de crear una review per cada entity_type.
+        constraints = [
+            m.UniqueConstraint(
+                fields=['user', 'pet_entity'], name='unique_review_per_user_and_entity')
+        ]
+        ordering = ['-created_at']
