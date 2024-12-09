@@ -1,5 +1,4 @@
-from django.shortcuts import render, get_object_or_404
-from .models import PetAdvisor
+from django.shortcuts import render
 
 def petadvisorUser(request):
     # Lógica de la vista
