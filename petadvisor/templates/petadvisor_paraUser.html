@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ entity.name }} - Details</title>
+    <link rel="stylesheet" href="{% static 'petadvisor_paraUser.css' %}">
+</head>
+
+<body>
+    <header>
+        <img src="{% static 'home/pawmeet.png' %}" alt="Logo" class="logo">
+
+        <button class="home-btn" onclick="window.location.href='{% url 'home' %}'">Home</button>
+
+        <h1>{{ entity.name }}</h1>
+
+        <a href="{% url 'conectar' %}">
+            <button class="conectar-btn">Conectar</button>
+        </a>
+
+        <button class="btn-profile">Mi Perfil</button>
+        <button class="btn-cerrarsesion">Cerrar sesión</button>
+    </header>
+
+    <main>
+        <section>
+            <h2>Tus recomendaciones</h2>
+            <p>Aquí saldran las recomendaciones personalizadas...</p>
+        </section>
+
+        <section>
+            <h2>¿Que buscas?</h2>
+            <button class="veterinarios-btn">Veterinarios</button>
+            <button class="parques-btn">Parques</button>
+            <button class="tiendas-btn">Tiendas para animales</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

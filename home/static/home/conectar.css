@@ -22,7 +22,7 @@ body {
     overflow-x: hidden;
 }
 
-.header {
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -55,8 +55,13 @@ body {
     background-color: #f6dbb9;
 }
 
-.center-btn {
-    top: 16px;
+.central-buttons{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.petUser-btn {
     background-color:  #0D3B66;
     color: #FAF0CA;
     border: #CD7400;
@@ -66,13 +71,29 @@ body {
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+
 }
-.center-btn:hover {
+.petUser-btn:hover {
     background-color: #f6dbb9;
 }
+
+.petEmpresa-btn {
+    background-color:  #0D3B66;
+    color: #FAF0CA;
+    border: #CD7400;
+    padding: 10px 15px;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    position: relative;
+}
+.petEmpresa-btn:hover {
+    background-color: #f6dbb9;
+}
+
 
 .btn1 {
     position: absolute;

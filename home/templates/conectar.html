@@ -12,14 +12,20 @@
 
     <body>
 
-        <header class="header">
+        <header>
             <img src="{% static 'home/pawmeet.png' %}" alt="Logo" class="logo">
 
             <button class="home-btn" onclick="window.location.href='{% url 'home' %}'">Home</button>
 
-            <a href="{% url 'petadvisor' %}">
-                <button class="center-btn">PetAdvisor</button>
-            </a>
+            <div class="central-buttons">
+                <a href="{% url 'petadvisorUser' %}">
+                    <button class="petUser-btn">PetAdvisor Users</button>
+                </a>
+
+                <a href="{% url 'petadvisorEmpresa' %}">
+                    <button class="petEmpresa-btn">PetAdvisor Empresa</button>
+                </a>
+            </div>
 
             <div>
                 <button class="btn1">Mi Perfil</button>
