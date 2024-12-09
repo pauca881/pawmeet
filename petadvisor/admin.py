@@ -1,19 +1,19 @@
+from django.contrib import admin
+
 # Register your models here.
 
 from django.contrib import admin
-from .models import PetAdvisor
+from .models import PetEntity, Reviews
 
 
-@admin.register(PetAdvisor)
-class PetAdvisorAdmin(admin.ModelAdmin):
-    list_display = ('author', 'professional', 'puntuation', 'date')
-    search_fields = ('author__usuario__username',
-                     'professional__usuario__username')
-    list_filter = ('puntuation', 'date')
-    action = ['marcar_como_inapropiado']
+@admin.register(PetEntity)
+class PetEntityAdmin(admin.ModelAdmin):
+    list_display = ('name', 'entity_type', 'average_rating', 'created_at')
+    search_fields = ('name', 'entity_type', 'address')
 
-    def marcar_como_inapropiado(self, request, queryset):
-        queryset.update(comentario='[Reseña marcada como inapropiada]')
-        self.message_user(
-            request, f"{queryset.count()} reseñas marcadas como inapropiadas.")
-    marcar_como_inapropiado.short_description = "Marcar como inapropiado"
+
+@admin.register(Reviews)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('user', 'pet_entity', 'rating', 'created_at')
+    search_fields = ('user__username', 'pet_entity__name', 'comment')
+    list_filter = ('rating', 'created_at')
