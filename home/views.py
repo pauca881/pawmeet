@@ -87,7 +87,8 @@ def ver_mascota_cercana_view(request):
     for id_mascota in ids_mascotas_cercanas:
         try:
             # Buscar la mascota por su id en la base de datos
-            mascota = Mascota.objects.get(id=id_mascota)
+            mascota = Mascota.objects.get(pk=id_mascota)
+            print(mascota)
             mascotas_cercanas.append({
                 'id': mascota.id,
                 'tamaño': mascota.tamaño,
@@ -99,6 +100,7 @@ def ver_mascota_cercana_view(request):
                 'vacunado': mascota.vacunado,
                 'distancia': distancias[0][indices[0].tolist().index(id_mascota)]  # Relacionar la distancia con el id
             })
+            
         except Mascota.DoesNotExist:
             print(f"Error: No se encontró la mascota con id {id_mascota}")
             # En lugar de hacer un raise, podrías agregar la mascota con un mensaje de error o dejarla fuera
@@ -116,6 +118,7 @@ def ver_mascota_cercana_view(request):
     print(mascotas_cercanas)
 
     return render(request, 'mostrar_mascota_cercana.html', context)
+
 
 # View sencilla para listar mascotas
 def list_mascotas_view(request):
