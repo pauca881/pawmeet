@@ -15,7 +15,8 @@ class MascotaForm(forms.ModelForm):
             'peso',
             'vacunado',
             'color',
-            'nivel_socializacion'
+            'nivel_socializacion',
+            'tamaño',  # Agregar el campo tamaño a la lista de fields
         ]
         labels = {
             'nombre': 'Nombre de la Mascota',
@@ -28,20 +29,20 @@ class MascotaForm(forms.ModelForm):
             'peso': 'Peso (kg)',
             'vacunado': 'Vacunado',
             'color': 'Color',
-            'nivel_socializacion': 'Nivel de Socialización'
+            'nivel_socializacion': 'Nivel de Socialización',
+            'tamaño': 'Tamaño',
         }
         widgets = {
             'fecha_nacimiento': forms.DateInput(attrs={'type': 'date'}),
-            'castrado': forms.RadioSelect(choices=[(True, 'Sí'), (False, 'No')],
-                                        attrs={'class': 'radio-inline'}),
+            'castrado': forms.RadioSelect(choices=[(True, 'Sí'), (False, 'No')], attrs={'class': 'radio-inline'}),
             'raza': forms.Select(attrs={'class': 'form-control'}),
             'temperamento': forms.Select(attrs={'class': 'form-control'}),
             'nivel_actividad': forms.Select(attrs={'class': 'form-control'}),
             'peso': forms.NumberInput(attrs={'class': 'form-control', 'tep': '0.01'}),
-            'vacunado': forms.RadioSelect(choices=[(True, 'Sí'), (False, 'No')],
-                                        attrs={'class': 'radio-inline'}),
+            'vacunado': forms.RadioSelect(choices=[(True, 'Sí'), (False, 'No')], attrs={'class': 'radio-inline'}),
             'color': forms.Select(attrs={'class': 'form-control'}),
             'nivel_socializacion': forms.Select(attrs={'class': 'form-control'}),
+            'tamaño': forms.Select(attrs={'class': 'form-control'}),
         }
 
     def __init__(self, *args, **kwargs):
