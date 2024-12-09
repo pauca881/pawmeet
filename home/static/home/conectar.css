@@ -61,10 +61,11 @@ header {
 
 .central-buttons{
     display: flex;
-    gap: 1rem;
-    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 18px;
+    left: 540px;
 }
-
 .petUser-btn {
     background-color:  #0D3B66;
     color: #FAF0CA;
@@ -81,7 +82,6 @@ header {
 .petUser-btn:hover {
     background-color: #f6dbb9;
 }
-
 .petEmpresa-btn {
     background-color:  #0D3B66;
     color: #FAF0CA;
