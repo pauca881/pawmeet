@@ -13,61 +13,45 @@
         <header>
             <nav>
                 <div class="nav-container">
-
+                    <!-- Logo -->
                     <a href="{% url 'home' %}" class="logo" style="text-decoration: none;">
                         <i class="logo-img"></i>
                         <span>Pawmeet</span>
                     </a>
 
-                    <button class="btn-profile">Mi Perfil</button>
+                    <!-- Botón PetAdvisor centrado -->
+                    <a href="{% url 'petadvisor' %}" class="center-btn-container" >
+                        <button class="center-btn">PetAdvisor</button>
+                    </a>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <a href="{% url 'petadvisor' %}">
-                <button class="center-btn">PetAdvisor</button>
-            </a>
-
-            <div>
-                <button class="btn1" onclick="window.location.href='{% url 'perfil' %}'">Mi Perfil</button>
-                <button class="btn2" onclick="window.location.href='{% url 'logout' %}'">Cerrar sesión</button>
-            </div>
-=======
+                    <!-- Botones Mi Perfil y Cerrar Sesión -->
+                    <div class="nav-buttons">
+                        <button class="btn1" onclick="window.location.href='{% url 'perfil' %}'">Mi Perfil</button>
+                        <button class="btn2" onclick="window.location.href='{% url 'logout' %}'">Cerrar sesión</button>
+                    </div>
                 </div>
             </nav>
->>>>>>> parent of 323a1d4 (test)
-=======
-                </div>
-            </nav>
->>>>>>> parent of 323a1d4 (test)
         </header>
         <main>
             <div class="container">
-
                 <!-- Filtros de búsqueda (izquierda) -->
                 <div class="filters-sidebar">
                     <h4>Filtros de búsqueda</h4>
                     <form>
-
                         <label>Raza:</label>
                         <select name="raza">
                             <option value="">Todas</option>
                             <option value="Golden Retriever">Golden Retriever</option>
                             <option value="Poodle">Poodle</option>
                         </select>
-
                         <br>
-
                         <label>Gustos:</label>
                         <input type="checkbox" name="gustos[]" value="Pasear"> Pasear
                         <input type="checkbox" name="gustos[]" value="Jugar"> Jugar
-
                         <br>
-
                         <label>Tags:</label>
                         <input type="text" name="tags" placeholder="Ej: perro, gato, etc.">
-
                         <br>
-
                         <button type="submit">Buscar</button>
                     </form>
                 </div>
@@ -105,7 +89,6 @@
                             <span>Usuario 2</span>
                             <button>Mensaje</button>
                         </li>
-
                     </ul>
                     <h4>Contactos</h4>
                     <ul>
@@ -117,11 +100,89 @@
                             <img src="{% static 'home/example_user4.jpg' %}" alt="Usuario">
                             <span>Usuario 4</span>
                         </li>
-
                     </ul>
                 </div>
-
             </div>
         </main>
+    <button id="open-chat-btn">💬</button>
+
+    <div id="modal-overlay"></div>
+
+    <div id="chat-modal">
+        <button id="close-chat-btn">✖</button>
+        <div id="chat-container">
+            <h2 style="text-align: center;">Clifford, chat de Pawmeet</h2>
+            <div id="chat-log"></div>
+            <form id="message-form">
+                <input type="text" id="user-message" placeholder="Escribe un mensaje a Clifford" autocomplete="off" required>
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const openChatBtn = document.getElementById('open-chat-btn');
+            const chatModal = document.getElementById('chat-modal');
+            const modalOverlay = document.getElementById('modal-overlay');
+            const closeChatBtn = document.getElementById('close-chat-btn');
+
+            openChatBtn.addEventListener('click', function () {
+                chatModal.style.display = 'block';
+                modalOverlay.style.display = 'block';
+            });
+
+            closeChatBtn.addEventListener('click', function () {
+                chatModal.style.display = 'none';
+                modalOverlay.style.display = 'none';
+            });
+
+            modalOverlay.addEventListener('click', function () {
+                chatModal.style.display = 'none';
+                modalOverlay.style.display = 'none';
+            });
+
+            // Chatbot funcionalidad
+            const chatLog = document.getElementById('chat-log');
+            const form = document.getElementById('message-form');
+            const userMessageInput = document.getElementById('user-message');
+
+            function appendMessage(message, sender) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', sender);
+                const messageContent = document.createElement('p');
+                messageContent.textContent = message;
+                messageElement.appendChild(messageContent);
+                chatLog.appendChild(messageElement);
+                chatLog.scrollTop = chatLog.scrollHeight;
+            }
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                const userMessage = userMessageInput.value;
+                appendMessage(userMessage, 'user');
+                fetch('/chatbot/api/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    },
+                    body: `message=${encodeURIComponent(userMessage)}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const botResponse = data.response;
+                    appendMessage(botResponse, 'bot');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    appendMessage('Lo siento, ocurrió un error.', 'bot');
+                });
+                userMessageInput.value = '';
+            });
+        });
+    </script>
+
+    {% csrf_token %}
     </body>
 </html>
