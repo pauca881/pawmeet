@@ -1,17 +1,28 @@
 /* Variables globales */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow: hidden;
+    --margin: 0;
+    --padding: 0;
+    --box-sizing: border-box;
+    --overflow: hidden;
+    --primary-color: #b86800;
+    --secondary-color: #e38000;
+    --text-color: #424242;
+    --light-gray: #f5f5f5;
+    --white: #ffffff;
 }
 
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: black;
-    background: linear-gradient(149deg, rgba(126,83,40,1) 0%, rgba(192,142,76,1) 48%, rgba(145,90,34,1) 88%);
+    background-image: url("home-image.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     overflow-x: hidden;
+    overflow-y: hidden;
+    backdrop-filter: blur(7px);
 }
 
 header {
@@ -27,19 +38,19 @@ header {
     max-width: 50px;
 }
 .home-btn {
-    top: 16px;
-    position: absolute;
-
-    left: 80px;
-    background: white;
-    color: #CD7400;
-    border: #CD7400;
-    padding: 10px 15px;
     font-size: 25px;
     font-weight: bold;
-    cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    position: relative;
+
+    background: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 .home-btn:hover {
     background-color: #f6dbb9;
@@ -53,35 +64,42 @@ header {
     left: 520px;
 }
 .petUser-btn {
-    background: white;
-    color: #CD7400;
-    border: #CD7400;
-    padding: 10px 15px;
     font-size: 25px;
     font-weight: bold;
-    cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
     position: relative;
 
+    background: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 .petUser-btn:hover {
-    background-color: #f6dbb9;
+    background-color: var(--primary-color);
+    color: var(--white);
 }
 .petEmpresa-btn {
-    background: white;
-    color: #CD7400;
-    border: #CD7400;
-    padding: 10px 15px;
     font-size: 25px;
     font-weight: bold;
-    cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
     position: relative;
+
+    background: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 .petEmpresa-btn:hover {
-    background-color: #f6dbb9;
+    background-color: var(--primary-color);
+    color: var(--white);
 }
 
 
