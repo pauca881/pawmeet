@@ -13,8 +13,6 @@
 
     <h3>Bienvenido {{ usuario_actual.username }}</h3>
 
-    <h4>Seleccionar mascota para buscar mascotas cercanas: </h4>
-
     {% if mascotas_cercanas %}
         <table>
             <thead>
@@ -47,8 +45,11 @@
                         <td>{{ mascota.distancia }}</td>
                         <td>{{ mascota.dueño }}</td>
                         <!-- falta agregar mascota para dar like o eliminar -->
-                         <td><button class="btn-like">Me gustas</button></td>
-                         <td><button class="btn-dislike">Quita bicho</button></td>
+                        <form action="{% url 'agregar_amigo' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="mascota_id" value="{{ mascota.id }}">
+                            <td><button class="btn-like" type="submit">Me gustas</button></td>
+                        </form>                         <td><button class="btn-dislike">Quita bicho</button></td>
 
                     </tr>
                 {% endfor %}
@@ -59,7 +60,7 @@
     {% endif %}
 
     <br>
-    <a href="{% url 'list_mascotas' %}">Volver al listado de mascotas</a>
+    <a href="{% url 'listar_amigos' %}">Lista de amigos</a>
 
 </body>
 </html>

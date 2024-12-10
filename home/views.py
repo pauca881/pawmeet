@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from mascotas.models import Mascota, Evento
 from django.contrib.auth.decorators import login_required
 from usuarios.models import UserProfile
+from mascotas.models import Amigos
+from django.db.models import Q
 
 
 from datetime import datetime, timedelta
@@ -153,14 +155,45 @@ def ver_mascota_cercana_view(request):
 
 
 
-# View sencilla para listar mascotas
-def list_mascotas_view(request):
-    mascotas = Mascota.objects.all()
-    context = {
-        'mascotas': mascotas
-    }
+@login_required
+def agregar_amigo(request):
+    if request.method == "POST":
+        mascota_id = request.POST.get('mascota_id')  # Obtener el ID de la mascota
+        mascota = Mascota.objects.get(id=mascota_id)  # Obtener la mascota correspondiente
+        
+        # Obtener al dueño de la mascota (el dueño es un UserProfile)
+        dueño = mascota.dueño  # Suponiendo que 'dueño' es un campo que contiene el UserProfile
 
-    return render(request, 'list_mascotas.html', context)
+        # Verificar que el dueño de la mascota no sea el mismo que el usuario actual
+        if dueño != request.user.userprofile:
+            # Verificar si la relación de amistad ya existe entre el usuario actual y el dueño de la mascota
+            amistad_existente = Amigos.objects.filter(
+                (Q(perfil1=request.user.userprofile) & Q(perfil2=dueño)) |
+                (Q(perfil1=dueño) & Q(perfil2=request.user.userprofile))
+            ).exists()
 
+            if not amistad_existente:
+                # Crear una nueva amistad
+                Amigos.objects.create(perfil1=request.user.userprofile, perfil2=dueño)
+                return HttpResponse("Amistad creada con éxito")
 
+        return HttpResponse("Ya son amigos o no puedes ser amigo de ti mismo")
 
+    return redirect('home')  # Redirigir a la página de inicio si no es un POST
+
+@login_required
+def listar_amigos(request):
+    # Obtener las amistades donde el usuario es 'perfil1' o 'perfil2'
+    amistades = Amigos.objects.filter(
+        Q(perfil1=request.user.userprofile) | Q(perfil2=request.user.userprofile)
+    )
+
+    # Crear una lista de amigos (el perfil 1 o perfil 2 será el amigo dependiendo de cómo se haya guardado)
+    amigos = []
+    for amistad in amistades:
+        if amistad.perfil1 != request.user.userprofile:
+            amigos.append(amistad.perfil1)
+        else:
+            amigos.append(amistad.perfil2)
+
+    return render(request, 'listar_amigos.html', {'amigos': amigos})
