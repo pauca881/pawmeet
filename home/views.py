@@ -31,7 +31,7 @@ def eventos_view(request):
     return render(request, 'meetups.html', {'eventos': eventos})
 
 def ver_mascota_cercana_view(request):
-    df = pd.read_csv('C:/Users/pcpau/Desktop/pawmeet/home/dades_mascotas.csv', encoding='utf-8')
+    df = pd.read_csv('home/dades_mascotas.csv', encoding='utf-8')
     columnas_categoricas = ['tamano', 'color', 'temperamento', 'nivel_actividad', 'nivel_socializacion', 'vacunado']
     #columnas_numericas = ['fecha_nacimiento','peso']
     columnas_numericas = ['peso']
