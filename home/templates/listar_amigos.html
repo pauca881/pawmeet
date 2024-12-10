@@ -1,0 +1,14 @@
+
+{% block content %}
+    <h1>Lista de Amigos</h1>
+    
+    {% if amigos %}
+        <ul>
+            {% for amigo in amigos %}
+                <li>{{ amigo.usuario.username }} ({{ amigo.usuario.email }})</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tienes amigos aún.</p>
+    {% endif %}
+{% endblock %}
