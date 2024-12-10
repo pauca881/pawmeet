@@ -197,3 +197,4 @@ def listar_amigos(request):
             amigos.append(amistad.perfil2)
 
     return render(request, 'listar_amigos.html', {'amigos': amigos})
+
