@@ -22,7 +22,12 @@ class Mascota(models.Model):
 
     #Agregado campo raza
     def __str__(self):
-        return f"{self.nombre} - {self.raza}"
+        return (f"ID: {self.id} - Nombre: {self.nombre} - Fecha de nacimiento: {self.fecha_nacimiento} - "
+            f"Foto: {self.foto} - Dueño: {self.dueño} - Raza: {self.raza} - Tamaño: {self.tamaño} - "
+            f"Color: {self.color} - Temperamento: {self.temperamento} - Nivel de actividad: {self.nivel_actividad} - "
+            f"Peso: {self.peso} - Nivel de socialización: {self.nivel_socializacion} - Vacunado: {self.vacunado} - "
+            f"Castrado: {self.castrado}")
+    
     RAZAS_OPCIONES = [
     ('Airedale Terrier', 'Airedale Terrier'),
     ('Akita Inu', 'Akita Inu'),
