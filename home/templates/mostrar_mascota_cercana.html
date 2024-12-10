@@ -29,6 +29,7 @@
                     <th>Nivel de Socialización</th>
                     <th>Vacunado</th>
                     <th>Distancia</th>
+                    <th>Dueño</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,6 +45,7 @@
                         <td>{{ mascota.nivel_socializacion }}</td>
                         <td>{{ mascota.vacunado|yesno:"Sí,No" }}</td>
                         <td>{{ mascota.distancia }}</td>
+                        <td>{{ mascota.dueño }}</td>
                         <!-- falta agregar mascota para dar like o eliminar -->
                          <td><button class="btn-like">Me gustas</button></td>
                          <td><button class="btn-dislike">Quita bicho</button></td>
