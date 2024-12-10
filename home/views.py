@@ -73,6 +73,15 @@ def ver_mascota_cercana_view(request):
     primera_mascota = mascotas.first()
     print(f"Primera mascota del usuario actual: {primera_mascota}")
 
+    print("ESPACIO")
+    print("ESPACIO")
+    print("ESPACIO")
+    print("ESPACIO")
+    print("ESPACIO")
+
+    print("ID primera mascota dueño: ", primera_mascota.dueño.usuario_id)
+    print("ID primera mascota: ", primera_mascota.id)
+
     #ID Dueño de la mascota
     
     
