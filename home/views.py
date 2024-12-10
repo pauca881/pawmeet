@@ -73,6 +73,9 @@ def ver_mascota_cercana_view(request):
     primera_mascota = mascotas.first()
     print(f"Primera mascota del usuario actual: {primera_mascota}")
 
+    #ID Dueño de la mascota
+    
+    
     nueva_mascota = pd.DataFrame({
         #'fecha_nacimiento': [datetime.now() - timedelta(days=3*365)], 
         'tamano': ['Mediano'],
@@ -104,7 +107,7 @@ def ver_mascota_cercana_view(request):
         try:
             # Buscar la mascota por su id en la base de datos
             mascota = Mascota.objects.get(pk=id_mascota)
-            print(mascota)
+            #print(mascota)
             mascotas_cercanas.append({
                 'id': mascota.id,
 
@@ -117,6 +120,7 @@ def ver_mascota_cercana_view(request):
                 'peso': mascota.peso,
                 'nivel_socializacion': mascota.nivel_socializacion,
                 'vacunado': mascota.vacunado,
+                'dueño': mascota.dueño,
                 'distancia': distancias[0][indices[0].tolist().index(id_mascota)]  # Relacionar la distancia con el id
             })
             
@@ -134,7 +138,7 @@ def ver_mascota_cercana_view(request):
         'mascotas_cercanas': mascotas_cercanas
     }
 
-    print(mascotas_cercanas)
+    #print(mascotas_cercanas)
 
     return render(request, 'mostrar_mascota_cercana.html', {**context, 'usuario_actual': usuario_actual})
 

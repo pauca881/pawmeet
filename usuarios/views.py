@@ -7,6 +7,10 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+import csv
+from django.conf import settings
+from mascotas.models import Mascota
+
 
 def listar_usuarios(request):
     usuarios = User.objects.all()  # Usuarios registrados
@@ -56,6 +60,33 @@ def crear_mascota(request, usuario_id):
             mascota = mascota_form.save(commit=False)
             mascota.dueño = perfil  # Relacionar con el perfil del usuario
             mascota.save()
+
+             # Datos de la mascota a guardar en el archivo CSV
+            mascota_data = [
+                mascota.id,
+                mascota.fecha_nacimiento,
+                mascota.tamaño,
+                mascota.color,
+                mascota.temperamento,
+                mascota.nivel_actividad,
+                mascota.peso,
+                mascota.nivel_socializacion,
+                mascota.vacunado,
+                mascota.dueño.usuario_id  # Guardamos el ID del dueño
+            ]
+
+            file_path = r'/home/dades_mascotas.csv'
+
+            # Abrir el archivo CSV en modo append y escribir los datos
+            with open(file_path, mode='a', newline='', encoding='utf-8') as file:
+                writer = csv.writer(file)
+                # Si el archivo está vacío, agregar encabezado
+                if file.tell() == 0:
+                    writer.writerow([
+                        'ID', 'Fecha Nacimiento', 'Tamaño', 'Color', 'Temperamento', 
+                        'Nivel Actividad', 'Peso', 'Nivel Socialización', 'Vacunado', 'Dueño ID'
+                    ])
+                writer.writerow(mascota_data)
 
             # Agregar un mensaje de éxito
             messages.success(request, 'Mascota añadida.')
