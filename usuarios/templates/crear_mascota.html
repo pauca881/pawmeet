@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <style>
-.error {
+        .error {
             color: red;
             font-size: 0.9em;
         }
@@ -27,55 +27,98 @@
             {% csrf_token %}
             <div class="form-container">
                 <div class="form-field">
-                    {{ mascota_form.nombre.label_tag }} {{ mascota_form.nombre }}
+                    {{ mascota_form.nombre.label_tag }}
+                    {{ mascota_form.nombre }}
+                    {% if mascota_form.nombre.errors %}
+                        <div class="error">{{ mascota_form.nombre.errors.0 }}</div>
+                    {% endif %}
                 </div>
                 <div class="form-field">
-                    {{ mascota_form.fecha_nacimiento.label_tag }} {{ mascota_form.fecha_nacimiento }}
+                    {{ mascota_form.fecha_nacimiento.label_tag }}
+                    {{ mascota_form.fecha_nacimiento }}
+                    {% if mascota_form.fecha_nacimiento.errors %}
+                        <div class="error">{{ mascota_form.fecha_nacimiento.errors.0 }}</div>
+                    {% endif %}
                 </div>
                 <div class="form-field">
                     <label for="id_castrado">Castrado</label>
                     <div class="radio-inline">
                         {{ mascota_form.castrado }}
                     </div>
+                    {% if mascota_form.castrado.errors %}
+                        <div class="error">{{ mascota_form.castrado.errors.0 }}</div>
+                    {% endif %}
                 </div>
                 <div class="form-field">
                     <label for="id_raza">Selecciona la raza:</label>
                     {{ mascota_form.raza }}
-                </div>
-                <!-- Campos agregados -->
-                <div class="form-field">
-                    {{ mascota_form.temperamento.label_tag }} {{ mascota_form.temperamento }}
-                </div>
-                <div class="form-field">
-                    {{ mascota_form.nivel_actividad.label_tag }} {{ mascota_form.nivel_actividad }}
+                    {% if mascota_form.raza.errors %}
+                        <div class="error">{{ mascota_form.raza.errors.0 }}</div>
+                    {% endif %}
                 </div>
                 <div class="form-field">
-                    {{ mascota_form.peso.label_tag }} {{ mascota_form.peso }}
+                    {{ mascota_form.temperamento.label_tag }}
+                    {{ mascota_form.temperamento }}
+                    {% if mascota_form.temperamento.errors %}
+                        <div class="error">{{ mascota_form.temperamento.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    {{ mascota_form.nivel_actividad.label_tag }}
+                    {{ mascota_form.nivel_actividad }}
+                    {% if mascota_form.nivel_actividad.errors %}
+                        <div class="error">{{ mascota_form.nivel_actividad.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    {{ mascota_form.peso.label_tag }}
+                    {{ mascota_form.peso }}
+                    {% if mascota_form.peso.errors %}
+                        <div class="error">{{ mascota_form.peso.errors.0 }}</div>
+                    {% endif %}
                 </div>
                 <div class="form-field">
                     <label for="id_vacunado">Vacunado</label>
                     <div class="radio-inline">
                         {{ mascota_form.vacunado }}
                     </div>
+                    {% if mascota_form.vacunado.errors %}
+                        <div class="error">{{ mascota_form.vacunado.errors.0 }}</div>
+                    {% endif %}
                 </div>
                 <div class="form-field">
-                    {{ mascota_form.color.label_tag }} {{ mascota_form.color }}
+                    {{ mascota_form.color.label_tag }}
+                    {{ mascota_form.color }}
+                    {% if mascota_form.color.errors %}
+                        <div class="error">{{ mascota_form.color.errors.0 }}</div>
+                    {% endif %}
                 </div>
                 <div class="form-field">
-                    {{ mascota_form.nivel_socializacion.label_tag }} {{ mascota_form.nivel_socializacion }}
+                    {{ mascota_form.nivel_socializacion.label_tag }}
+                    {{ mascota_form.nivel_socializacion }}
+                    {% if mascota_form.nivel_socializacion.errors %}
+                        <div class="error">{{ mascota_form.nivel_socializacion.errors.0 }}</div>
+                    {% endif %}
                 </div>
                 <div class="form-field">
-                    {{ mascota_form.tamaño.label_tag }} {{ mascota_form.tamaño }}
+                    {{ mascota_form.tamaño.label_tag }}
+                    {{ mascota_form.tamaño }}
+                    {% if mascota_form.tamaño.errors %}
+                        <div class="error">{{ mascota_form.tamaño.errors.0 }}</div>
+                    {% endif %}
                 </div>
             </div>
             <button type="submit">Guardar</button>
         </form>
         <div class="dropzone-contenedor">
             <label for="id_foto">Sube la foto:</label>
-            <div class="dropzone" id="dropzone" style="width: 100%; height: 200px;"> 
+            <div class="dropzone" id="dropzone" style="width: 100%; height: 200px;">
                 Arrastra y suelta la imagen aquí o haz clic para seleccionar un archivo.
                 <input type="file" name="foto" id="id_foto" accept="image/*" hidden>
             </div>
+            {% if mascota_form.foto.errors %}
+                <div class="error">{{ mascota_form.foto.errors.0 }}</div>
+            {% endif %}
         </div>
     </div>
 
@@ -130,11 +173,5 @@
             });
         });
     </script>
-    <!-- Añadido estilo inline para aumentar el espacio entre opciones de radio -->
-    <style>
-.radio-inline {
-            gap: 1.5rem; /* Aumentado el espacio entre opciones */
-        }
-    </style>
 </body>
 </html>
