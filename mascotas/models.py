@@ -3,7 +3,7 @@ from django.db import models
 class Mascota(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
-    fecha_nacimiento = models.DateField(blank=True, null=True)
+    fecha_nacimiento = models.DateField(blank=False, null=False)
     foto = models.ImageField(upload_to='mascotas/', blank=False, null=False)
     dueño = models.ForeignKey('usuarios.UserProfile', on_delete=models.CASCADE, related_name="mascotas_datos")
 
