@@ -7,10 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-import csv
-from django.conf import settings
 from mascotas.models import Mascota
-
 
 def listar_usuarios(request):
     usuarios = User.objects.all()  # Usuarios registrados
@@ -61,37 +58,9 @@ def crear_mascota(request, usuario_id):
             mascota.dueño = perfil  # Relacionar con el perfil del usuario
             mascota.save()
 
-            #  # Datos de la mascota a guardar en el archivo CSV
-            # mascota_data = [
-            #     mascota.id,
-            #     mascota.fecha_nacimiento,
-            #     mascota.tamaño,
-            #     mascota.color,
-            #     mascota.temperamento,
-            #     mascota.nivel_actividad,
-            #     mascota.peso,
-            #     mascota.nivel_socializacion,
-            #     mascota.vacunado,
-            #     mascota.dueño.usuario_id  # Guardamos el ID del dueño
-            # ]
-
-            # file_path = r'/home/dades_mascotas.csv'
-
-            # # Abrir el archivo CSV en modo append y escribir los datos
-            # with open(file_path, mode='a', newline='', encoding='utf-8') as file:
-            #     writer = csv.writer(file)
-            #     # Si el archivo está vacío, agregar encabezado
-            #     if file.tell() == 0:
-            #         writer.writerow([
-            #             'ID', 'Fecha Nacimiento', 'Tamaño', 'Color', 'Temperamento', 
-            #             'Nivel Actividad', 'Peso', 'Nivel Socialización', 'Vacunado', 'Dueño ID'
-            #         ])
-            #     writer.writerow(mascota_data)
-
             # Agregar un mensaje de éxito
             messages.success(request, 'Mascota añadida.')
 
-            # Renderizar la misma plantilla con el mensaje
             return render(request, 'crear_mascota.html', {
                 'mascota_form': mascota_form,
                 'messages': messages.get_messages(request)  # Pasar los mensajes
@@ -100,6 +69,27 @@ def crear_mascota(request, usuario_id):
         mascota_form = MascotaForm()
 
     return render(request, 'crear_mascota.html', {'mascota_form': mascota_form})
+
+@login_required
+def perfil(request):
+    # Obtener las mascotas asociadas al usuario
+    mascotas = Mascota.objects.filter(dueño=request.user.userprofile)  # Relación con el perfil del usuario
+    return render(request, 'perfil.html', {'mascotas': mascotas})
+
+@login_required
+def editar_mascota(request, mascota_id):
+    mascota = get_object_or_404(Mascota, id=mascota_id, dueño=request.user.userprofile)  # Filtrar por usuario
+
+    if request.method == 'POST':
+        mascota_form = MascotaForm(request.POST, request.FILES, instance=mascota)
+        if mascota_form.is_valid():
+            mascota_form.save()
+            messages.success(request, 'Mascota actualizada correctamente.')
+            return redirect('perfil')  # Redirigir al perfil después de guardar
+    else:
+        mascota_form = MascotaForm(instance=mascota)
+
+    return render(request, 'editar_mascota.html', {'form': mascota_form, 'mascota': mascota})
 
 def usuario_exitoso(request):
     return render(request, 'usuario_exitoso.html')
@@ -127,8 +117,4 @@ def login_view(request):
 def logout_view(request):
     logout(request)  # Cierra la sesión del usuario
     messages.success(request, "Sesión cerrada correctamente.")
-    return redirect('login')  # Redirige a la página de login después del logout
-
-@login_required
-def perfil(request):
-    return render(request, 'perfil.html')
+    return redirect('login')  # Redirige a la página de login después del logout)
