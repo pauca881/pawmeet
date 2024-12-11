@@ -61,6 +61,12 @@ header {
     background-color: var(--primary-color);
     color: var(--white);
 }
+
+.central-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
 .petUser-btn, .petEmpresa-btn {
     font-size: 15px;
     font-weight: bold;
@@ -76,7 +82,13 @@ header {
     background-color: var(--primary-color);
     color: var(--white);
 }
-.btn-perfil, .btn-sesion {
+
+.buttons-right{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.btn-eventos, .btn-perfil, .btn-sesion {
     font-size: 15px;
     font-weight: bold;
     background: var(--primary-color);
@@ -87,7 +99,7 @@ header {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-.btn-perfil:hover, .btn-sesion:hover {
+.btn-eventos:hover, .btn-perfil:hover, .btn-sesion:hover {
     background-color: var(--white);
     color: var(--primary-color);
 }

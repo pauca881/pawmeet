@@ -21,7 +21,6 @@
 
                 <div class="nav-buttons">
                     {% if user.is_authenticated %}
-                        <button class="btn-login" onclick="window.location.href='{% url 'eventos' %}'">Quedadas</button>
                         <button class="btn-login" onclick="window.location.href='{% url 'logout' %}'">Cerrar sesión</button>
                     {% else %}
                         <!-- Si el usuario no está logueado, mostrar el botón de iniciar sesión -->
