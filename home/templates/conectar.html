@@ -13,11 +13,11 @@
     <body>
 
         <header>
-            <img src="{% static 'home/pawmeet.png' %}" alt="Logo" class="logo">
+            <div class="buttons">
+                <img src="{% static 'home/pawmeet.png' %}" alt="Logo" class="logo">
 
-            <button class="home-btn" onclick="window.location.href='{% url 'home' %}'">Home</button>
+                <button class="home-btn" onclick="window.location.href='{% url 'home' %}'">Home</button>
 
-            <div class="central-buttons">
                 <a href="{% url 'petadvisorUser' %}">
                     <button class="petUser-btn">PetAdvisor Users</button>
                 </a>
@@ -25,11 +25,11 @@
                 <a href="{% url 'petadvisorEmpresa' %}">
                     <button class="petEmpresa-btn">PetAdvisor Empresa</button>
                 </a>
-            </div>
 
-            <div>
-                <button class="btn1" onclick="window.location.href='{% url 'perfil' %}'">Mi Perfil</button>
-                <button class="btn2" onclick="window.location.href='{% url 'logout' %}'">Cerrar sesión</button>
+                <div>
+                    <button class="btn-perfil" onclick="window.location.href='{% url 'perfil' %}'">Mi Perfil</button>
+                    <button class="btn-sesion" onclick="window.location.href='{% url 'logout' %}'">Cerrar sesión</button>
+                </div>
             </div>
         </header>
 

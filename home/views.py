@@ -5,8 +5,6 @@ from django.contrib.auth.decorators import login_required
 from usuarios.models import UserProfile
 from mascotas.models import Amigos
 from django.db.models import Q
-
-
 from datetime import datetime, timedelta
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder, StandardScaler, OneHotEncoder
@@ -38,7 +36,6 @@ def ver_mascota_cercana_view(request):
     #columnas_numericas = ['fecha_nacimiento','peso']
     columnas_numericas = ['peso']
 
-
     # aqui lo que hago es crear un transformador para las columnas categóricas (one-hot eencoding)
     # y para las columnas numéricas (Normalización)
 
@@ -60,7 +57,6 @@ def ver_mascota_cercana_view(request):
 
     # ajusto el modelo con las características preprocesadas
     knn.fit(X)
-
 
     # MASCOTAS USUARIO ACTUAL
     usuario_actual = request.user
@@ -85,17 +81,16 @@ def ver_mascota_cercana_view(request):
     print("ID primera mascota: ", primera_mascota.id)
 
     #ID Dueño de la mascota
-    
-    
+
     nueva_mascota = pd.DataFrame({
-        #'fecha_nacimiento': [datetime.now() - timedelta(days=3*365)], 
+        #'fecha_nacimiento': [datetime.now() - timedelta(days=3*365)],
         'tamano': ['Mediano'],
         'color': ['Blanco'],
         'temperamento': ['Tranquilo'],
         'nivel_actividad': ['Alto'],
-        'peso': [50], 
-        'nivel_socializacion': ['Alta'],  
-        'vacunado': [True] 
+        'peso': [50],
+        'nivel_socializacion': ['Alta'],
+        'vacunado': [True]
     })
 
 
@@ -134,7 +129,7 @@ def ver_mascota_cercana_view(request):
                 'dueño': mascota.dueño,
                 'distancia': distancias[0][indices[0].tolist().index(id_mascota)]  # Relacionar la distancia con el id
             })
-            
+
         except Mascota.DoesNotExist:
             print(f"Error: No se encontró la mascota con id {id_mascota}")
             # En lugar de hacer un raise, podrías agregar la mascota con un mensaje de error o dejarla fuera
@@ -160,7 +155,7 @@ def agregar_amigo(request):
     if request.method == "POST":
         mascota_id = request.POST.get('mascota_id')  # Obtener el ID de la mascota
         mascota = Mascota.objects.get(id=mascota_id)  # Obtener la mascota correspondiente
-        
+
         # Obtener al dueño de la mascota (el dueño es un UserProfile)
         dueño = mascota.dueño  # Suponiendo que 'dueño' es un campo que contiene el UserProfile
 
