@@ -41,7 +41,8 @@
     "¡Hola! ¿En qué puedo serte útil hoy? Si necesitas ayuda o solo quieres charlar un rato, ¡aquí estoy!",
     "¡Hola! ¿Cómo estás? Si tienes alguna pregunta o solo necesitas un poco de compañía, estaré encantado de ayudarte."
 ]
-},
+  }
+,
   "despedidas": {
     "preguntas": [
       "adiós",
@@ -185,7 +186,7 @@
     "¡Muchísimas gracias! Es genial saber que te acuerdas de mi cumpleaños. Te deseo un día increíble también. ¿Te gustaría conversar sobre algo en especial en este día tan único?",
     "¡Gracias, qué bonito detalle! Me alegra mucho que recuerdes mi cumpleaños. Espero que tú también tengas un día increíble. ¿Hay algo especial que te gustaría saber o discutir hoy?"
 ]
-  },
+},
   "felicitaciones": {
     "preguntas": [
       "felicidades",
@@ -301,99 +302,114 @@
     "¿Sabías que los pingüinos tienen una forma especial de caminar llamada 'tobogán' cuando se deslizan por el hielo? 🐧 ¡Es muy divertido de ver! ¿Quieres escuchar más curiosidades?",
     "¿Sabías que los delfines tienen nombres para llamarse entre ellos? 🐬 ¡Tienen un sistema de comunicación tan complejo! ¿Te gustaría saber más datos curiosos?"
 ]
-  },
-  "consejos": {
+  }  ,
+  
+    "consejos": {
+      "preguntas": [
+        "¿Puedes darme un consejo?",
+        "¿Tienes algún consejo para mí?",
+        "Necesito un consejo",
+        "¿Puedes orientarme?",
+        "¿Puedes aconsejarme?",
+        "¿Tienes alguna sugerencia?",
+        "¿Tienes alguna recomendación?",
+        "¿Tienes alguna guía para mí?",
+        "¿Puedes ayudarme a decidir?"
+      ],
+      "respuesta": [
+        "Mi consejo es que confíes en ti mismo y sigas tu intuición. Los errores son lecciones disfrazadas y cada uno te acerca más a tus metas.",
+        "Te sugiero que sigas tu instinto y no te preocupes por los tropiezos. Cada caída es una oportunidad para levantarte más sabio.",
+        "Mi recomendación es que tomes decisiones basadas en lo que te hace sentir bien, sin miedo a equivocarte. Cada error es una oportunidad para aprender.",
+        "Escucha tu voz interior. No te detengas por los miedos ni por los errores; son parte del camino hacia el éxito y el crecimiento personal.",
+        "Te animo a que confíes en tu intuición y no temas tropezar. Los errores no son fracasos, son pasos necesarios para alcanzar tus objetivos.",
+        "Sigue tu corazón y no te preocupes por los tropiezos. Cada desafío es una oportunidad para aprender y mejorar.",
+        "Mi consejo es que sigas lo que te dice tu corazón. Los errores son solo peldaños en el camino hacia el éxito, ¡no dejes que te detengan!",
+        "Confía en ti mismo y en tu intuición. Cada error te brinda una nueva perspectiva y te enseña algo valioso para el futuro.",
+        "Te sugiero que sigas tu corazón y no dejes que el miedo al error te paralice. Cada tropiezo es una oportunidad para levantarte más fuerte.",
+        "No tengas miedo de equivocarte. Cada error es solo un paso más hacia el éxito, y la verdadera sabiduría proviene de aprender de ellos."
+      ]
+    },
+    "funciones_app": {
+      "preguntas": [
+        "¿Cómo funciona la app?",
+        "¿Qué puedo hacer en la app?",
+        "¿Qué funciones tiene la app?",
+        "¿Cómo funciona la aplicación?",
+        "¿Qué puedo hacer aquí?"
+      ],
+      "respuesta": [
+        "¡Nuestra app te permite conectar con otros dueños de perros! Puedes dar 'like' a los perfiles que te interesen, o 'dislike' a los que no.",
+        "En nuestra app, puedes organizar quedadas generales con otros perros, recibir recomendaciones en PetAdvisor sobre servicios para mascotas, y reportar o encontrar mascotas perdidas en LostPets.",
+        "Puedes usar la app para conocer a otros dueños de perros cercanos, organizar quedadas, recibir consejos útiles para el cuidado de tus mascotas, y mucho más.",
+        "En esta app, puedes hacer match con otros perros, asistir a quedadas generales para socializar, recibir recomendaciones personalizadas en PetAdvisor, y también reportar o encontrar mascotas perdidas."
+      ]
+    },
+  "likes_dislikes": {
     "preguntas": [
-      "¿puedes darme un consejo?",
-      "¿tienes algún consejo para mí?",
-      "necesito un consejo",
-      "¿puedes orientarme?",
-      "¿puedes aconsejarme?",
-      "¿tienes alguna sugerencia?",
-      "¿tienes alguna recomendación?",
-      "¿tienes alguna guía para mí?",
-      "¿puedes ayudarme a decidir?"
+      "¿Cómo hago match?",
+      "¿Qué pasa si doy like?",
+      "¿Cómo funciona el sistema de likes?",
+      "¿Qué pasa si doy dislike?",
+      "¿Cómo puedo conectar con otros perros?"
     ],
-"respuesta": [
-    "Mi consejo es que confíes en ti mismo y sigas siempre tu corazón. No temas equivocarte, ya que cada error te enseña algo nuevo y te hace más fuerte.",
-    "Te sugiero que sigas tu instinto y no te preocupes por los tropiezos. Recuerda que cada caída es una oportunidad para levantarte más sabio.",
-    "Mi recomendación es que sigas tu intuición y que no tengas miedo de fallar. Los errores son lecciones disfrazadas y cada uno te acerca más a tus metas.",
-    "Mi consejo es que escuches tu voz interior. No te detengas por los miedos ni por los errores; son parte del camino hacia el éxito.",
-    "Te animo a que confíes en tu intuición y no temas tropezar. Los errores no son fracasos, son pasos necesarios para alcanzar el éxito.",
-    "Mi consejo es que sigas lo que te dice tu corazón. Los tropiezos no son obstáculos, sino oportunidades para aprender y crecer.",
-    "Mi recomendación es que sigas tu intuición y que veas cada error como una oportunidad para mejorar y aprender. No dejes que el miedo te frene.",
-    "Mi consejo es que confíes en ti mismo y sigas tu intuición, porque cada error te da una nueva perspectiva y te enseña algo valioso.",
-    "Te sugiero que sigas tu corazón y no dejes que el miedo al error te paralice. Cada tropiezo es una oportunidad para levantarte más fuerte.",
-    "Mi consejo es que siempre sigas tu instinto y no tengas miedo de equivocarte. Los errores son solo peldaños hacia el éxito que te esperan."
-]
+    "respuesta": [
+      "¡Es sencillo! Si te gusta un perfil, dale 'like'. Si la otra persona también te da 'like', tendrán un match y podrán comenzar a chatear.",
+      "Cuando das 'like' a un perfil, estás mostrando interés en conocer más a ese perro y su dueño. Si ambos se gustan, podrán iniciar una conversación.",
+      "El sistema de likes te permite expresar tu interés por otros perros. Si ambos usuarios se dan 'like', se establece un match y podrán chatear para conocerse más.",
+      "Si das 'dislike', simplemente no te interesa ese perfil. Puedes seguir buscando y explorando otros perfiles sin ningún problema.",
+      "Para conectar con otros perros, explora los perfiles en la app, da 'like' a los que te interesen, y si ambos se gustan, podrán empezar a interactuar y coordinar encuentros."
+    ]
   },
-"funciones_app": {
-"preguntas": [
-  "¿qué puedo hacer en la app?",
-  "¿qué funciones tiene la app?",
-  "¿cómo funciona la aplicación?",
-  "¿qué puedo hacer aquí?"
-],
-"respuesta": [
-  "¡En nuestra app puedes conectar con otros dueños de perros! Dale 'like' a los perfiles que te gusten o 'dislike' a los que no.",
-  "Nuestra app tiene opciones geniales como quedadas generales, recomendaciones en PetAdvisor y una sección para reportar mascotas perdidas en LostPets.",
-  "Puedes usar nuestra app para conocer a otros dueños de perros cercanos, organizar quedadas y obtener consejos útiles para tus mascotas.",
-  "¡En esta app puedes hacer match con otros perros, asistir a quedadas generales, recibir consejos en PetAdvisor y reportar o encontrar mascotas perdidas!"
-]
-},
-"likes_dislikes": {
-"preguntas": [
-  "¿cómo hago match?",
-  "¿qué pasa si doy like?",
-  "¿cómo funciona el sistema de likes?",
-  "¿qué pasa si doy dislike?",
-  "¿cómo puedo conectar con otros perros?"
-],
-"respuesta": [
-  "¡Es sencillo! Si te gusta un perfil, dale 'like'. Si ambos se gustan, tendrán un match y podrán chatear.",
-  "Para conectar con otros usuarios, revisa sus perfiles. Si no te interesa un perfil, puedes darle 'dislike' y seguir explorando.",
-  "El sistema de likes te permite mostrar interés por otros perros. Si el interés es mutuo, podrán comunicarse directamente."
-]
-},
-"quedadas_generales": {
-"preguntas": [
-  "¿qué son las quedadas?",
-  "¿cómo participo en una quedada?",
-  "¿dónde están las quedadas?",
-  "¿puedo asistir a una quedada?",
-  "¿qué hago en las quedadas generales?"
-],
-"respuesta": [
-  "Las quedadas son eventos donde puedes reunirte con otros dueños y sus perros en un lugar cercano. ¡Es ideal para socializar!",
-  "Para unirte a una quedada, ve a la sección 'Quedadas Generales' en la app, busca un evento cerca y confirma tu asistencia.",
-  "Las quedadas son una excelente oportunidad para conocer gente y que tu perro haga nuevos amigos. ¡No te las pierdas!"
-]
-},
-"petadvisor": {
-"preguntas": [
-  "¿qué es PetAdvisor?",
-  "¿cómo funciona PetAdvisor?",
-  "¿puedo recibir consejos en PetAdvisor?",
-  "¿cómo uso PetAdvisor?",
-  "¿qué hago en PetAdvisor?"
-],
-"respuesta": [
-  "PetAdvisor es una sección donde puedes obtener recomendaciones sobre perfiles profesionales como veterinarios, parques y mas cosas!.",
-  "En PetAdvisor, puedes explorar opiniones de otros usuarios acerca de veterinarios, parques y tiendas para mascostas."
-]
-},
-"lostpets": {
-"preguntas": [
-  "¿qué es LostPets?",
-  "¿cómo funciona LostPets?",
-  "¿puedo reportar una mascota perdida?",
-  "¿cómo encuentro mascotas perdidas?",
-  "¿qué hago si pierdo mi perro?"
-],
-"respuesta": [
-  "LostPets es una sección para reportar mascotas perdidas o encontradas. ¡Ayuda a reunirte con tu amigo peludo!",
-  "Si has perdido a tu perro, puedes crear un reporte en LostPets. Otros usuarios podrán ayudarte a encontrarlo.",
-  "En LostPets, también puedes ver mascotas perdidas en tu área y ofrecer tu ayuda si encuentras a alguna."
-]
-}
+
+  "quedadas_generales": {
+    "preguntas": [
+      "¿Qué son las quedadas?",
+      "¿Cómo participo en una quedada?",
+      "¿Dónde se realizan las quedadas?",
+      "¿Puedo asistir a una quedada?",
+      "¿Qué hago en las quedadas generales?"
+    ],
+    "respuesta": [
+      "Las quedadas son eventos donde los dueños de mascotas se reúnen en un lugar público o parque para socializar con otros perros y sus dueños. ¡Una excelente oportunidad para hacer nuevos amigos tanto para ti como para tu perro!",
+      "Para unirte a una quedada, ingresa a la sección 'Quedadas Generales' en la app, busca un evento cercano y confirma tu asistencia. ¡Es fácil y rápido!",
+      "Las quedadas se realizan en parques y otros espacios públicos cercanos a tu ubicación. Puedes consultar los eventos disponibles en la sección 'Quedadas Generales' de la app.",
+      "Sí, puedes asistir a una quedada. Solo necesitas buscar los eventos disponibles en tu área y confirmar tu participación.",
+      "En las quedadas generales, puedes socializar con otros dueños de mascotas, permitir que tu perro interactúe con otros perros, y disfrutar de un momento de diversión y camaradería."
+    ]
+  },
+
+  "petadvisor": {
+    "preguntas": [
+      "¿Qué es PetAdvisor?",
+      "¿Cómo funciona PetAdvisor?",
+      "¿Puedo recibir consejos en PetAdvisor?",
+      "¿Cómo uso PetAdvisor?",
+      "¿Qué puedo hacer en PetAdvisor?"
+    ],
+    "respuesta": [
+      "PetAdvisor es una plataforma donde puedes obtener recomendaciones y opiniones sobre profesionales relacionados con el cuidado de mascotas, como veterinarios, parques, tiendas y más.",
+      "En PetAdvisor, puedes explorar reseñas de otros usuarios sobre veterinarios, parques, tiendas para mascotas y otros servicios, y también puedes dejar tus propias opiniones.",
+      "Sí, en PetAdvisor puedes recibir consejos de otros usuarios sobre temas como el cuidado de tus mascotas, recomendaciones de productos, veterinarios y más.",
+      "Para usar PetAdvisor, solo tienes que registrarte y comenzar a explorar los perfiles de profesionales o servicios. Puedes dejar comentarios, calificaciones y encontrar recomendaciones según tus necesidades.",
+      "En PetAdvisor puedes encontrar y evaluar servicios para tus mascotas, como veterinarios y parques. También puedes consultar experiencias de otros usuarios antes de tomar decisiones."
+    ]
+  },
+
+  "lostpets": {
+    "preguntas": [
+      "¿Qué es LostPets?",
+      "¿Cómo funciona LostPets?",
+      "¿Puedo reportar una mascota perdida?",
+      "¿Cómo puedo encontrar mascotas perdidas?",
+      "¿Qué debo hacer si pierdo a mi perro?"
+    ],
+    "respuesta": [
+      "LostPets es una plataforma donde puedes reportar mascotas perdidas o encontradas, con el objetivo de reunirte con tu amigo peludo.",
+      "Si has perdido a tu perro, puedes crear un reporte en LostPets. Otros usuarios podrán ver tu aviso y ayudarte a encontrarlo.",
+      "En LostPets también puedes visualizar mascotas perdidas en tu área. Si encuentras alguna, puedes ofrecer tu ayuda para devolverla a su dueño.",
+      "Para encontrar mascotas perdidas, puedes buscar en los reportes de LostPets, filtrar por tu área y contactar a quienes hayan publicado el aviso de una mascota desaparecida.",
+      "Si pierdes a tu perro, lo primero que debes hacer es crear un reporte en LostPets. Cuanta más información puedas proporcionar sobre su apariencia y último lugar visto, mejor."
+    ]
+  }
+
 }
