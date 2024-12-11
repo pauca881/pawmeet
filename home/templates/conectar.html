@@ -1,206 +1,97 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        {% load static %}
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Conectar Mascotas - Pawmeet</title>
-        <link rel="stylesheet" href="{% static 'home/conectar.css' %}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-        <link rel="icon" type="image/png" href="{% static 'home/pawmeet.png' %}">
-    </head>
-
-    <body>
-
-        <header>
-            <div class="buttons">
-                <img src="{% static 'home/pawmeet.png' %}" alt="Logo" class="logo">
-
-                <button class="home-btn" onclick="window.location.href='{% url 'home' %}'">Home</button>
-
-                <a href="{% url 'petadvisorUser' %}">
-                    <button class="petUser-btn">PetAdvisor Users</button>
-                </a>
-
-                <a href="{% url 'petadvisorEmpresa' %}">
-                    <button class="petEmpresa-btn">PetAdvisor Empresa</button>
-                </a>
-
-                <div>
-                    <button class="btn-perfil" onclick="window.location.href='{% url 'perfil' %}'">Mi Perfil</button>
-                    <button class="btn-sesion" onclick="window.location.href='{% url 'logout' %}'">Cerrar sesión</button>
-                </div>
-            </div>
-        </header>
-
-        <main>
-            <div class="container">
-
-                <!-- Filtros de búsqueda (izquierda) -->
-                <div class="filters-sidebar">
-                    <h4>Filtros de búsqueda</h4>
-                    <form>
-
-                        <label>Raza:</label>
-                        <select name="raza">
-                            <option value="">Todas</option>
-                            <option value="Golden Retriever">Golden Retriever</option>
-                            <option value="Poodle">Poodle</option>
-                        </select>
-
-                        <br>
-
-                        <label>Gustos:</label>
-                        <input type="checkbox" name="gustos[]" value="Pasear"> Pasear
-                        <input type="checkbox" name="gustos[]" value="Jugar"> Jugar
-
-                        <br>
-
-                        <label>Tags:</label>
-                        <input type="text" name="tags" placeholder="Ej: perro, gato, etc.">
-
-                        <br>
-
-                        <button type="submit">Buscar</button>
-                    </form>
-                </div>
-
-                <!-- Zona central (swipe-container) -->
-                <div class="swipe-container">
-                    <div class="pet-card">
-                        <img src="{% static 'home/example_pet.jpg' %}" alt="Mascota">
-                        <div class="pet-info">
-                            <h3>Luna</h3>
-                            <p>Golden Retriever · 3 años</p>
-                        </div>
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conectar Mascotas - Pawmeet</title>
+    <link rel="stylesheet" href="{% static 'home/conectar.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="{% static 'home/pawmeet.png' %}">
+</head>
+<body>
+<header>
+    <div class="buttons">
+        <img src="{% static 'home/pawmeet.png' %}" alt="Logo" class="logo">
+        <button class="home-btn" onclick="window.location.href='{% url 'home' %}'">Home</button>
+        <a href="{% url 'petadvisorUser' %}">
+            <button class="petUser-btn">PetAdvisor Users</button>
+        </a>
+        <a href="{% url 'petadvisorEmpresa' %}">
+            <button class="petEmpresa-btn">PetAdvisor Empresa</button>
+        </a>
+        <div>
+            <button class="btn-perfil" onclick="window.location.href='{% url 'perfil' %}'">Mi Perfil</button>
+            <button class="btn-sesion" onclick="window.location.href='{% url 'logout' %}'">Cerrar sesión</button>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <div class="filters-sidebar">
+            <h4>Filtros de búsqueda</h4>
+            <form>
+                <label>Raza:</label>
+                <select name="raza">
+                    <option value="">Todas</option>
+                    <option value="Golden Retriever">Golden Retriever</option>
+                    <option value="Poodle">Poodle</option>
+                </select>
+                <br>
+                <label>Gustos:</label>
+                <input type="checkbox" name="gustos[]" value="Pasear"> Pasear
+                <input type="checkbox" name="gustos[]" value="Jugar"> Jugar
+                <br>
+                <label>Tags:</label>
+                <input type="text" name="tags" placeholder="Ej: perro, gato, etc.">
+                <br>
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+        <div class="swipe-container">
+            {% if mascotas_cercanas %}
+                {% for mascota in mascotas_cercanas %}
+                <div class="pet-card">
+                    <img src="{{ mascota.imagen_url }}" alt="Mascota">
+                    <div class="pet-info">
+                        <h3>{{ mascota.nombre }}</h3>
+                        <p>{{ mascota.raza }} · {{ mascota.edad }} años</p>
+                        <p>Tamaño: {{ mascota.tamaño }}</p>
+                        <p>Color: {{ mascota.color }}</p>
+                        <p>Temperamento: {{ mascota.temperamento }}</p>
+                        <p>Vacunado: {{ mascota.vacunado|yesno:"Sí,No" }}</p>
                     </div>
-                    <div class="actions">
-                        <button class="btn-dislike">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                        <button class="btn-like">
+                </div>
+                <div class="actions">
+                    <form action="{% url 'agregar_amigo' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="mascota_id" value="{{ mascota.id }}">
+                        <button class="btn-like" type="submit">
                             <i class="fa-solid fa-heart"></i>
                         </button>
-                    </div>
+                    </form>
+                    <button class="btn-dislike">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
                 </div>
-
-                <!-- Chats abiertos y contactos (derecha) -->
-                <div class="chats-sidebar">
-                    <h4>Chats abiertos</h4>
-                    <ul>
-                        <li>
-                            <img src="{% static 'home/example_user.jpg' %}" alt="Usuario">
-                            <span>Usuario 1</span>
-                            <button>Mensaje</button>
-                        </li>
-                        <li>
-                            <img src="{% static 'home/example_user2.jpg' %}" alt="Usuario">
-                            <span>Usuario 2</span>
-                            <button>Mensaje</button>
-                        </li>
-
-                    </ul>
-                    <h4>Contactos</h4>
-                    <ul>
-                        <li>
-                            <img src="{% static 'home/example_user3.jpg' %}" alt="Usuario">
-                            <span>Usuario 3</span>
-                        </li>
-                        <li>
-                            <img src="{% static 'home/example_user4.jpg' %}" alt="Usuario">
-                            <span>Usuario 4</span>
-                        </li>
-
-                    </ul>
-                </div>
-
-            </div>
-        </main>
-
-        <!-- CHATBOT -->
-
-        <!-- Botón flotante para abrir el chatbot -->
-        <button id="open-chat-btn">💬</button>
-        <!-- Fondo opaco detrás del modal -->
-        <div id="modal-overlay"></div>
-        <!-- Modal del chatbot -->
-        <div id="chat-modal">
-            <button id="close-chat-btn">✖</button>
-            <div id="chat-container">
-                <h2 style="text-align: center;">Clifford, chat de Pawmeet</h2>
-                <div id="chat-log"></div>
-                <form id="message-form">
-                    <input type="text" id="user-message" placeholder="Escribe un mensaje a Clifford" autocomplete="off" required>
-                    <input type="submit" value="Enviar">
-                </form>
-            </div>
+                {% endfor %}
+            {% else %}
+                <p>No se encontraron mascotas cercanas.</p>
+            {% endif %}
         </div>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const openChatBtn = document.getElementById('open-chat-btn');
-                const chatModal = document.getElementById('chat-modal');
-                const modalOverlay = document.getElementById('modal-overlay');
-                const closeChatBtn = document.getElementById('close-chat-btn');
-
-                // Abrir modal
-                openChatBtn.addEventListener('click', function () {
-                    chatModal.style.display = 'block';
-                    modalOverlay.style.display = 'block';
-                });
-
-                // Cerrar modal
-                closeChatBtn.addEventListener('click', function () {
-                    chatModal.style.display = 'none';
-                    modalOverlay.style.display = 'none';
-                });
-
-                modalOverlay.addEventListener('click', function () {
-                    chatModal.style.display = 'none';
-                    modalOverlay.style.display = 'none';
-                });
-
-                // Chatbot funcionalidad
-                const chatLog = document.getElementById('chat-log');
-                const form = document.getElementById('message-form');
-                const userMessageInput = document.getElementById('user-message');
-
-                function appendMessage(message, sender) {
-                    const messageElement = document.createElement('div');
-                    messageElement.classList.add('message', sender);
-                    const messageContent = document.createElement('p');
-                    messageContent.textContent = message;
-                    messageElement.appendChild(messageContent);
-                    chatLog.appendChild(messageElement);
-                    chatLog.scrollTop = chatLog.scrollHeight;
-                }
-
-                form.addEventListener('submit', function (event) {
-                    event.preventDefault();
-                    const userMessage = userMessageInput.value;
-                    appendMessage(userMessage, 'user');
-                    fetch('/chatbot/api/', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                        },
-                        body: `message=${encodeURIComponent(userMessage)}`
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        const botResponse = data.response;
-                        appendMessage(botResponse, 'bot');
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        appendMessage('Lo siento, ocurrió un error.', 'bot');
-                    });
-                    userMessageInput.value = '';
-                });
-            });
-        </script>
-
-        {% csrf_token %}
-    </body>
+        <div class="chats-sidebar">
+            <h4>Chats abiertos</h4>
+            <ul>
+                <li><img src="{% static 'home/example_user.jpg' %}" alt="Usuario"><span>Usuario 1</span><button>Mensaje</button></li>
+                <li><img src="{% static 'home/example_user2.jpg' %}" alt="Usuario"><span>Usuario 2</span><button>Mensaje</button></li>
+            </ul>
+            <h4>Contactos</h4>
+            <ul>
+                <li><img src="{% static 'home/example_user3.jpg' %}" alt="Usuario"><span>Usuario 3</span></li>
+                <li><img src="{% static 'home/example_user4.jpg' %}" alt="Usuario"><span>Usuario 4</span></li>
+            </ul>
+        </div>
+    </div>
+</main>
+</body>
 </html>
