@@ -40,7 +40,15 @@
                         <p><strong>Ubicación:</strong> {{ evento.ubicacion }}</p>
                         <p><strong>Organizador:</strong> {{ evento.organizador }}</p>
 
-                        <button class="btn-profile">Unirme</button>
+                            <p>Usuarios inscritos:</p>
+                            {% for usuario in evento.usuarios_inscritos.all %}
+                                <p>{{ usuario }}</p>
+                            {% empty %}
+                            <p><strong>No hay usuarios inscritos.</strong></p>
+                            {% endfor %}
+
+
+                        <button class="btn-profile" onclick="window.location.href='{% url 'unirme_a_evento' %}?id={{ evento.id }}'">Unirme a este evento</button>
 
                     </div>
 
