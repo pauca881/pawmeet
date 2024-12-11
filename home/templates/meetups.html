@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="{% static 'home/conectar.css' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="icon" type="image/png" href="{% static 'home/pawmeet.png' %}">
-<<<<<<< HEAD
 
 
 
@@ -67,10 +66,6 @@
 }
         </style>
         
-=======
-        <link rel="stylesheet" href="{% static 'home/meetups.css' %}">
-
->>>>>>> d9611afa0ecf245adb0db190da6db7c6869b16f0
     </head>
     <body>
         <header>
@@ -93,6 +88,18 @@
                         <p><strong>Fecha y Hora:</strong> {{ evento.fecha_hora }}</p>
                         <p><strong>Ubicación:</strong> {{ evento.ubicacion }}</p>
                         <p><strong>Organizador:</strong> {{ evento.organizador }}</p>
+
+                        <p><strong>Usuarios Inscritos:</strong>
+                            {% if evento.usuarios_inscritos.all %}
+                                <ul>
+                                    {% for usuario in evento.usuarios_inscritos.all %}
+                                        <li>{{ usuario.usuario }}</li> <!-- El segundo campo es del modelo-->
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p>No hay usuarios inscritos.</p>
+                            {% endif %}
+                        </p>
 
                         <button class="btn-profile">Unirme</button>
 
