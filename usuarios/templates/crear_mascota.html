@@ -110,11 +110,13 @@
             </div>
             <button type="submit">Guardar</button>
         </form>
+
         <div class="dropzone-contenedor">
             <label for="id_foto">Sube la foto:</label>
-            <div class="dropzone" id="dropzone" style="width: 100%; height: 200px;">
+            <div class="dropzone" id="dropzone" style="width: 100%; height: 200px; position: relative; text-align: center;">
                 Arrastra y suelta la imagen aquí o haz clic para seleccionar un archivo.
                 <input type="file" name="foto" id="id_foto" accept="image/*" hidden>
+                <img id="preview" style="display: none; max-width: 100%; max-height: 100%; position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;">
             </div>
             {% if mascota_form.foto.errors %}
                 <div class="error">{{ mascota_form.foto.errors.0 }}</div>
@@ -139,10 +141,12 @@
         </script>
     {% endif %}
 
+    <!-- Script para vista previa de imagen -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const dropzone = document.getElementById("dropzone");
             const fileInput = document.getElementById("id_foto");
+            const preview = document.getElementById("preview");
 
             dropzone.addEventListener("click", () => {
                 fileInput.click();
@@ -163,14 +167,26 @@
 
                 if (e.dataTransfer.files.length) {
                     fileInput.files = e.dataTransfer.files;
+                    showPreview(fileInput.files[0]);
                 }
             });
 
             fileInput.addEventListener("change", () => {
                 if (fileInput.files.length) {
-                    dropzone.textContent = `Archivo seleccionado: ${fileInput.files[0].name}`;
+                    showPreview(fileInput.files[0]);
                 }
             });
+
+            function showPreview(file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                    dropzone.textContent = ""; // Elimina el texto dentro del dropzone
+                    dropzone.appendChild(preview); // Muestra la imagen
+                };
+                reader.readAsDataURL(file);
+            }
         });
     </script>
 </body>

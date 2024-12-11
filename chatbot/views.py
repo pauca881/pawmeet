@@ -5,11 +5,10 @@ import json
 import re
 import random
 import nltk
+from nltk.chat.util import Chat, reflections
 import time
 
 nltk.download('punkt')
-
-from nltk.chat.util import Chat, reflections
 
 # Cargar el archivo JSON con preguntas y respuestas
 def cargar_datos_json():
@@ -85,6 +84,64 @@ def chatbot_response(request):
 
 def chatbot_interface(request):
     return render(request, 'chatbot.html')
+
+# Creamos una funcion para que las nuevas respuestas se guarden y se actualicen el el archivo json.
+
+def guardar_nueva_respuesta(pregunta, respuesta):
+    try:
+        with open('chatbot/data/intents.json', 'r+', encoding = 'utf-8') as f:
+            datos = json.load(f)
+
+            # Mirem si la pregunta ja existeix.
+            for categoria, info in datos.items():
+                if pregunta.lower() in [p.lower() for p in info['preguntas']]:
+                    if respuesta not in info['respuesta']:
+                        info['respuestas'].append(respuesta)
+                    break
+            else:
+                nueva_categoria = {
+                    "preguntas": [pregunta],
+                    "respuestas": [respuesta]
+                }
+                datos[f"nuevo_{len(datos)+1}"] = nueva_categoria
+
+            f.seek(0)  # Posem el cursor a l'inici del ficher.
+            json.dump(datos, f, ensure_ascii=False, indent=4)
+            f.truncate()  
+    except Exception as e:
+        print(f"Error al guardar nueva respuesta: {e}")
+
+def chatbot_learn(request):
+    if request.method == 'POST':
+        pregunta = request.POST.get('preguntas', '').lower()
+        respuesta = request.POST.get('respuestas', '')
+
+        if pregunta and respuesta:
+            guardar_nueva_respuesta(pregunta, respuesta)
+            return JsonResponse({'message': 'Aprendido correctamente'})
+        return JsonResponse({'error': 'Faltan datos'}, status=400)
+
+    return JsonResponse({'error': "Método no permitido"}, status=405)
+
+
+
+def recargar_patrones():
+    data = cargar_datos_json()  # Cargar el JSON actualizado
+    return crear_patrones_respuestas(data)
+
+def chatbot_response(request):
+    if request.method == 'POST':
+        user_message = request.POST.get('message', '')
+
+        # Recargar patrones
+        chatbot._pairs = recargar_patrones()
+
+        time.sleep(1)  # Simula un pequeño retraso para hacerlo más humano
+        response = chatbot.respond(user_message)
+        return JsonResponse({'response': response})
+
+    return JsonResponse({'response': "Método no permitido"}, status=405)
+
 
 
 # En un sentido estricto, este chatbot no implementa inteligencia artificial avanzada como aprendizaje profundo o 
