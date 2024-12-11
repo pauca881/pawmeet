@@ -7,5 +7,5 @@ id,fecha_nacimiento,tamano,color,temperamento,nivel_actividad,peso,nivel_sociali
 6,2017-03-16,Grande,Rojo,Protector,Bajo,50.00,Alta,True
 7,2020-06-05,Mediano,Naranja,Cariñoso,Medio,20.75,Media,False
 8,2016-10-10,Pequeño,Azul,Desobediente,Alto,8.20,Alta,True
-9,2015-04-01,Mediano,Beige,Tímido,Bajo,30.40,Baja,False
-10,2018-01-14,Grande,Negro,Curioso,Alto,40.00,Media,True
+9,2015-04-01,Mediano,Tricolor,Tímido,Bajo,30.40,Baja,False
+10,2018-01-14,Grande,Blanco y negro,Curioso,Alto,40.00,Media,True
