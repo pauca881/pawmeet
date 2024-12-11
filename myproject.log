@@ -1,0 +1,9 @@
+INFO 2024-12-11 18:22:16,761 autoreload 12840 15460 Watching for file changes with StatReloader
+INFO 2024-12-11 18:22:35,636 autoreload 12840 15460 C:\Users\tabuc\Documents\GitHub\pawmeet\home\views.py changed, reloading.
+INFO 2024-12-11 18:22:36,275 autoreload 11396 4156 Watching for file changes with StatReloader
+INFO 2024-12-11 18:23:36,140 autoreload 11396 4156 C:\Users\tabuc\Documents\GitHub\pawmeet\pawmeet\settings.py changed, reloading.
+INFO 2024-12-11 18:23:36,941 autoreload 7328 16640 Watching for file changes with StatReloader
+WARNING 2024-12-11 18:24:53,916 log 7328 11420 Not Found: /favicon.ico
+INFO 2024-12-11 18:25:33,930 autoreload 7328 16640 C:\Users\tabuc\Documents\GitHub\pawmeet\home\views.py changed, reloading.
+INFO 2024-12-11 18:25:34,775 autoreload 10048 2400 Watching for file changes with StatReloader
+INFO 2024-12-11 18:29:10,274 autoreload 10048 2400 C:\Users\tabuc\Documents\GitHub\pawmeet\pawmeet\settings.py changed, reloading.

@@ -8,8 +8,6 @@ from mascotas.models import Amigos
 
 from usuarios.models import UserProfile
 
-from datetime import datetime, timedelta
-
 from sklearn.preprocessing import LabelEncoder, StandardScaler, OneHotEncoder
 from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.compose import ColumnTransformer
@@ -17,6 +15,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.neighbors import NearestNeighbors
 
 import pandas as pd
+import logging
 
 # Our views
 def home_view(request):
@@ -24,23 +23,6 @@ def home_view(request):
 
 @login_required
 def conectar_view(request):
-    return render(request, 'conectar.html')
-
-def eventos_view(request):
-    eventos = Evento.objects.all()
-
-    # Pasar los eventos al contexto
-    return render(request, 'meetups.html', {'eventos': eventos})
-
-from django.shortcuts import render
-import pandas as pd
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.neighbors import NearestNeighbors
-from .models import UserProfile, Mascota
-
-def ver_mascota_cercana_view(request):
     usuario_actual = request.user
     perfil_usuario = UserProfile.objects.get(usuario=usuario_actual)
     mascotas = perfil_usuario.mascotas_datos.all()
@@ -75,8 +57,9 @@ def ver_mascota_cercana_view(request):
         'nivel_socializacion': [primera_mascota.nivel_socializacion],
         'vacunado': [primera_mascota.vacunado]
     })
-
+    logging.critical("Antes de XNueva")
     X_nueva = pipeline.transform(nueva_mascota)
+    logging.critical("Despues de xnueva")
     distancias, indices = knn.kneighbors(X_nueva)
 
     ids_mascotas_cercanas = [df.iloc[idx]['id'] for idx in indices[0]]
@@ -89,7 +72,6 @@ def ver_mascota_cercana_view(request):
                 'id': mascota.id,
                 'nombre': mascota.nombre,
                 'raza': mascota.raza,
-                'edad': mascota.edad,
                 'tamaño': mascota.tamaño,
                 'color': mascota.color,
                 'temperamento': mascota.temperamento,
@@ -97,7 +79,6 @@ def ver_mascota_cercana_view(request):
                 'peso': mascota.peso,
                 'nivel_socializacion': mascota.nivel_socializacion,
                 'vacunado': mascota.vacunado,
-                'imagen_url': mascota.imagen.url if mascota.imagen else '',
                 'distancia': distancias[0][indices[0].tolist().index(id_mascota)]
             })
         except Mascota.DoesNotExist:
@@ -105,6 +86,11 @@ def ver_mascota_cercana_view(request):
 
     return render(request, 'conectar.html', {'mascotas_cercanas': mascotas_cercanas, 'usuario_actual': usuario_actual})
 
+def eventos_view(request):
+    eventos = Evento.objects.all()
+
+    # Pasar los eventos al contexto
+    return render(request, 'meetups.html', {'eventos': eventos})
 
 @login_required
 def agregar_amigo(request):
