@@ -12,19 +12,24 @@ nltk.download('punkt')
 from nltk.chat.util import Chat, reflections
 
 # Cargar el archivo JSON con preguntas y respuestas
-with open('chatbot/data/intents.json', 'r', encoding='utf-8') as f:
-    data = json.load(f)
+def cargar_datos_json():
+    try:
+        with open('chatbot/data/intents.json', 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"Error al cargar el archivo JSON: {e}")
+        return {}
+
+data = cargar_datos_json()
 
 # Convertir las preguntas y respuestas en patrones y respuestas
 def crear_patrones_respuestas(data):
     patrones = []
 
-    # Recorremos el JSON para crear los patrones
     for categoria, info in data.items():
         for pregunta in info['preguntas']:
             # Crear un patrón regex más flexible
             patron = f".*{re.escape(pregunta.lower())}.*"
-            # Cambiar la respuesta a una lista de respuestas posibles
             respuestas = info['respuesta']
             patrones.append((patron, respuestas))
 
@@ -50,17 +55,17 @@ class MiChatbot(Chat):
                 return random.choice(respuestas)
 
         respuestas_error = [
-  "Lo siento, no entendí esa pregunta. ¿Podrías ser más específico?",
-  "Perdón, no estoy seguro de haber entendido. ¿Podrías aclararlo?",
-  "Disculpa, no comprendo bien la pregunta. ¿Podrías darme más detalles?",
-  "No estoy seguro de haber captado lo que necesitas. ¿Podrías reformular la pregunta?",
-  "Lo siento, no logro entender lo que me estás preguntando. ¿Puedes explicarlo de otra manera?",
-  "No entiendo del todo. ¿Podrías ser más claro?",
-  "Perdón, no sé si he entendido tu pregunta. ¿Podrías especificar un poco más?",
-  "No estoy seguro de haber entendido correctamente. ¿Podrías volver a intentarlo con más detalles?",
-  "Lo siento, no comprendo lo que intentas preguntar. ¿Puedes ser un poco más específico?",
-  "No estoy seguro de lo que estás preguntando. ¿Podrías explicarlo mejor?"
-];
+            "Lo siento, no entendí esa pregunta. ¿Podrías ser más específico?",
+            "Perdón, no estoy seguro de haber entendido. ¿Podrías aclararlo?",
+            "Disculpa, no comprendo bien la pregunta. ¿Podrías darme más detalles?",
+            "No estoy seguro de haber captado lo que necesitas. ¿Podrías reformular la pregunta?",
+            "Lo siento, no logro entender lo que me estás preguntando. ¿Puedes explicarlo de otra manera?",
+            "No entiendo del todo. ¿Podrías ser más claro?",
+            "Perdón, no sé si he entendido tu pregunta. ¿Podrías especificar un poco más?",
+            "No estoy seguro de haber entendido correctamente. ¿Podrías volver a intentarlo con más detalles?",
+            "Lo siento, no comprendo lo que intentas preguntar. ¿Puedes ser un poco más específico?",
+            "No estoy seguro de lo que estás preguntando. ¿Podrías explicarlo mejor?"
+        ]
         # Si no hay coincidencia, devolver mensaje random del array
         return random.choice(respuestas_error)
 
@@ -71,7 +76,7 @@ def chatbot_response(request):
     if request.method == 'POST':
         user_message = request.POST.get('message', '')
 
-        time.sleep(1)
+        time.sleep(1)  # Simula un pequeño retraso para hacerlo más humano
 
         response = chatbot.respond(user_message)
         return JsonResponse({'response': response})

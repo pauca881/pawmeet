@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from mascotas.models import Mascota, Evento
 from django.contrib.auth.decorators import login_required
 from usuarios.models import UserProfile
+from mascotas.models import Amigos
+from django.db.models import Q
 
 
 from datetime import datetime, timedelta
@@ -31,7 +33,7 @@ def eventos_view(request):
     return render(request, 'meetups.html', {'eventos': eventos})
 
 def ver_mascota_cercana_view(request):
-    df = pd.read_csv('C:/Users/pcpau/Desktop/pawmeet/home/dades_mascotas.csv', encoding='utf-8')
+    df = pd.read_csv('home/dades_mascotas.csv', encoding='utf-8')
     columnas_categoricas = ['tamano', 'color', 'temperamento', 'nivel_actividad', 'nivel_socializacion', 'vacunado']
     #columnas_numericas = ['fecha_nacimiento','peso']
     columnas_numericas = ['peso']
@@ -73,6 +75,18 @@ def ver_mascota_cercana_view(request):
     primera_mascota = mascotas.first()
     print(f"Primera mascota del usuario actual: {primera_mascota}")
 
+    print("ESPACIO")
+    print("ESPACIO")
+    print("ESPACIO")
+    print("ESPACIO")
+    print("ESPACIO")
+
+    print("ID primera mascota dueño: ", primera_mascota.dueño.usuario_id)
+    print("ID primera mascota: ", primera_mascota.id)
+
+    #ID Dueño de la mascota
+    
+    
     nueva_mascota = pd.DataFrame({
         #'fecha_nacimiento': [datetime.now() - timedelta(days=3*365)], 
         'tamano': ['Mediano'],
@@ -104,7 +118,7 @@ def ver_mascota_cercana_view(request):
         try:
             # Buscar la mascota por su id en la base de datos
             mascota = Mascota.objects.get(pk=id_mascota)
-            print(mascota)
+            #print(mascota)
             mascotas_cercanas.append({
                 'id': mascota.id,
 
@@ -117,6 +131,7 @@ def ver_mascota_cercana_view(request):
                 'peso': mascota.peso,
                 'nivel_socializacion': mascota.nivel_socializacion,
                 'vacunado': mascota.vacunado,
+                'dueño': mascota.dueño,
                 'distancia': distancias[0][indices[0].tolist().index(id_mascota)]  # Relacionar la distancia con el id
             })
             
@@ -134,20 +149,52 @@ def ver_mascota_cercana_view(request):
         'mascotas_cercanas': mascotas_cercanas
     }
 
-    print(mascotas_cercanas)
+    #print(mascotas_cercanas)
 
     return render(request, 'mostrar_mascota_cercana.html', {**context, 'usuario_actual': usuario_actual})
 
 
 
-# View sencilla para listar mascotas
-def list_mascotas_view(request):
-    mascotas = Mascota.objects.all()
-    context = {
-        'mascotas': mascotas
-    }
+@login_required
+def agregar_amigo(request):
+    if request.method == "POST":
+        mascota_id = request.POST.get('mascota_id')  # Obtener el ID de la mascota
+        mascota = Mascota.objects.get(id=mascota_id)  # Obtener la mascota correspondiente
+        
+        # Obtener al dueño de la mascota (el dueño es un UserProfile)
+        dueño = mascota.dueño  # Suponiendo que 'dueño' es un campo que contiene el UserProfile
 
-    return render(request, 'list_mascotas.html', context)
+        # Verificar que el dueño de la mascota no sea el mismo que el usuario actual
+        if dueño != request.user.userprofile:
+            # Verificar si la relación de amistad ya existe entre el usuario actual y el dueño de la mascota
+            amistad_existente = Amigos.objects.filter(
+                (Q(perfil1=request.user.userprofile) & Q(perfil2=dueño)) |
+                (Q(perfil1=dueño) & Q(perfil2=request.user.userprofile))
+            ).exists()
 
+            if not amistad_existente:
+                # Crear una nueva amistad
+                Amigos.objects.create(perfil1=request.user.userprofile, perfil2=dueño)
+                return HttpResponse("Amistad creada con éxito")
 
+        return HttpResponse("Ya son amigos o no puedes ser amigo de ti mismo")
+
+    return redirect('home')  # Redirigir a la página de inicio si no es un POST
+
+@login_required
+def listar_amigos(request):
+    # Obtener las amistades donde el usuario es 'perfil1' o 'perfil2'
+    amistades = Amigos.objects.filter(
+        Q(perfil1=request.user.userprofile) | Q(perfil2=request.user.userprofile)
+    )
+
+    # Crear una lista de amigos (el perfil 1 o perfil 2 será el amigo dependiendo de cómo se haya guardado)
+    amigos = []
+    for amistad in amistades:
+        if amistad.perfil1 != request.user.userprofile:
+            amigos.append(amistad.perfil1)
+        else:
+            amigos.append(amistad.perfil2)
+
+    return render(request, 'listar_amigos.html', {'amigos': amigos})
 

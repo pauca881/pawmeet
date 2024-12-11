@@ -17,7 +17,8 @@
         <div class="options-section">
             <h2>Opciones de Mascota</h2>
             <ul>
-                <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Añadir mascota</a></li>
+                <!-- Redirige a la vista 'crear_mascota' con el usuario_id -->
+                <li><a href="{% url 'crear_mascota' usuario_id=request.user.id %}">Añadir mascota</a></li>
                 <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Editar mascota</a></li>
                 <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Borrar mascota</a></li>
             </ul>

@@ -113,6 +113,9 @@ class Evento(models.Model):
     organizador = models.ForeignKey(
         'usuarios.UserProfile', on_delete=models.CASCADE, related_name='eventos'
     )
+    usuarios_inscritos = models.ManyToManyField(
+    'usuarios.UserProfile', related_name='eventos_inscritos', blank=True
+    )
 
     def __str__(self):
         return self.titulo

@@ -38,7 +38,7 @@ class MascotaForm(forms.ModelForm):
             'raza': forms.Select(attrs={'class': 'form-control'}),
             'temperamento': forms.Select(attrs={'class': 'form-control'}),
             'nivel_actividad': forms.Select(attrs={'class': 'form-control'}),
-            'peso': forms.NumberInput(attrs={'class': 'form-control', 'tep': '0.01'}),
+            'peso': forms.NumberInput(attrs={'class': 'form-control', 'step': '1', 'min': '1'}),  # Solo permite enteros, sin decimales
             'vacunado': forms.RadioSelect(choices=[(True, 'Sí'), (False, 'No')], attrs={'class': 'radio-inline'}),
             'color': forms.Select(attrs={'class': 'form-control'}),
             'nivel_socializacion': forms.Select(attrs={'class': 'form-control'}),
@@ -48,4 +48,4 @@ class MascotaForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(MascotaForm, self).__init__(*args, **kwargs)
         self.fields['castrado'].initial = None
-        self.fields['vacunado'].initial = False
+        self.fields['vacunado'].initial = None
