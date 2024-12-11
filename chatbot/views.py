@@ -5,11 +5,10 @@ import json
 import re
 import random
 import nltk
+from nltk.chat.util import Chat, reflections
 import time
 
 nltk.download('punkt')
-
-from nltk.chat.util import Chat, reflections
 
 # Cargar el archivo JSON con preguntas y respuestas
 def cargar_datos_json():
