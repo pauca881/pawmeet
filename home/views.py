@@ -57,9 +57,9 @@ def conectar_view(request):
         'nivel_socializacion': [primera_mascota.nivel_socializacion],
         'vacunado': [primera_mascota.vacunado]
     })
-    logging.critical("Antes de XNueva")
+
     X_nueva = pipeline.transform(nueva_mascota)
-    logging.critical("Despues de xnueva")
+
     distancias, indices = knn.kneighbors(X_nueva)
 
     ids_mascotas_cercanas = [df.iloc[idx]['id'] for idx in indices[0]]
