@@ -24,6 +24,34 @@ class MascotaForm(forms.ModelForm):
             'tamaño'
         ]
 
+        labels = {
+            'nombre': 'Nombre de la Mascota',
+            'fecha_nacimiento': 'Fecha de Nacimiento',
+            'foto': 'Foto',
+            'castrado': 'Castrado',
+            'raza': 'Selecciona la raza',
+            'temperamento': 'Temperamento',
+            'nivel_actividad': 'Nivel de Actividad',
+            'peso': 'Peso (kg)',
+            'vacunado': 'Vacunado',
+            'color': 'Color',
+            'nivel_socializacion': 'Nivel de Socialización',
+            'tamaño': 'Tamaño',
+        }
+        widgets = {
+            'fecha_nacimiento': forms.DateInput(attrs={'type': 'date'}),
+            'castrado': forms.RadioSelect(choices=[(True, 'Sí'), (False, 'No')], attrs={'class': 'radio-inline'}),
+            'raza': forms.Select(attrs={'class': 'form-control'}),
+            'temperamento': forms.Select(attrs={'class': 'form-control'}),
+            'nivel_actividad': forms.Select(attrs={'class': 'form-control'}),
+            'peso': forms.NumberInput(attrs={'class': 'form-control', 'step': '1', 'min': '1'}),  # Solo permite enteros, sin decimales
+            'vacunado': forms.RadioSelect(choices=[(True, 'Sí'), (False, 'No')], attrs={'class': 'radio-inline'}),
+            'color': forms.Select(attrs={'class': 'form-control'}),
+            'nivel_socializacion': forms.Select(attrs={'class': 'form-control'}),
+            'tamaño': forms.Select(attrs={'class': 'form-control'}),
+        }
+
+
     def clean_foto(self):
 
         foto = self.cleaned_data.get('foto')
@@ -44,3 +72,8 @@ class MascotaForm(forms.ModelForm):
                 raise forms.ValidationError(f"Error processing image: {e}")
         else:
             return None  # Return None if no file was uploaded
+
+    def __init__(self, *args, **kwargs):
+        super(MascotaForm, self).__init__(*args, **kwargs)
+        self.fields['castrado'].initial = None
+        self.fields['vacunado'].initial = None

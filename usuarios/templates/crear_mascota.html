@@ -107,7 +107,9 @@
                         <div class="error">{{ mascota_form.tamaño.errors.0 }}</div>
                     {% endif %}
                 </div>
+                <button type="submit">Guardar</button>
             </div>
+        </form>
 
             <div class="dropzone-contenedor">
                 <label for="id_foto">Sube la foto:</label>
@@ -123,8 +125,6 @@
                 {% endif %}
             </div>
 
-            <button type="submit">Guardar</button>
-        </form>
     </div>
 
     <a href="{% url 'logout' %}">Cerrar sesión</a>
