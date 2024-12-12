@@ -12,7 +12,8 @@ urlpatterns = [
     path('usuario_exitoso/', views.usuario_exitoso, name='usuario_exitoso'),# Asegúrate de que esto esté incluido
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
-    path('editar_mascota/', views.editar_mascota, name='editar_mascota'),
+    path('editar_mascota/<int:mascota_id>/', views.editar_mascota, name='editar_mascota'),
+
 ]
 
 

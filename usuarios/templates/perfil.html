@@ -17,10 +17,19 @@
         <div class="options-section">
             <h2>Opciones de Mascota</h2>
             <ul>
-                <!-- Redirige a la vista 'crear_mascota' con el usuario_id -->
-                <li><a href="{% url 'crear_mascota' usuario_id=request.user.id %}">Añadir mascota</a></li>
-                <li><a href="#" onclick="alert('{% url 'editar_mascota' mascota.id %}');">Editar mascota</a></li>
-                <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Borrar mascota</a></li>
+                <li>
+                    <a href="{% url 'crear_mascota' usuario_id=request.user.id %}">Añadir mascota</a></li>
+                <!-- Iterar sobre las mascotas para permitir editar cada una -->
+                {% for mascota in mascotas %}
+                    <li>
+                        <a href="{% url 'editar_mascota' mascota.id %}">Editar {{ mascota.nombre }}</a>
+                    </li>
+                {% empty %}
+                    <li>No tienes mascotas. ¡Añade una!</li>
+                {% endfor %}
+                    <li>
+
+                    </li>
             </ul>
         </div>
 

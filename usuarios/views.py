@@ -35,6 +35,10 @@ def crear_usuario(request):
             perfil.usuario = usuario
             perfil.save()
 
+            user = authenticate(username=usuario.username, password=user_form.cleaned_data['password'])
+            if user is not None:
+                login(request, user)
+
             # Agregar un mensaje de éxito
             messages.success(request, 'Usuario creado exitosamente.')
 
@@ -50,6 +54,7 @@ def crear_usuario(request):
         'profile_form': profile_form
     })
 
+@login_required
 def crear_mascota(request, usuario_id):
     perfil = get_object_or_404(UserProfile, usuario_id=usuario_id)
 
@@ -102,7 +107,7 @@ def editar_mascota(request, mascota_id):
     else:
         mascota_form = MascotaForm(instance=mascota)
 
-    return render(request, 'crear_mascota.html', {'form': mascota_form, 'mascota': mascota})
+    return render(request, 'editar_mascota.html', {'mascota_form': mascota_form})
 
 def usuario_exitoso(request):
     return render(request, 'usuario_exitoso.html')
