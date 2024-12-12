@@ -57,7 +57,6 @@ def crear_usuario(request):
 @login_required
 def crear_mascota(request, usuario_id):
     perfil = get_object_or_404(UserProfile, usuario_id=usuario_id)
-
     if request.method == 'POST':
         mascota_form = MascotaForm(request.POST, request.FILES)
         logging.critical("AAA")
@@ -101,7 +100,10 @@ def editar_mascota(request, mascota_id):
     if request.method == 'POST':
         mascota_form = MascotaForm(request.POST, request.FILES, instance=mascota)
         if mascota_form.is_valid():
-            mascota_form.save()
+            try:
+                mascota_form.save()
+            except Exception as e:
+                logging.critical(f"Error al modificar la mascota: {e}")
             messages.success(request, 'Mascota actualizada correctamente.')
             return redirect('perfil')  # Redirigir al perfil después de guardar
     else:
