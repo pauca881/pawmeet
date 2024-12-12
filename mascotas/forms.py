@@ -60,3 +60,11 @@ class MascotaForm(forms.ModelForm):
         super(MascotaForm, self).__init__(*args, **kwargs)
         self.fields['castrado'].initial = None
         self.fields['vacunado'].initial = None
+
+    def save(self, commit=True):
+        mascota = super().save(commit=False)
+        if self.user_profile:
+            mascota.dueño = self.user_profile  # Asocia el dueño (usuario actual) a la mascota
+        if commit:
+            mascota.save()
+        return mascota
