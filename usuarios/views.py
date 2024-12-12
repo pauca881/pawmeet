@@ -86,7 +86,7 @@ def editar_mascota(request, mascota_id):
     else:
         mascota_form = MascotaForm(instance=mascota)
 
-    return render(request, 'editar_mascota.html', {'form': mascota_form, 'mascota': mascota})
+    return render(request, 'crear_mascota.html', {'form': mascota_form, 'mascota': mascota})
 
 def usuario_exitoso(request):
     return render(request, 'usuario_exitoso.html')
