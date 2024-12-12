@@ -135,3 +135,11 @@ def listar_amigos(request):
 
     return render(request, 'listar_amigos.html', {'amigos': amigos})
 
+@login_required
+def unirme_a_evento(request):
+
+    evento = Evento.objects.get(id=request.GET.get('id'))
+    evento.usuarios_inscritos.add(request.user.userprofile)
+
+    return redirect('eventos')
+
