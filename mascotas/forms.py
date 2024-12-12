@@ -34,7 +34,6 @@ class MascotaForm(forms.ModelForm):
                 image = Image.open(foto)
                 # You can add further image validation here if needed (e.g., size, format)
                 # Convert the image to webp format
-                logging.critical("clean_foto")
                 if image.format != 'WEBP':
                     buffer = BytesIO()
                     image.save(buffer, format='WEBP')

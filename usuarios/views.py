@@ -59,20 +59,11 @@ def crear_mascota(request, usuario_id):
     perfil = get_object_or_404(UserProfile, usuario_id=usuario_id)
     if request.method == 'POST':
         mascota_form = MascotaForm(request.POST, request.FILES)
-        logging.critical("AAA")
-        logging.critical(request.FILES)
-        logging.critical("AAA")
+
         if mascota_form.is_valid():
             mascota = mascota_form.save(commit=False)
             mascota.dueño = perfil
-            logging.critical("Mascota añadidaaa1")
-
-            try:
-                mascota.save()
-            except Exception as e:
-                logging.critical(f"Error al guardar la mascota: {e}")
-
-            logging.critical("Mascota añadidaaa2")
+            mascota.save()
             messages.success(request, 'Mascota añadida.')
             return render(request, 'crear_mascota.html', {
                 'mascota_form': mascota_form,
@@ -100,10 +91,7 @@ def editar_mascota(request, mascota_id):
     if request.method == 'POST':
         mascota_form = MascotaForm(request.POST, request.FILES, instance=mascota)
         if mascota_form.is_valid():
-            try:
-                mascota_form.save()
-            except Exception as e:
-                logging.critical(f"Error al modificar la mascota: {e}")
+            mascota_form.save()
             messages.success(request, 'Mascota actualizada correctamente.')
             return redirect('perfil')  # Redirigir al perfil después de guardar
     else:
