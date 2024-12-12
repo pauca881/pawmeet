@@ -6,6 +6,7 @@ import re
 import random
 import nltk
 from nltk.chat.util import Chat, reflections
+
 import time
 
 nltk.download('punkt')

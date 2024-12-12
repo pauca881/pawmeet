@@ -1,23 +1,29 @@
 import tensorflow as tf
 import numpy as np
 from tensorflow.keras.preprocessing import image
+from PIL import Image
+
+model = None
 
 def load_model():
-    path = 'IA_deteccion_perrosgatos.h5'
-    model = tf.keras.models.load_model(path)
-    return model
+    MODEL_PATH = 'IA_deteccion_perrosgatos.h5'
+    global model
+    # Carguem el model nomes si no esta cargat. 
+    if model is None:
+        model = tf.keras.models.load_model(MODEL_PATH)
+
+
 
 def preprocess_image(img):
-    # Redimensionamos la imagen al tamaño que espera el modelo (e.g., 224x224 para VGG16)
+    # Redimensionem la imatge. 
     img = image.load_img(img, target_size=(224, 224))
-    img_array = image.img_to_array(img)  # Convertimos la imagen a un array de Numpy
-    img_array = np.expand_dims(img_array, axis=0)  # Añadimos la dimensión del batch
-    img_array /= 255.0  # Normalizamos si el modelo fue entrenado de esta manera
+    img_array = image.img_to_array(img)  # Convertim la imatge a un vector numpy.
+    img_array = np.array(img) / 255.0 # Normalitzem la imatge.
+    img_array = np.expand_dims(img_array, axis=0)  # Dimensio batch
     return img_array
 
-def predict(image_path):
-    model = load_model()  # Load the model
-    # Preprocess the image before passing it to the model
-    image = preprocess_image(image_path)  # Apply preprocessing
-    result = model.predict(image)
-    return result
+def predict_image(image_path):
+    load_model()  # Carguem el model.
+    image = preprocess_image(image_path)  # Processem la imatge.
+    prediction = model.predict(image)
+    return prediction[0][0] == 0 

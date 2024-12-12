@@ -1,27 +1,19 @@
-<<<<<<< HEAD
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from mascotas.forms import MascotaForm  
+from mascotas.models import Mascota
 
-# Create your views here.
-=======
-# ESQUEMATICAMENT ES FA AIXI, PERO NO ENTENC (I COM TAMPOC TENIM USUARIS CREATS) COM FER ARRIBER LES IMATGES FINS A PATH, ENTENC QUE
-# SERA VIA UN FORMULARI, PER AIXO ESTA FET AMB AQUEST OBJECTIU
+def crear_mascota(request, mascota_id):
+    if request.method == 'POST':
+        form = MascotaForm(request.POST, request.FILES)  # Usamos MascotaForm para recibir tanto POST como archivos
+        if form.is_valid():
+            # Si el formulario es válido, guardamos la foto de la mascota
+            form.save()  # Guarda el modelo Mascota, incluyendo la foto
+            return redirect('perfil')  # Redirige a donde necesites (perfil, etc.)
+        else:
+            # Si el formulario no es válido, volvemos a renderizar la página con los errores
+            return render(request, 'cargar_foto.html', {'form': form})
 
-# HO DEIXO TOT COMENTAT PER AQUEST MOTIU, SI ALGU EM POT DONAR UN COP D'ULL A VEURE SI VEU COM
+    else:
+        form = MascotaForm()  # Si es un GET, inicializamos el formulario vacío
 
-from django.shortcuts import render
-from django.core.files.storage import FileSystemStorage
-from dogs_cats_detection.tl_models import predict
-
-def subir_foto_mascota(request):
-    if request.method == 'POST' and request.FILES['foto']:
-        foto_subida = request.FILES['foto']
-        fs = FileSystemStorage()
-        ruta_imagen = fs.save(foto_subida.name, foto_subida)
-        ruta_completa = fs.url(ruta_imagen)
-        resultado = predict(ruta_completa)
-
-        return render(request, 'resultado.html', {'resultado': resultado, 'ruta_imagen': ruta_completa})
-    return render(request, 'subir_foto.html')
-
-a = 2
->>>>>>> main
+    return render(request, 'cargar_foto.html', {'form': form})

@@ -44,6 +44,17 @@ class MascotaForm(forms.ModelForm):
             'nivel_socializacion': forms.Select(attrs={'class': 'form-control'}),
             'tamaño': forms.Select(attrs={'class': 'form-control'}),
         }
+    
+    # Esta funcion sirve para manejar errores en caso que la foto subida no sea valida, en caso de que no lo sea, se informa al usuario. 
+    def clean_foto(self):
+        foto = self.cleaned_data.get('foto')
+        from PIL import Image
+        from dogs_cats_detection.tl_models import predict_image
+
+        image = Image.open(foto)
+        if not predict_image(image):
+            raise forms.ValidationError("La imagen no es una mascota valida.")
+        return foto
 
     def __init__(self, *args, **kwargs):
         super(MascotaForm, self).__init__(*args, **kwargs)
