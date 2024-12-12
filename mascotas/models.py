@@ -29,7 +29,7 @@ class Mascota(models.Model):
             f"Color: {self.color} - Temperamento: {self.temperamento} - Nivel de actividad: {self.nivel_actividad} - "
             f"Peso: {self.peso} - Nivel de socialización: {self.nivel_socializacion} - Vacunado: {self.vacunado} - "
             f"Castrado: {self.castrado}")
-    
+
     RAZAS_OPCIONES = [
     ('Airedale Terrier', 'Airedale Terrier'),
     ('Akita Inu', 'Akita Inu'),
