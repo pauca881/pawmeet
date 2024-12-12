@@ -47,7 +47,7 @@ def conectar_view(request):
 
     knn = NearestNeighbors(n_neighbors=10, metric='euclidean')
     knn.fit(X)
-
+    logging.critical("El modelo se ha ajustado con los datos de mascotas.")
     nueva_mascota = pd.DataFrame({
         'tamano': [primera_mascota.tamaño],
         'color': [primera_mascota.color],
