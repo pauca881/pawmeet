@@ -1,0 +1,198 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Mascota</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'registro/crear_mascota.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{% static 'Pawmeet.png' %}" alt="Logo" class="logo">
+        <h1>Crear Mascota</h1>
+    </div>
+
+    <div class="formulario-y-dropzone-contenedor">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-container">
+                <div class="form-field">
+                    {{ mascota_form.nombre.label_tag }}
+                    {{ mascota_form.nombre }}
+                    {% if mascota_form.nombre.errors %}
+                        <div class="error">{{ mascota_form.nombre.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    {{ mascota_form.fecha_nacimiento.label_tag }}
+                    {{ mascota_form.fecha_nacimiento }}
+                    {% if mascota_form.fecha_nacimiento.errors %}
+                        <div class="error">{{ mascota_form.fecha_nacimiento.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    <label for="id_castrado">Castrado</label>
+                    <div class="radio-inline">
+                        {{ mascota_form.castrado }}
+                    </div>
+                    {% if mascota_form.castrado.errors %}
+                        <div class="error">{{ mascota_form.castrado.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    <label for="id_raza">Selecciona la raza:</label>
+                    {{ mascota_form.raza }}
+                    {% if mascota_form.raza.errors %}
+                        <div class="error">{{ mascota_form.raza.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    {{ mascota_form.temperamento.label_tag }}
+                    {{ mascota_form.temperamento }}
+                    {% if mascota_form.temperamento.errors %}
+                        <div class="error">{{ mascota_form.temperamento.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    {{ mascota_form.nivel_actividad.label_tag }}
+                    {{ mascota_form.nivel_actividad }}
+                    {% if mascota_form.nivel_actividad.errors %}
+                        <div class="error">{{ mascota_form.nivel_actividad.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    {{ mascota_form.peso.label_tag }}
+                    {{ mascota_form.peso }}
+                    {% if mascota_form.peso.errors %}
+                        <div class="error">{{ mascota_form.peso.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    <label for="id_vacunado">Vacunado</label>
+                    <div class="radio-inline">
+                        {{ mascota_form.vacunado }}
+                    </div>
+                    {% if mascota_form.vacunado.errors %}
+                        <div class="error">{{ mascota_form.vacunado.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    {{ mascota_form.color.label_tag }}
+                    {{ mascota_form.color }}
+                    {% if mascota_form.color.errors %}
+                        <div class="error">{{ mascota_form.color.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    {{ mascota_form.nivel_socializacion.label_tag }}
+                    {{ mascota_form.nivel_socializacion }}
+                    {% if mascota_form.nivel_socializacion.errors %}
+                        <div class="error">{{ mascota_form.nivel_socializacion.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    {{ mascota_form.tamaño.label_tag }}
+                    {{ mascota_form.tamaño }}
+                    {% if mascota_form.tamaño.errors %}
+                        <div class="error">{{ mascota_form.tamaño.errors.0 }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <button type="submit">Guardar</button>
+        </form>
+
+        <div class="dropzone-contenedor">
+            <label for="id_foto">Sube la foto:</label>
+            <div class="dropzone" id="dropzone" style="width: 100%; height: 200px; position: relative; text-align: center;">
+                Arrastra y suelta la imagen aquí o haz clic para seleccionar un archivo.
+                <input type="file" name="foto" id="id_foto" accept="image/*" hidden>
+                <img id="preview" style="display: none; max-width: 100%; max-height: 100%; position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;">
+            </div>
+            {% if mascota_form.foto.errors %}
+                <div class="error">{{ mascota_form.foto.errors.0 }}</div>
+            {% endif %}
+        </div>
+        <!-- comenca la liada del uri -->
+        <button type="submit">Subir Foto</button>
+            <!-- acaba la liada del uri --> 
+    </div>
+
+
+
+    <a href="{% url 'logout' %}">Cerrar sesión</a>
+
+    {% if messages %}
+        <script>
+            {% for message in messages %}
+                swal({
+                    title: "¡Éxito!",
+                    text: "{{ message }}",
+                    type: "success",
+                    confirmButtonText: "Aceptar"
+                }).then(function() {
+                    window.location.href = "{% url 'usuario_exitoso' %}";
+                });
+            {% endfor %}
+        </script>
+    {% endif %}
+
+    <!-- Script para vista previa de imagen -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const dropzone = document.getElementById("dropzone");
+            const fileInput = document.getElementById("id_foto");
+            const preview = document.getElementById("preview");
+
+            dropzone.addEventListener("click", () => {
+                fileInput.click();
+            });
+
+            dropzone.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropzone.classList.add("dragover");
+            });
+
+            dropzone.addEventListener("dragleave", () => {
+                dropzone.classList.remove("dragover");
+            });
+
+            dropzone.addEventListener("drop", (e) => {
+                e.preventDefault();
+                dropzone.classList.remove("dragover");
+
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                    showPreview(fileInput.files[0]);
+                }
+            });
+
+            fileInput.addEventListener("change", () => {
+                if (fileInput.files.length) {
+                    showPreview(fileInput.files[0]);
+                }
+            });
+
+            function showPreview(file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                    dropzone.textContent = "";
+                    dropzone.appendChild(preview);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
