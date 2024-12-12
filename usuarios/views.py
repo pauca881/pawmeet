@@ -61,10 +61,7 @@ def crear_mascota(request, usuario_id):
             # Agregar un mensaje de éxito
             messages.success(request, 'Mascota añadida.')
 
-            return render(request, 'crear_mascota.html', {
-                'mascota_form': mascota_form,
-                'messages': messages.get_messages(request)  # Pasar los mensajes
-            })
+            return redirect('conectar')
     else:
         mascota_form = MascotaForm()
 

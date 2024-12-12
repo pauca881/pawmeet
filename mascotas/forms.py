@@ -44,7 +44,7 @@ class MascotaForm(forms.ModelForm):
             'nivel_socializacion': forms.Select(attrs={'class': 'form-control'}),
             'tamaño': forms.Select(attrs={'class': 'form-control'}),
         }
-    
+
     # Esta funcion sirve para manejar errores en caso que la foto subida no sea valida, en caso de que no lo sea, se informa al usuario. 
     def clean_foto(self):
         foto = self.cleaned_data.get('foto')
