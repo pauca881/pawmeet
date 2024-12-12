@@ -9,6 +9,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from mascotas.models import Mascota
 
+import logging
+
 def listar_usuarios(request):
     usuarios = User.objects.all()  # Usuarios registrados
     perfiles = UserProfile.objects.all()  # Perfiles de usuario
@@ -53,15 +55,29 @@ def crear_mascota(request, usuario_id):
 
     if request.method == 'POST':
         mascota_form = MascotaForm(request.POST, request.FILES)
+        logging.critical("AAA")
+        logging.critical(request.FILES)
+        logging.critical("AAA")
         if mascota_form.is_valid():
             mascota = mascota_form.save(commit=False)
-            mascota.dueño = perfil  # Relacionar con el perfil del usuario
-            mascota.save()
+            mascota.dueño = perfil
+            logging.critical("Mascota añadidaaa1")
 
-            # Agregar un mensaje de éxito
+            try:
+                mascota.save()
+            except Exception as e:
+                logging.critical(f"Error al guardar la mascota: {e}")
+
+            logging.critical("Mascota añadidaaa2")
             messages.success(request, 'Mascota añadida.')
-
-            return redirect('conectar')
+            return render(request, 'crear_mascota.html', {
+                'mascota_form': mascota_form,
+                'messages': messages.get_messages(request)
+            })
+        if not mascota_form.is_valid():
+            logging.critical("error")
+            logging.critical(mascota_form.errors)
+            logging.critical("error_end")
     else:
         mascota_form = MascotaForm()
 

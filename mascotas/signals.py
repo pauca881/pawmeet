@@ -1,5 +1,5 @@
 # Aquest apartat es per validar les imatges penjades (Signals de Django).
-# Validarem la imatge just despres de que es cargui. 
+# Validarem la imatge just despres de que es cargui.
 
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
@@ -9,7 +9,7 @@ from PIL import Image
 
 @receiver(pre_save, sender = Mascota)
 def validation_pic_pet(sender, instance, **kwargs):
-    try: 
+    try:
         image = Image.open(instance.foto)
         is_a_pet = predict_image(image)
         if not is_a_pet:
