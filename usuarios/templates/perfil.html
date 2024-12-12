@@ -19,7 +19,7 @@
             <ul>
                 <!-- Redirige a la vista 'crear_mascota' con el usuario_id -->
                 <li><a href="{% url 'crear_mascota' usuario_id=request.user.id %}">Añadir mascota</a></li>
-                <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Editar mascota</a></li>
+                <li><a href="#" onclick="alert('{% url 'editar_mascota' mascota.id %}');">Editar mascota</a></li>
                 <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Borrar mascota</a></li>
             </ul>
         </div>
