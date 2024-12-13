@@ -21,10 +21,10 @@ body {
     background-color: var(--light-gray);
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 2rem;
+    align-items: flex-start;
+    height: 100vh;
     overflow: auto;
+    padding-top: 80px;
 }
 
 header{
@@ -41,7 +41,33 @@ header{
     z-index: 1000;
 }
 
+.logo {
+    max-width: 50px;
+    top:auto;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.buttons button {
+    flex: 1;
+    margin: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    background: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
 .profile-container {
+    margin-top: 50px;
     background: var(--background);
     padding: 2rem;
     border-radius: var(--border-radius);
@@ -49,6 +75,7 @@ header{
     width: 100%;
     max-width: 600px;
     overflow: auto;
+    position: relative;
 }
 
 h1 {
