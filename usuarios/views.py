@@ -119,6 +119,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)  # Cierra la sesión del usuario
     messages.success(request, "Sesión cerrada correctamente.")
+    return redirect('home')  # Redirige a la página de login después del logout)
 
 @login_required
 def eliminar_cuenta(request):
