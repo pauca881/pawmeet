@@ -61,7 +61,7 @@
                 {% if mascotas_cercanas %}
                     {% for mascota in mascotas_cercanas %}
                     <div class="pet-card">
-                        <img src="{{ mascota.imagen_url }}" alt="Mascota">
+                        <img src="{% static 'home/beagle.jpg' %}" alt="Logo" class="img-perro">
                         <div class="pet-info">
                             <h3>{{ mascota.nombre }}</h3>
                             <p>{{ mascota.raza }} · {{ mascota.edad }} años</p>
