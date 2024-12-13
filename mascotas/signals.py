@@ -12,11 +12,8 @@ import cv2
 @receiver(pre_save, sender = Mascota)
 def validation_pic_pet(sender, instance, **kwargs):
     try:
-        logging.critical("Validando imagen")
         image = cv2.imread("mascotas/gato_gafas.jpg")
-        logging.critical("Imagen abierta")
         is_a_pet = predict_image(image)
-        logging.critical("Imagen predicha")
         if not is_a_pet:
             raise ValueError("La imagen subida no es valida.")
         instance.is_a_pet = True

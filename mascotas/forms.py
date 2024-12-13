@@ -55,9 +55,7 @@ class MascotaForm(forms.ModelForm):
     def clean_foto(self):
 
         foto = self.cleaned_data.get('foto')
-        logging.critical("clean_foto")
         if foto:  # Check if a file was uploaded
-            logging.critical("clean_foto2")
             try:
                 image = Image.open(foto)
                 # You can add further image validation here if needed (e.g., size, format)
