@@ -29,7 +29,7 @@
             <div class="buttons-right">
                 <button class="btn-eventos" onclick="window.location.href='{% url 'eventos' %}'">Quedadas</button>
                 <button class="btn-perfil" onclick="window.location.href='{% url 'perfil' %}'">Mi Perfil</button>
-                <button class="btn-sesion" onclick="window.location.href='{% url 'logout' %}'">Cerrar sesión</button>
+                <button class="btn-sesion" onclick="window.location.href='{% url 'home' %}'">Cerrar sesión</button>
             </div>
         </div>
     </header>
@@ -70,18 +70,20 @@
                             <p>Temperamento: {{ mascota.temperamento }}</p>
                             <p>Vacunado: {{ mascota.vacunado|yesno:"Sí,No" }}</p>
                         </div>
-                    </div>
-                    <div class="actions">
-                        <form action="{% url 'agregar_amigo' %}" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="mascota_id" value="{{ mascota.id }}">
-                            <button class="btn-like" type="submit">
-                                <i class="fa-solid fa-heart"></i>
-                            </button>
-                        </form>
-                        <button class="btn-dislike">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
+                        <div class="actions">
+                            <form action="{% url 'conectar' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="mascota_id" value="{{ mascota.id }}">
+
+                                <button class="btn-like" type="submit">
+                                    <i class="fa-solid fa-heart"></i>
+                                </button>
+
+                                <button class="btn-dislike">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                     {% endfor %}
                 {% else %}
@@ -90,16 +92,19 @@
             </div>
 
             <div class="chats-sidebar">
-                <h4>Chats abiertos</h4>
-                <ul>
-                    <li><img src="{% static 'home/example_user.jpg' %}" alt="Usuario"><span>Usuario 1</span><button>Mensaje</button></li>
-                    <li><img src="{% static 'home/example_user2.jpg' %}" alt="Usuario"><span>Usuario 2</span><button>Mensaje</button></li>
-                </ul>
-                <h4>Contactos</h4>
-                <ul>
-                    <li><img src="{% static 'home/example_user3.jpg' %}" alt="Usuario"><span>Usuario 3</span></li>
-                    <li><img src="{% static 'home/example_user4.jpg' %}" alt="Usuario"><span>Usuario 4</span></li>
-                </ul>
+                {% block content %}
+                <h4>Contactos</h1>
+                    {% if amigos %}
+                        <ul>
+                            {% for amigo in amigos %}
+                            <img src="{% static 'home/example_user.png' %}" alt="Logo" class="logo">
+                                <li>{{ amigo.usuario.username }} ({{ amigo.usuario.email }})</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No tienes amigos aún.</p>
+                    {% endif %}
+                {% endblock %}
             </div>
         </div>
 

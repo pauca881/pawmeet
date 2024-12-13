@@ -69,9 +69,7 @@ def crear_mascota(request, usuario_id):
                 'messages': messages.get_messages(request)
             })
         if not mascota_form.is_valid():
-            logging.critical("error")
             logging.critical(mascota_form.errors)
-            logging.critical("error_end")
     else:
         mascota_form = MascotaForm()
 

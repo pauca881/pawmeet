@@ -130,6 +130,7 @@ header {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     border: 2px solid var(--light-gray);
+    margin-bottom: 20px;
 }
 
 .pet-card img {
@@ -154,26 +155,30 @@ header {
     display: flex;
     gap: 20px;
     justify-content: center;
-}
-
-.actions button {
-    border: brown;
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
     font-size: 2rem;
     cursor: pointer;
     transition: transform 0.3s;
     padding: 10px;
-    border-radius: 10%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.actions button {
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.3s;
+    padding: 10px;
+    font-size: 2rem;
+    border: none; /* Remove the border */
 }
 .actions button:hover {
     transform: scale(1.1);
 }
 .btn-like {
-    color: #4caf50;
+    color: green;
 }
+
 .btn-dislike {
-    color: #f44336;
+    color: red;
 }
 
 .filters-sidebar{
@@ -201,6 +206,12 @@ header {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     height: fit-content;
     overflow: auto;
+}
+
+.imagen_contactos{
+    max-width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }
 
 .filters-sidebar, .chats-sidebar {
