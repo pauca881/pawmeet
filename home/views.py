@@ -23,6 +23,7 @@ def home_view(request):
 
 @login_required
 def conectar_view(request):
+    # Enviar solicitud de amistad
     if 'mascota_id' in request.POST:
         mascota_id = request.POST['mascota_id']
         mascota = Mascota.objects.get(id=mascota_id)
@@ -80,10 +81,14 @@ def conectar_view(request):
     distancias, indices = knn.kneighbors(X_nueva)
 
     ids_mascotas_cercanas = [df.iloc[idx]['id'] for idx in indices[0]]
+
     mascotas_cercanas = []
     for id_mascota in ids_mascotas_cercanas:
+        logging.critical("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        logging.critical(id_mascota)
         try:
-            mascota = Mascota.objects.get(pk=id_mascota)
+            mascota = Mascota.objects.get(id=id_mascota)
+            logging.critical("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBb")
             mascotas_cercanas.append({
                 'id': mascota.id,
                 'nombre': mascota.nombre,
@@ -111,6 +116,7 @@ def conectar_view(request):
             amigos.append(amistad.perfil1)
         else:
             amigos.append(amistad.perfil2)
+    logging.critical(mascotas_cercanas)
     return render(request, 'conectar.html', {'mascotas_cercanas': mascotas_cercanas, 'usuario_actual': usuario_actual, 'amigos': amigos})
 
 def eventos_view(request):
