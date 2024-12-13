@@ -14,11 +14,21 @@ class UserForm(forms.ModelForm):
             'username': 'Nombre de Usuario',
             'first_name': 'Nombre',
             'last_name': 'Apellido',
+            'email': 'Correo electronico'
         }
         help_texts = {
             'username': '',  # Elimina el texto de ayuda del campo username
         }
+        widgets = {
+            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+        }
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("Este correo electrónico ya está en uso.")
+        return email
     # Validación personalizada para el campo username
     def clean_username(self):
         username = self.cleaned_data.get('username')

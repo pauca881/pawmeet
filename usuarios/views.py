@@ -35,14 +35,13 @@ def crear_usuario(request):
             perfil.usuario = usuario
             perfil.save()
 
+            # Autenticar al usuario e iniciar sesión automáticamente
             user = authenticate(username=usuario.username, password=user_form.cleaned_data['password'])
             if user is not None:
                 login(request, user)
 
-            # Agregar un mensaje de éxito
-            messages.success(request, 'Usuario creado exitosamente.')
-
             # Redirigir a la página de crear mascota
+            messages.success(request, 'Usuario creado exitosamente y sesión iniciada.')
             return redirect('crear_mascota', usuario_id=usuario.id)
 
     else:

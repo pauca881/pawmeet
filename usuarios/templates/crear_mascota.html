@@ -129,18 +129,6 @@
 
     <a href="{% url 'logout' %}">Cerrar sesión</a>
     {% if messages %}
-        <script>
-            {% for message in messages %}
-                swal({
-                    title: "¡Éxito!",
-                    text: "{{ message }}",
-                    type: "success",
-                    confirmButtonText: "Aceptar"
-                }).then(function() {
-                    window.location.href = "{% url 'usuario_exitoso' %}";
-                });
-            {% endfor %}
-        </script>
     {% endif %}
 
     <!-- Script para vista previa de imagen -->
