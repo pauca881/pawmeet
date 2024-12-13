@@ -62,9 +62,9 @@ def crear_mascota(request, usuario_id):
             mascota = mascota_form.save(commit=False)
             mascota.dueño = perfil
             mascota.save()
-            return render(request, 'crear_mascota.html', {
-                'mascota_form': mascota_form
-            })
+
+            return redirect('conectar')
+
         if not mascota_form.is_valid():
             logging.critical(mascota_form.errors)
     else:
