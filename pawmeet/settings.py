@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'petadvisor',
     'lostpets',
     'chatbot',
+    'dogs_cats_detection',
+    'KNN_Mascota'
 ]
 
 MIDDLEWARE = [
