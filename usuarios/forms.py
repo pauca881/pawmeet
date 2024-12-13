@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from datetime import date
-from usuarios.models import UserProfile
+from usuarios.models import UserProfile, ProfesionalUser
 from django.contrib.auth.models import User
 
 class UserForm(forms.ModelForm):
@@ -27,6 +27,18 @@ class UserForm(forms.ModelForm):
             raise ValidationError('Este nombre de usuario ya está en uso. Por favor elige otro.')
 
         return username
+    
+"""LA CLASSE DE BAIX SERVEIX PER TRIAR EL TIPUS D'USUARI, AIXO SURTIA BE."""
+    
+class SeleccionarTipoUsuarioForm(forms.Form):
+    tipo_usuario = forms.ChoiceField(choices = [('amo de mascota', 'Amo de Mascota'),('profesional', 'Profesional')], widget = forms.RadioSelect)
+
+class RegistroProfesionalForm(forms.ModelForm):
+    class Meta:
+        model = ProfesionalUser
+        fields = ['nombre_establecimiento','direccion', 'telefono']
+
+
 
 class UserProfileCreationForm(forms.ModelForm):
     telefono = forms.CharField(

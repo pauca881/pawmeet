@@ -3,6 +3,20 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 from . import views
+"""
+
+urlpatterns = [
+    path('crear_usuario/', views.crear_usuario, name='crear_usuario'),
+    path('crear_mascota/<int:usuario_id>/', views.crear_mascota, name='crear_mascota'),  # Redirige a crear mascota
+    path('perfil/', views.perfil, name='perfil'),
+    path('listar_usuarios/', views.listar_usuarios, name='listar_usuarios'),
+    path('usuario_exitoso/', views.usuario_exitoso, name='usuario_exitoso'),  # Nueva URL para usuario exitoso
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('editar_mascota/<int:mascota_id>/', views.editar_mascota, name='editar_mascota'),
+]
+
+"""
 
 urlpatterns = [
     path('crear_usuario/', views.crear_usuario, name='crear_usuario'),
@@ -15,7 +29,6 @@ urlpatterns = [
     path('editar_mascota/<int:mascota_id>/', views.editar_mascota, name='editar_mascota'),
 
 ]
-
 
 
 # En desarrollo, servir archivos estáticos y de medios
