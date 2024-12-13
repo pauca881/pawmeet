@@ -120,3 +120,14 @@ def logout_view(request):
     logout(request)  # Cierra la sesión del usuario
     messages.success(request, "Sesión cerrada correctamente.")
     return redirect('login')  # Redirige a la página de login después del logout)
+
+@login_required
+def eliminar_cuenta(request):
+    if request.method == 'POST':
+        perfil = request.user.userprofile
+        perfil.delete()
+
+        request.user.delete()
+
+        messages.success(request, 'Tu cuenta ha sido eliminada permanentemente.')
+        return redirect('home')
