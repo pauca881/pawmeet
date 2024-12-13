@@ -14,7 +14,6 @@ class Mascota(models.Model):
     nombre = models.CharField(max_length=100)
     fecha_nacimiento = models.DateField(blank=True, null=True)
     foto = models.ImageField(upload_to='mascotas/', blank=True, null=True)
-    foto_valida = models.BooleanField(default=False)  # Per dogs_cats_detection.
     dueño = models.ForeignKey('usuarios.UserProfile', on_delete=models.CASCADE, related_name="mascotas_datos")
 
     # Campos para el algoritmo KNN
