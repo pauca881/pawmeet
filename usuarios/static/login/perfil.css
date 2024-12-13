@@ -17,7 +17,6 @@
 }
 
 body {
-    line-height: 1.6;
     color: var(--text-color);
     background-color: var(--light-gray);
     display: flex;
@@ -25,6 +24,21 @@ body {
     align-items: center;
     min-height: 100vh;
     padding: 2rem;
+    overflow: auto;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--background);
+    box-shadow: 0 2px 10px var(--card-shadow);
+    padding: 1rem 2rem;
+    z-index: 1000;
 }
 
 .profile-container {
@@ -34,6 +48,7 @@ body {
     box-shadow: 0 4px 20px var(--card-shadow);
     width: 100%;
     max-width: 600px;
+    overflow: auto;
 }
 
 h1 {

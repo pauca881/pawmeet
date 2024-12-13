@@ -1,48 +1,54 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'login/perfil.css' %}">
     <title>Perfil de Usuario</title>
 </head>
+
 <body>
-    <div class="profile-container">
-        <h1>Bienvenido a tu perfil, {{ request.user.username }}</h1>
-        <div class="user-info">
-            <p>Email: {{ request.user.email }}</p>
+    <header>
+        <div class="buttons">
+            <button onclick="window.location.href='{% url 'logout' %}'">Cerrar Sesión</button>
         </div>
+    </header>
 
-        <div class="options-section">
-            <h2>Opciones de Mascota</h2>
-            <ul>
-                <li>
-                    <a href="{% url 'crear_mascota' usuario_id=request.user.id %}">Añadir mascota</a></li>
-                <!-- Iterar sobre las mascotas para permitir editar cada una -->
-                {% for mascota in mascotas %}
+    <main>
+        <div class="profile-container">
+            <h1>Bienvenido a tu perfil, {{ request.user.username }}</h1>
+            <div class="user-info">
+                <p>Email: {{ request.user.email }}</p>
+            </div>
+
+            <div class="options-section">
+                <h2>Opciones de Mascota</h2>
+                <ul>
                     <li>
-                        <a href="{% url 'editar_mascota' mascota.id %}">Editar {{ mascota.nombre }}</a>
-                    </li>
-                {% empty %}
-                    <li>No tienes mascotas. ¡Añade una!</li>
-                {% endfor %}
-                    <li>
+                        <a href="{% url 'crear_mascota' usuario_id=request.user.id %}">Añadir mascota</a></li>
+                    <!-- Iterar sobre las mascotas para permitir editar cada una -->
+                    {% for mascota in mascotas %}
+                        <li>
+                            <a href="{% url 'editar_mascota' mascota.id %}">Editar {{ mascota.nombre }}</a>
+                        </li>
+                    {% empty %}
+                        <li>No tienes mascotas. ¡Añade una!</li>
+                    {% endfor %}
+                        <li>
 
-                    </li>
-            </ul>
+                        </li>
+                </ul>
+            </div>
+
+            <div class="options-section">
+                <h2>Opciones de Cuenta</h2>
+                <ul>
+                    <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Borrar cuenta</a></li>
+                </ul>
+            </div>
         </div>
-
-        <div class="options-section">
-            <h2>Opciones de Cuenta</h2>
-            <ul>
-                <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Borrar cuenta</a></li>
-            </ul>
-        </div>
-
-        <footer>
-            <a href="{% url 'logout' %}">Cerrar Sesión</a>
-        </footer>
-    </div>
+    </main>
 </body>
 </html>
