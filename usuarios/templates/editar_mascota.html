@@ -135,21 +135,6 @@
         <a href="{% url 'logout' %}">Cerrar sesión</a>
     </footer>
 
-    {% if messages %}
-        <script>
-            {% for message in messages %}
-                swal({
-                    title: "¡Éxito!",
-                    text: "{{ message }}",
-                    type: "success",
-                    confirmButtonText: "Aceptar"
-                }).then(function() {
-                    window.location.href = "{% url 'perfil' %}";  // Redirige al perfil del usuario
-                });
-            {% endfor %}
-        </script>
-    {% endif %}
-
     <!-- Script para vista previa de imagen -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
