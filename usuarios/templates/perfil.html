@@ -40,19 +40,39 @@
                     {% empty %}
                         <li>No tienes mascotas. ¡Añade una!</li>
                     {% endfor %}
-                        <li>
-
-                        </li>
                 </ul>
             </div>
 
             <div class="options-section">
                 <h2>Opciones de Cuenta</h2>
                 <ul>
-                    <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Borrar cuenta</a></li>
+                    <li>
+                        <a href="#" id="delete-account-link" class="btn btn-danger" onclick="confirmDelete(event)">
+                            Borrar cuenta
+                        </a>
+                        <!-- Formulario para eliminar cuenta -->
+                        <form id="delete-account-form" method="POST" action="{% url 'eliminar_cuenta' %}">
+                            {% csrf_token %}
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
     </main>
+
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault();  // Previene la acción predeterminada del enlace
+
+            // Mostrar un mensaje de confirmación
+            const confirmAction = confirm("¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no puede deshacerse.");
+
+            // Si el usuario confirma, enviamos el formulario
+            if (confirmAction) {
+                document.getElementById('delete-account-form').submit();  // Envía el formulario
+            }
+        }
+    </script>
 </body>
+
 </html>
