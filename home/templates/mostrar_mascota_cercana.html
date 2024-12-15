@@ -45,7 +45,7 @@
                         <td>{{ mascota.distancia }}</td>
                         <td>{{ mascota.dueño }}</td>
                         <!-- falta agregar mascota para dar like o eliminar -->
-                        <form action="{% url 'agregar_amigo' %}" method="post">
+                        <form action="{% url 'conectar' %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="mascota_id" value="{{ mascota.id }}">
                             <td><button class="btn-like" type="submit">Me gustas</button></td>

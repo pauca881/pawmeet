@@ -25,22 +25,22 @@
         <h2>Datos personales</h2>
 
         <div class="form-field">
-            {{ user_form.username.label_tag }}
-            {{ user_form.username }}
-            {% if user_form.username.errors %}
+            {{ user_form.email.label_tag }}
+            {{ user_form.email }}
+            {% if user_form.email.errors %}
                 <div class="error">
-                    {% for error in user_form.username.errors %}
+                    {% for error in user_form.email.errors %}
                         {{ error|escape }}<br>
                     {% endfor %}
                 </div>
             {% endif %}
         </div>
         <div class="form-field">
-            {{ user_form.email.label_tag }}
-            {{ user_form.email }}
-            {% if user_form.email.errors %}
+            {{ user_form.username.label_tag }}
+            {{ user_form.username }}
+            {% if user_form.username.errors %}
                 <div class="error">
-                    {% for error in user_form.email.errors %}
+                    {% for error in user_form.username.errors %}
                         {{ error|escape }}<br>
                     {% endfor %}
                 </div>
@@ -95,21 +95,6 @@
         <button type="submit">Crear Usuario</button>
 
     </form>
-
-    {% if messages %}
-        <script>
-            {% for message in messages %}
-                swal({
-                    title: "¡Éxito!",
-                    text: "{{ message }}",
-                    type: "success",
-                    confirmButtonText: "Aceptar"
-                }).then(function() {
-                    window.location.href = "{% url 'crear_mascota' usuario_id=nuevo_usuario.id %}";  // Cambia a la URL de crear_mascota
-                });
-            {% endfor %}
-        </script>
-    {% endif %}
 </body>
 </html>
 

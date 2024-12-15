@@ -8,6 +8,7 @@ class UserProfile(models.Model):
     direccion = models.TextField(max_length=100, blank=True, null=True)
     fecha_nacimiento_dueño = models.DateField(blank=True, null=True)
     mascotas = models.ManyToManyField('mascotas.Mascota', blank=True, related_name="usuarios_perfiles")
+    User._meta.get_field('email')._unique = True
 
     def __str__(self):
         return self.usuario.username

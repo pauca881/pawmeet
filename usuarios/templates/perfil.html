@@ -1,48 +1,81 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'login/perfil.css' %}">
     <title>Perfil de Usuario</title>
 </head>
+
 <body>
-    <div class="profile-container">
-        <h1>Bienvenido a tu perfil, {{ request.user.username }}</h1>
-        <div class="user-info">
-            <p>Email: {{ request.user.email }}</p>
-        </div>
+    <header>
+        <img src="{% static 'home/pawmeet.png' %}" alt="Logo" class="logo">
 
-        <div class="options-section">
-            <h2>Opciones de Mascota</h2>
-            <ul>
-                <li>
-                    <a href="{% url 'crear_mascota' usuario_id=request.user.id %}">Añadir mascota</a></li>
-                <!-- Iterar sobre las mascotas para permitir editar cada una -->
-                {% for mascota in mascotas %}
+        <div class="buttons">
+            <button onclick="window.location.href='{% url 'home' %}'">Home</button>
+            <button onclick="window.location.href='{% url 'conectar' %}'">Conectar</button>
+            <button onclick="window.location.href='{% url 'logout' %}'">Cerrar Sesión</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="profile-container">
+            <h1>Bienvenido a tu perfil, {{ request.user.username }}</h1>
+            <div class="user-info">
+                <p>Email: {{ request.user.email }}</p>
+            </div>
+
+            <div class="options-section">
+                <h2>Opciones de Mascota</h2>
+                <ul>
+                    {% for mascota in mascotas %}
+                        <li>
+                            {% if mascota.foto %}
+                                <img src="{{ mascota.foto.url }}" alt="Foto de {{ mascota.nombre }}" class="mascota-foto" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+                            {% else %}
+                                <img src="{% static 'images/default_pet.jpg' %}" alt="Foto predeterminada" class="mascota-foto" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+                            {% endif %}
+                            <a href="{% url 'editar_mascota' mascota.id %}">Editar {{ mascota.nombre }}</a>
+                        </li>
+                    {% empty %}
+                        <li>No tienes mascotas. ¡Añade una!</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+            <div class="options-section">
+                <h2>Opciones de Cuenta</h2>
+                <ul>
                     <li>
-                        <a href="{% url 'editar_mascota' mascota.id %}">Editar {{ mascota.nombre }}</a>
+                        <a href="#" id="delete-account-link" class="btn btn-danger" onclick="confirmDelete(event)">
+                            Borrar cuenta
+                        </a>
+                        <!-- Formulario para eliminar cuenta -->
+                        <form id="delete-account-form" method="POST" action="{% url 'eliminar_cuenta' %}">
+                            {% csrf_token %}
+                        </form>
                     </li>
-                {% empty %}
-                    <li>No tienes mascotas. ¡Añade una!</li>
-                {% endfor %}
-                    <li>
-
-                    </li>
-            </ul>
+                </ul>
+            </div>
         </div>
+    </main>
 
-        <div class="options-section">
-            <h2>Opciones de Cuenta</h2>
-            <ul>
-                <li><a href="#" onclick="alert('Funcionalidad en desarrollo');">Borrar cuenta</a></li>
-            </ul>
-        </div>
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault();  // Previene la acción predeterminada del enlace
 
-        <footer>
-            <a href="{% url 'logout' %}">Cerrar Sesión</a>
-        </footer>
-    </div>
+            // Mostrar un mensaje de confirmación
+            const confirmAction = confirm("¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no puede deshacerse.");
+
+            // Si el usuario confirma, enviamos el formulario
+            if (confirmAction) {
+                document.getElementById('delete-account-form').submit();  // Envía el formulario
+            }
+        }
+    </script>
 </body>
+
 </html>

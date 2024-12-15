@@ -9,3 +9,4 @@ id,fecha_nacimiento,tamano,color,temperamento,nivel_actividad,peso,nivel_sociali
 8,2016-10-10,Pequeño,Azul,Desobediente,Alto,8.20,Alta,True
 9,2015-04-01,Mediano,Tricolor,Tímido,Bajo,30.40,Baja,False
 10,2018-01-14,Grande,Blanco y negro,Curioso,Alto,40.00,Media,True
+11,2018-01-14,Grande,Celeste,Curioso,Alto,40.00,Media,True
