@@ -30,11 +30,13 @@
             <div class="options-section">
                 <h2>Opciones de Mascota</h2>
                 <ul>
-                    <li>
-                        <a href="{% url 'crear_mascota' usuario_id=request.user.id %}">Añadir mascota</a></li>
-                    <!-- Iterar sobre las mascotas para permitir editar cada una -->
                     {% for mascota in mascotas %}
                         <li>
+                            {% if mascota.foto %}
+                                <img src="{{ mascota.foto.url }}" alt="Foto de {{ mascota.nombre }}" class="mascota-foto" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+                            {% else %}
+                                <img src="{% static 'images/default_pet.jpg' %}" alt="Foto predeterminada" class="mascota-foto" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+                            {% endif %}
                             <a href="{% url 'editar_mascota' mascota.id %}">Editar {{ mascota.nombre }}</a>
                         </li>
                     {% empty %}
@@ -42,6 +44,7 @@
                     {% endfor %}
                 </ul>
             </div>
+
 
             <div class="options-section">
                 <h2>Opciones de Cuenta</h2>
