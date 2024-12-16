@@ -37,7 +37,7 @@
         <section class="hero">
             <div class="hero-content">
                 <h1>Bienvenido a <strong>Pawmeet</strong></h1>
-                <p>Conexiones reales, pero con tu mascota favorita</p>
+                <p>Conexiones reales, con tu mascota favorita</p>
                 {% if not user.is_authenticated %}
                     <!-- Solo mostrar el botón de crear cuenta si el usuario no está logueado -->
                     <button class="btn-create" onclick="window.location.href='{% url 'crear_usuario' %}'">Crear Cuenta</button>
