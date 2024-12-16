@@ -34,7 +34,10 @@ header {
     z-index: 1000;
 }
 
-.logo{
+.logo {
+    float: left;
+    margin-right: 10px;
+    margin-top: 10px;
     max-width: 50px;
 }
 
@@ -112,6 +115,8 @@ header {
     overflow: auto;
     margin-top: 0px;
 }
+
+/*Sección de las pet cards*/
 .swipe-container {
     margin-top: 30px;
     position: relative;
@@ -122,58 +127,57 @@ header {
     max-width: 400px;
     transition: transform 0.3s ease;
 }
+
 .pet-card {
-    width: 300px;
-    height: 400px;
+    display: flex;
+    align-items: center;
+    width: 550px; /* Adjusted width to be narrower */
+    height: 300px;
     border-radius: 15px;
     background: var(--white);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
     border: 2px solid var(--light-gray);
     margin-bottom: 20px;
-}
-
-.img-perro {
-
-    width: 100%;
-    height: 30%;
-    object-fit: cover;
-    border-bottom: 1px solid var(--light-gray);
+    padding: 10px;
 }
 
 .pet-info {
+    flex: 1;
     padding: 10px;
+    color: var(--text-color);
+    text-align: left;
 }
 
-.pet-info h3, .pet-info p {
-    margin: 0;
-    color: var(--text-color);
+.img-perro {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
 }
 
 .actions {
-    margin-top: 10px;
-    margin-bottom: 40px;
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 10px;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 50%;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: transform 0.3s;
-    padding: 10px;
+    align-items: center;
+    margin-left: 20px;
 }
+
 .actions button {
     background: transparent;
     cursor: pointer;
     transition: transform 0.3s;
     padding: 10px;
     font-size: 2rem;
-    border: none; /* Remove the border */
+    border: none;
 }
+
 .actions button:hover {
     transform: scale(1.1);
 }
+
 .btn-like {
     color: green;
 }
@@ -182,19 +186,61 @@ header {
     color: red;
 }
 
-.filters-sidebar{
+/* Sección de filtros */
+.filters-sidebar {
     position: fixed;
     top: 120px;
     left: 20px;
-    background: var(--white);
-    width: 250px;
-    padding: 1rem;
-    border: 1px solid #ddd;
+    background-color: #f7f7f7;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 270px;
     height: fit-content;
     overflow: auto;
 }
+.filters-sidebar > h4 {
+    margin-top: 0;
+}
+.filters-sidebar label {
+    display: block;
+    margin-bottom: 10px;
+}
+.filters-sidebar select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.filters-sidebar input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.filters-sidebar button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.filters-sidebar button[type="submit"]:hover {
+    background-color: #45a049;
+}
+.filters-sidebar > form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.filters-sidebar > form > label {
+    margin-bottom: 10px;
+}
+
+/*Sección de contactos*/
 .chats-sidebar {
     position: fixed;
     top: 120px;
