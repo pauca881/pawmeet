@@ -21,6 +21,7 @@
                     </a>
                 </div>
             </nav>
+
             <div class="nav-buttons">
                 {% if user.is_authenticated %}
                     <button class="btn" onclick="window.location.href='{% url 'conectar' %}'">Conectar</button>
@@ -29,33 +30,60 @@
                 {% endif %}
             </div>
         </header>
-        <main> <br><br><br><br>
-            <h1>Eventos disponibles</h1>
+
+        <main>
+            <h1 style="margin-top: 2rem;">Eventos disponibles</h1>
             <div class="eventos-lista">
-                {% for evento in eventos %}
                     <div class="evento">
-                        <h2>{{ evento.titulo }}</h2>
-                        <p><strong>Descripción:</strong> {{ evento.descripcion }}</p>
-                        <p><strong>Fecha y Hora:</strong> {{ evento.fecha_hora }}</p>
-                        <p><strong>Ubicación:</strong> {{ evento.ubicacion }}</p>
-                        <p><strong>Organizador:</strong> {{ evento.organizador }}</p>
+                        <h2>Quedada Martorell</h2>
 
-                            <p>Usuarios inscritos:</p>
-                            {% for usuario in evento.usuarios_inscritos.all %}
-                                <p>{{ usuario }}</p>
-                            {% empty %}
-                            <p><strong>No hay usuarios inscritos.</strong></p>
-                            {% endfor %}
+                        <p><strong>Descripción:</strong> Para vernos con nuestros perritos</p>
+                        <p><strong>Fecha y Hora:</strong> Dec. 11, 2024, 8:36 p.m</p>
+                        <p><strong>Ubicación:</strong> Martorell, España</p>
+                        <p><strong>Organizador:</strong> Pau_01</p>
 
+                        <p><strong>Usuarios inscritos:</strong></p>
+                            <p>Ferran_01</p>
+                            <p>Pau_01</p>
+                            <p>Jona_23</p>
+                            <p>Uriri_055</p>
 
-                        <button class="btn-profile" onclick="window.location.href='{% url 'unirme_a_evento' %}?id={{ evento.id }}'">Unirme a este evento</button>
-
+                        <button class="btn-profile" onclick="return confirm('Seguro que deseas unirte a este evento?');">Unirme a este evento</button>
                     </div>
 
-                {% empty %}
-                    <p>No hay eventos disponibles.</p>
-                {% endfor %}
+                    <div class="evento">
+                        <h2>Quedada Sants</h2>
 
+                        <p><strong>Descripción:</strong> ChitChat en el pipicán</p>
+                        <p><strong>Fecha y Hora:</strong> Enero 14, 2025, 6:00 p.m</p>
+                        <p><strong>Ubicación:</strong> Sants, Barcelona</p>
+                        <p><strong>Organizador:</strong> Ferran_01</p>
+
+                        <p><strong>Usuarios inscritos:</strong></p>
+                            <p>Ferran_01</p>
+                            <p>Pau_01</p>
+                            <p>Jona_23</p>
+                            <p>Uriri_055</p>
+
+                        <button class="btn-profile" onclick="return confirm('Seguro que deseas unirte a este evento?');">Unirme a este evento</button>
+                    </div>
+
+                    <div class="evento">
+                        <h2>Quedada Badalona</h2>
+
+                        <p><strong>Descripción:</strong> Quedada de Golden Retrievers</p>
+                        <p><strong>Fecha y Hora:</strong> Dec. 24, 2024, 10:00 a.m</p>
+                        <p><strong>Ubicación:</strong> Martorell, España</p>
+                        <p><strong>Organizador:</strong> Jona_23</p>
+
+                        <p><strong>Usuarios inscritos:</strong></p>
+                            <p>Ferran_01</p>
+                            <p>Pau_01</p>
+                            <p>Jona_23</p>
+                            <p>Uriri_055</p>
+
+                        <button class="btn-profile" onclick="return confirm('Seguro que deseas unirte a este evento?');">Unirme a este evento</button>
+                    </div>
             </div>
         </main>
     </body>
