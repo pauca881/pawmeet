@@ -12,7 +12,6 @@
 <body>
     <header>
         <img src="{% static 'home/pawmeet.png' %}" alt="Logo" class="logo">
-
         <button class="home-btn" onclick="window.location.href='{% url 'home' %}'">Home</button>
 
         <h1>{{ entity.name }}</h1>
@@ -27,20 +26,18 @@
 
     <main>
         <section>
-            <h2>Tus recomendaciones</h2>
-            <p>Aquí saldran las recomendaciones personalizadas...</p>
-        </section>
-
-        <section>
-            <h2>¿Que buscas?</h2>
-            <button class="veterinarios-btn">Veterinarios</button>
-            <button class="parques-btn">Parques</button>
-            <button class="tiendas-btn">Tiendas para animales</button>
+            <h2>Mis servicios</h2>
+            <p>Ofrecemos:</p>
+            <ul>
+                <li>Veterinaria</li>
+                <li>Paseos y cuidado de mascotas</li>
+                <li>Tienda de alimentos y accesorios</li>
+            </ul>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+        <p>&copy; 2024 {{ entity.name }}. All rights reserved.</p>
     </footer>
 </body>
 
