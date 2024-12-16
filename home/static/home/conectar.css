@@ -136,7 +136,7 @@ header {
 .pet-card {
     display: flex;
     align-items: center;
-    width: 570px; /* Adjusted width to be narrower */
+    width: 600px; /* Adjusted width to be narrower */
     height: 300px;
     border-radius: 15px;
     background: var(--white);
@@ -154,8 +154,8 @@ header {
 }
 
 .img-perro {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
     border-radius: 10px;
     margin-right: 20px;
@@ -200,7 +200,7 @@ header {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 270px;
+    width: 250px;
     height: fit-content;
     overflow: auto;
 }
@@ -251,7 +251,7 @@ header {
     top: 120px;
     right: 20px;
     background: var(--white);
-    width: 280px;
+    width: 250px;
     padding: 1rem;
     border: 1px solid #ddd;
     border-radius: 10px;

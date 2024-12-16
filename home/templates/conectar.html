@@ -39,8 +39,10 @@
 
             <div class="filters-sidebar">
                 <h4>Filtros de búsqueda</h4>
+
+                <br>
                 <form>
-                    <label>Raza:</label>
+                    <strong>Raza:</strong>
                     <select name="raza">
                         <option value="">Todas</option>
                         <option value="Golden Retriever">Golden Retriever</option>
@@ -59,19 +61,25 @@
                     </select>
 
                     <br>
+                    <div>
+                        <strong>Gustos:</strong>
                         <label style="display: flex; align-items: center;">
                             Pasear
                             <input type="checkbox" name="gustos[]" value="Pasear" style="margin-left: 10px;">
                         </label>
+
                         <label style="display: flex; align-items: center;">
                             Jugar
                             <input type="checkbox" name="gustos[]" value="Jugar" style="margin-left: 10px;">
                         </label>
-                    <br>
+                    </div>
 
-                    <label>Tags:</label>
+                    <br>
+                    <div>
+                        <strong>Tags:</strong>
                         <input type="text" name="tags" placeholder="Ej: perro, gato, etc.">
                         <button type="submit">Buscar</button>
+                    </div>
                 </form>
             </div>
 
@@ -90,18 +98,13 @@
                         </div>
 
                         <div class="actions">
-                            <form action="{% url 'conectar' %}" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="mascota_id" value="{{ mascota.id }}">
+                            <button class="btn-like" onclick="alert('Ahora eres amigo de este perro!');">
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
 
-                                <button class="btn-like" type="submit">
-                                    <i class="fa-solid fa-heart"></i>
-                                </button>
-
-                                <button class="btn-dislike">
-                                    <i class="fa-solid fa-xmark"></i>
-                                </button>
-                            </form>
+                            <button class="btn-dislike" onclick="alert('Ups, no te gustó este perro');">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -119,18 +122,13 @@
                         </div>
 
                         <div class="actions">
-                            <form action="{% url 'conectar' %}" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="mascota_id" value="{{ mascota.id }}">
+                            <button class="btn-like" onclick="alert('Ahora eres amigo de este perro!');">
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
 
-                                <button class="btn-like" type="submit">
-                                    <i class="fa-solid fa-heart"></i>
-                                </button>
-
-                                <button class="btn-dislike">
-                                    <i class="fa-solid fa-xmark"></i>
-                                </button>
-                            </form>
+                            <button class="btn-dislike" onclick="alert('Ups, no te gustó este perro');">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -148,18 +146,13 @@
                         </div>
 
                         <div class="actions">
-                            <form action="{% url 'conectar' %}" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="mascota_id" value="{{ mascota.id }}">
+                            <button class="btn-like" onclick="alert('Ahora eres amigo de este perro!');">
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
 
-                                <button class="btn-like" type="submit">
-                                    <i class="fa-solid fa-heart"></i>
-                                </button>
-
-                                <button class="btn-dislike">
-                                    <i class="fa-solid fa-xmark"></i>
-                                </button>
-                            </form>
+                            <button class="btn-dislike" onclick="alert('Ups, no te gustó este perro');">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -177,18 +170,13 @@
                         </div>
 
                         <div class="actions">
-                            <form action="{% url 'conectar' %}" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="mascota_id" value="{{ mascota.id }}">
+                            <button class="btn-like" onclick="alert('Ahora eres amigo de este perro!');">
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
 
-                                <button class="btn-like" type="submit">
-                                    <i class="fa-solid fa-heart"></i>
-                                </button>
-
-                                <button class="btn-dislike">
-                                    <i class="fa-solid fa-xmark"></i>
-                                </button>
-                            </form>
+                            <button class="btn-dislike" onclick="alert('Ups, no te gustó este perro');">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
                         </div>
                     </div>
             </div>
