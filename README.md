@@ -1,10 +1,15 @@
 # Pawmeet
 
-Pawmeet is an application that allows users to connect with each other to organize activities and meetups for their pets.
+Pawmeet is an application that allows users to connect with each other with connections between they pets, to organize activities and meetups for their pets and owners.
 
 ## Features
 
 - User and pet registration
+- Personal ChatBot
+- Add friends
+- Make and join real meetups
+- CRUD
+- And others...
 
 ## Screenshots
 
@@ -12,9 +17,15 @@ Pawmeet is an application that allows users to connect with each other to organi
 
 ## Technologies Used
 
-- Django
+- Django ( Python )
 - Folium
 - OpenAI API
+- SkLearn Library
+- NumPy
+- TensorFlow Framework
+- SQL Lite ( Native from Django )
+- HTML, CSS, JavaScript, Bootstrap
+- NLTK ( Chatbot )
 
 ## Installation
 
@@ -49,11 +60,11 @@ Contributions are welcome! If you'd like to contribute to the project, please fo
 
 ## License
 
-This project is licensed under the MIT License. For more details, please see the `LICENSE` file.
+This project is licensed under the CC License. For more details, please see the `LICENSE` file.
 
 Thank you for using Pawmeet!
 
-## Developer Documentation
+## Developer Documentation ( Incompleted )
 Installed Django ( pip install django ) from Windows Powershell as administrator
 Created the Django Project 
 cd pawmeet
