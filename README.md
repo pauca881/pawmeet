@@ -5,6 +5,7 @@ Pawmeet is an application that allows users to connect with each other with conn
 ## Features
 
 - User and pet registration
+- Recommendatios of near Mascots ( KNN Implementation )
 - Personal ChatBot
 - Add friends
 - Make and join real meetups
